@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<commands>
+ <command id="/aaa" class="org.thinker.command.ACommandImpl">
+ </command>
+ 
+ <command id="/bbb" class="org.thinker.command.BCommandImpl">
+ </command>
+ 
+ <command id="/ccc" class="org.thinker.command.CCommandImpl">
+ </command>
+</commands>
