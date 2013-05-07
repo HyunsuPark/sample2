@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<project name="testWeb" default="Build" basedir="c:\AntSample\deployLib">
+	<!-- 프로퍼티를 지정 합니다. -->
+	<!-- <property file="build.properties"/> 프로퍼티파일있을때만-->
+	<property name="name" value="AntTestWeb"/>
+	<!-- 프로젝트이름 -->
+	<property name="version" value="1.0"/>
+	<property name="base.dir"  value="."/>
+	<property name="workspacePath" location="C:\Users\Real_PHS\Documents\workspace-sts-3.1.0.RELEASE"></property>
+	<!-- 현재workspace -->
+	<property name="dist.dir"  value="dist"/>
+	<property name="build.dir" value="build"/>
+	<property name="lib.dir" value="lib"/>
+	<property name="classes.dir" value="classes"/>
+	<property name="src.dir"   value="src"/>
+	<property name="jar.file"  value="${build.dir}/${name}.jar"/>
+	<property name="dist.file"  value="${dist.dir}/${name}-${version}.zip"/>
+	<!-- 삭제 -->
+	<target name="clear">
+		<delete dir="WEB-INF" />
+	</target>
+
+	<!-- 이미있는건지우고 진행 -->
+	<target name="compile" depends="clear">
+		<tstamp>
+			<format property="DSTAMP" pattern="yyyy.MM.dd" />
+			<format property="TSTAMP" pattern="HH:mm" />
+		</tstamp>
+		<!-- ex)[echo] Build Start!! ======> 2013.05.07 14:52 -->
+		<echo message="Build Start!! ======> ${DSTAMP} ${TSTAMP}" />
+
+		<!-- 소스 컴파일 -->
+		<!-- 배포할 dist 디렉토리 생성 -->
+		<echo message="compile"/>
+		<mkdir dir="WEB-INF"/>
+		<mkdir dir="WEB-INF/${classes.dir}"/>
+		<mkdir dir="WEB-INF/${lib.dir}"/>
+		<javac srcdir="${workspacePath}/${name}/${src.dir}" destdir="WEB-INF/${classes.dir}">
+			<classpath>
+				<pathelement path="${workspacePath}/${name}/WebContent/WEB-INF/lib" />
+				<fileset dir="${workspacePath}/${name}/WebContent/WEB-INF/lib">
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+
+		<!-- 빌드 디렉토리에 컴파일이 끝난 클래스를 jar 파일로 묶음 -->
+		<!-- destfile은 생성될 JAR 파일/ basedir은 jar로 압축될 파일이 있는 폴더 -->
+	</target>
+
+	<target name="mkjar" depends="compile">
+		<echo message="mkjar-------------------" />
+		<mkdir dir="${dist.dir}" />
+		<!-- .\dist\build\??.jar -->
+		<jar destfile="${dist.dir}/${jar.file}" basedir="${build.dir}" />
+	</target>
+	
+	<!-- 배포할 라이브러리와 소스등을 배포용 디렉토리로 복사하고 배포용 디렉토리를 zip으로 묶음 -->
+	<!-- jar와 소스, lib 아래의 jar를 배포용 디렉토리에 복사 후 zip으로 묶음 -->
+	<target name="Build" depends="mkjar">
+		<echo message="dist--------------------------" />
+		<copy todir="${dist.dir}/lib">
+			<fileset dir="lib" />
+		</copy>
+		<copy todir="${dist.dir}/dist">
+			<fileset dir="dist" />
+		</copy>
+		<zip destfile="zip-${dist.file}">
+			<fileset dir="${dist}/.." />
+		</zip>
+	</target>
+	<!-- 스크립트의 끝 -->
+</project>
