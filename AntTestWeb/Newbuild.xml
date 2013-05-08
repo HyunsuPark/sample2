@@ -2,15 +2,14 @@
 <project name="kuis" default="war" basedir="C:\warsample"> <!-- war생성폴더-->
 	<!-- 프로퍼티를 지정 합니다. -->
 	<!-- <property file="build.properties"/> 프로퍼티파일있을때만-->
-	<property name="name" value="kuis"/>
-	<!-- 프로젝트이름 -->
+	<property name="name" value="kuis"/> <!-- 프로젝트이름 -->
 	<property name="version" value="1.0"/>
-	<property name="base.dir"  value="."/>
 	<!-- 소스 워크스페이스 -->
 	<property name="workspacePath" location="C:\Users\Real_PHS\Downloads\kuisdev">
 	</property>
-	<!-- 톰캣라이브러리폴더 -->
-	<property name="tomcatLib.dir"  value="F:\Tomcat 6.0\lib"/>
+	<property name="tomcatLib.dir"  value="F:\Tomcat 6.0\lib"/> <!-- 톰캣라이브러리폴더 -->
+	<!-- ex::  workspace/projectName/WebContent -->
+	<property name="webbase.dir"  value="${workspacePath}/${name}/WebContent"/>
 	<property name="dist.dir"  value="dist"/>
 	<property name="build.dir" value="build"/>
 	<property name="lib.dir" value="lib"/>
@@ -18,8 +17,8 @@
 	<property name="src.dir"   value="src"/>
 	<property name="jar.file"  value="${build.dir}/${name}.jar"/>
 	<property name="dist.file"  value="${dist.dir}/${name}-${version}.zip"/>
-	<!-- ex::  workspace/projectName/WebContent -->
-	<property name="webbase.dir"  value="${workspacePath}/${name}/WebContent"/>
+	<!-- 프로퍼티 끝 -->
+	
 	<!-- 삭제 -->
 	<target name="clear">
 		<delete dir="$[build.dir}" />
@@ -93,5 +92,7 @@
 		</zip>
 	</target>
 	 -->
+	
+	<echo message="Build End!! ======> ${DSTAMP} ${TSTAMP}" />
 	<!-- 스크립트의 끝 -->
 </project>
