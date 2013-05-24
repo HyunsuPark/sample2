@@ -16,7 +16,7 @@ public  class  ChatServer  {
     public  void  serverStart(){
             System.out.println("접속자를  기다리는  중입니다.");
             try  {
-                    server  =  new  ServerSocket(2006);
+                    server  =  new  ServerSocket(57891);
                     socket  =  server.accept();
                     writer  =  new  BufferedWriter(new  OutputStreamWriter(socket.getOutputStream()));
                   
@@ -24,10 +24,8 @@ public  class  ChatServer  {
                     //Client와  통신할  스레드  구현  클래스
                     ChatServerHandler  handler  =  new  ChatServerHandler(socket);
                     handler.start();
-                  
-                    BufferedReader  in  =  new  BufferedReader(new  InputStreamReader(System.in,"utf-8"));                    
+                    BufferedReader  in  =  new  BufferedReader(new  InputStreamReader(System.in));                    
                     String  s="";
-                  
                     while(true)  {
                             try  {
                                 System.out.print("☞  ");
