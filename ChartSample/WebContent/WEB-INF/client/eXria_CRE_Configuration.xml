@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eXriaCRE xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0.0.201103291625" xsi:noNamespaceSchemaLocation="eXria_CRE_Configuration_Schema.xsd">
+	<Form>
+		<style>
+			<css background-color="#ffffff" background-image="/style/images/bg.jpg" background-position="center top" background-repeat="repeat-x" />
+			<extended focusBorderColor="" focusBorderStyle="" focusBorderWidth="" height="765" width="1265" />
+		</style>
+		<ToolTip>
+			<style>
+				<extended leftBottomImage="" leftTopImage="" rightBottomImage="" rightTopImage="" />
+				<outerCss background-color="#E5E6F0" background-image="" background-position="left top" background-repeat="no-repeat" border-color="#8E8E8E" border-style="outset" border-width="1px" color="#555555" font-family="GulimChe, Arial" font-size="8pt" font-style="normal" font-weight="normal" opacity="1" padding="2px" padding-bottom="" padding-left="" padding-right="" padding-top="" />
+				<css />
+			</style>
+		</ToolTip>
+		<attribute debug="true" />
+	</Form>
+	<UIControl>
+		<attribute disabled="false" movable="false" showFocusLine="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<css background-color="#FFFFFF" color="#000000" />
+			<outerCss border-bottom-width="" border-color="#A5BACC" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="1px" cursor="default" />
+			<extended disabledColor="'#747474'" focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" />
+		</style>
+	</UIControl>
+	<ShapeControl>
+		<attribute movable="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<outerCss cursor="auto" />
+			<extended angle="0" focusDisplay="false" focusPenColor="'#006600'" focusPenStyle="'solid'" focusPenWeight="" joinType="'round'" penColor="'#938B81'" penOpacity="100" penStyle="'solid'" penWeight="1" />
+		</style>
+	</ShapeControl>
+	<DragDrop>
+		<style>
+			<outerCss background-color="#FFFFFF" background-image="url('/eXria/controls/xhtml/images/bigWaiting.gif')" border-color="#317082" border-style="solid" border-width="2px" font-size="10pt" opacity="0.7" />
+		</style>
+	</DragDrop>
+	<Cover>
+		<style>
+			<outerCss background-color="#747474" opacity="0.2" />
+		</style>
+	</Cover>
+	<Label>
+		<attribute disabled="false" movable="false" showFocusLine="false" text="'label'" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" wordWrap="true" />
+		<style>
+			<css color="#000000" font-family="GulimChe, Arial" font-size="9pt" font-style="normal" font-weight="normal" padding="0px" padding-bottom="" padding-left="" padding-right="" padding-top="" text-align="center" text-decoration="none" />
+			<outerCss background-color="transparent" background-image="" background-position="center center" background-repeat="no-repeat" border-bottom-width="" border-color="#A5BACC" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="1px" cursor="default" overflow="visible" overflow-x="" overflow-y="" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" verticalAlign="'middle'" />
+		</style>
+	</Label>
+	<InputBox>
+		<attribute disabled="false" maxByteLength="" maxlength="" minByteLength="" minlength="" movable="false" nullable="true" readonly="false" showFocusLine="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<css background-color="#ffffff" color="#000000" cursor="default" font-family="GulimChe, Arial" font-size="9pt" font-style="normal" font-weight="normal" ime-mode="active" padding="0px" padding-bottom="" padding-left="" padding-right="" padding-top="" text-align="left" text-decoration="none" text-transform="none" />
+			<outerCss border-bottom-width="" border-color="#A5BACC" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="1px" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" verticalAlign="'middle'" />
+		</style>
+	</InputBox>
+	<SecretBox>
+		<attribute disabled="false" maxByteLength="" maxlength="" minByteLength="" minlength="" movable="false" nullable="true" showFocusLine="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<css background-color="#ffffff" color="#000000" cursor="default" font-family="GulimChe, Arial" font-size="9pt" font-style="normal" font-weight="normal" ime-mode="auto" padding="0px" padding-bottom="" padding-left="" padding-right="" padding-top="" text-align="left" text-decoration="none" />
+			<outerCss border-bottom-width="" border-color="#A5BACC" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="1px" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" verticalAlign="'middle'" />
+		</style>
+	</SecretBox>
+	<DateInput>
+		<attribute btnCursor="'pointer'" calendarEnable="true" calendarImageUrl="'/eXria/controls/xhtml/images/calendar.jpg'" defaultFileName="'/eXria/config/gridex/Defaults.xml'" disabled="false" maskPrompt="'_'" max="'99991231235959'" min="'19000101000000'" movable="false" nullable="true" readOnlyWithCalendar="'auto'" readonly="false" showFocusLine="false" textFileName="'/eXria/config/gridex/Text.xml'" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<css background-color="#ffffff" color="#000000" cursor="default" font-family="GulimChe, Arial" font-size="9pt" font-style="normal" font-weight="normal" padding="0px" padding-bottom="" padding-left="" padding-right="" padding-top="" text-align="left" text-decoration="none" />
+			<outerCss border-bottom-width="" border-color="#A5BACC" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="1px" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" verticalAlign="'middle'" />
+		</style>
+		<SubCalendar>
+			<style>
+				<css background-color="#DFEEF4" color="#000000" font-family="Arial" font-size="12pt" font-style="normal" font-weight="normal" />
+				<outerCss border-bottom-width="" border-color="silver" border-left-width="" border-right-width="" border-style="none" border-top-width="" border-width="0px" />
+				<extended bodyBackgroundColor="'#FFFFFF'" headerBackgroundColor="'#1984AF'" height="180" selectedColor="'#0099FF'" width="180" />
+			</style>
+		</SubCalendar>
+	</DateInput>
+	<EditMask>
+		<attribute btnCursor="'pointer'" calendarEnable="true" calendarImageUrl="'/eXria/controls/xhtml/images/calendar.jpg'" defaultFileName="'/eXria/config/gridex/Defaults.xml'" disabled="false" maskPrompt="'_'" maxByteLength="" maxlength="" minByteLength="" minlength="" movable="false" nullable="true" readOnlyWithCalendar="'auto'" readonly="false" showFocusLine="false" spinNum="1" spinWidth="20" textFileName="'/eXria/config/gridex/Text.xml'" tooltip="" tooltipDisplay="true" tooltipLangKey="" useSpin="false" userAttr="" visible="true" />
+		<style>
+			<css background-color="#ffffff" color="#000000" cursor="default" font-family="GulimChe, Arial" font-size="9pt" font-style="normal" font-weight="normal" ime-mode="auto" padding="0px" padding-bottom="" padding-left="" padding-right="" padding-top="" text-align="left" text-decoration="none" text-transform="none" />
+			<outerCss border-bottom-width="" border-color="#A5BACC" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="1px" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" />
+		</style>
+		<SubCalendar>
+			<style>
+				<css background-color="#DFEEF4" color="#000000" font-family="Arial" font-size="12pt" font-style="normal" font-weight="normal" />
+				<outerCss border-bottom-width="" border-color="silver" border-left-width="" border-right-width="" border-style="none" border-top-width="" border-width="0px" />
+				<extended bodyBackgroundColor="'#FFFFFF'" headerBackgroundColor="'#1984AF'" height="180" selectedColor="'#0099FF'" width="180" />
+			</style>
+		</SubCalendar>
+	</EditMask>
+	<Output>
+		<attribute disabled="false" movable="false" showFocusLine="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<css color="#000000" cursor="default" font-family="GulimChe, Arial" font-size="9pt" font-style="normal" font-weight="normal" letter-spacing="normal" line-height="normal" padding="0px" padding-bottom="" padding-left="" padding-right="" padding-top="" text-align="left" text-decoration="none" />
+			<outerCss background-color="#ffffff" border-bottom-width="" border-color="#A5BACC" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="1px" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" verticalAlign="'middle'" />
+		</style>
+	</Output>
+	<TextArea>
+		<attribute cols="20" disabled="false" maxByteLength="" maxlength="" minByteLength="" minlength="" movable="false" nullable="true" readonly="false" rows="20" showFocusLine="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<css color="#000000" cursor="default" font-family="GulimChe, Arial" font-size="9pt" font-style="normal" font-weight="normal" ime-mode="active" overflow="auto" overflow-x="" overflow-y="" padding="0px" padding-bottom="" padding-left="" padding-right="" padding-top="" text-align="left" text-decoration="none" />
+			<outerCss background-color="#ffffff" border-bottom-width="" border-color="#A5BACC" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="1px" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" />
+		</style>
+	</TextArea>
+	<Button>
+		<attribute disabled="false" imageFocused="" imageMouseover="" imagePushed="" movable="false" showFocusLine="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" value="''" visible="true" wordWrap="true" />
+		<style>
+			<css background-color="#1683D7" background-image="" background-position="center center" background-repeat="no-repeat" color="#ffffff" cursor="pointer" font-family="GulimChe, Arial" font-size="9pt" font-style="normal" font-weight="normal" padding="0px" padding-bottom="" padding-left="" padding-right="" padding-top="" text-align="center" text-decoration="none" />
+			<outerCss border-bottom-width="" border-color="#1475C5" border-left-width="" border-right-width="" border-style="outset" border-top-width="" border-width="1px" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" />
+		</style>
+	</Button>
+	<RadioButton>
+		<attribute disabled="false" displayMode="'horizontal'" displayNum="2" horizontalGap="0" labelTagName="'labelNode'" movable="false" offsetLeft="0" offsetTop="0" showFocusLine="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" valueTagName="'valueNode'" verticalGap="0" visible="true" />
+		<style>
+			<css color="#000000" font-family="GulimChe, Arial" font-size="9pt" font-style="normal" font-weight="normal" />
+			<outerCss background-color="#ffffff" border-bottom-width="" border-color="#A5BACC" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="1px" cursor="default" overflow="hidden" overflow-x="" overflow-y="" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" />
+		</style>
+		<ItemGroup>
+			<style>
+				<css background-color="transparent" color="#000000" cursor="default" font-family="GulimChe, Arial" font-size="9pt" font-style="normal" font-weight="normal" text-align="left" />
+				<outerCss border-bottom-width="" border-color="#000000" border-left-width="" border-right-width="" border-style="none" border-top-width="" border-width="0px" />
+				<extended height="18" labelPos="'right'" verticalAlign="'middle'" width="98" />
+			</style>
+		</ItemGroup>
+	</RadioButton>
+	<CheckBox>
+		<attribute disabled="false" displayMode="'horizontal'" displayNum="2" horizontalGap="0" labelTagName="'labelNode'" movable="false" offsetLeft="0" offsetTop="0" showFocusLine="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" valueTagName="'valueNode'" verticalGap="0" visible="true" />
+		<style>
+			<css color="#000000" font-family="GulimChe, Arial" font-size="9pt" font-style="normal" font-weight="normal" />
+			<outerCss background-color="#ffffff" border-bottom-width="" border-color="#A5BACC" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="1px" cursor="default" overflow="hidden" overflow-x="" overflow-y="" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" />
+		</style>
+		<ItemGroup>
+			<style>
+				<css background-color="transparent" color="#000000" cursor="default" font-family="GulimChe, Arial" font-size="9pt" font-style="normal" font-weight="normal" text-align="left" />
+				<outerCss border-bottom-width="" border-color="#000000" border-left-width="" border-right-width="" border-style="none" border-top-width="" border-width="0px" />
+				<extended height="18" labelPos="'right'" verticalAlign="'middle'" width="98" />
+			</style>
+		</ItemGroup>
+	</CheckBox>
+	<ComboBox>
+		<attribute disabled="false" labelTagName="'labelNode'" listDirection="'auto'" maxByteLength="" maxlength="" minByteLength="" minlength="" movable="false" nullable="true" readonly="true" showFocusLine="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" valueTagName="'valueNode'" visible="true" />
+		<style>
+			<css background-color="#ffffff" color="#000000" font-family="GulimChe, Arial" font-size="9pt" font-style="normal" font-weight="normal" ime-mode="auto" padding="0px" padding-bottom="" padding-left="2px" padding-right="" padding-top="" />
+			<outerCss border-bottom-width="" border-color="#A5BACC" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="1px" cursor="default" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" verticalAlign="'middle'" />
+		</style>
+		<ItemGroup>
+			<style>
+				<css border-bottom-width="" border-color="#000000" border-left-width="" border-right-width="" border-style="none" border-top-width="" border-width="0px" font-family="GulimChe, Arial" font-size="9pt" font-style="normal" font-weight="normal" padding="0px" padding-bottom="" padding-left="2px" padding-right="" padding-top="" text-align="left" />
+				<extended height="20" selectorWidth="20" verticalAlign="'middle'" />
+			</style>
+		</ItemGroup>
+		<Button>
+			<style>
+				<extended btnWidth="20" collapseImage="'/style/images/combo_dropdown_collapse.png'" expandImage="'/style/images/combo_dropdown_expand.png'" />
+				<css background-color="#E7E7EB" color="#000000" cursor="default" />
+			</style>
+		</Button>
+		<ListArea>
+			<attribute appearance="'normal'" heightBySize="false" multiSelect="false" size="5" widthByMaxLength="true" />
+			<style>
+				<css background-color="#ffffff" border-bottom-width="" border-color="#000000" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="1px" color="#000000" />
+				<extended cellSpacing="0" focusBackgroundColor="'#E5E5E5'" focusColor="'#000000'" height="200" hoverBackgroundColor="'#F0F0F0'" />
+			</style>
+		</ListArea>
+	</ComboBox>
+	<ListBox>
+		<attribute appearance="'normal'" disabled="false" heightBySize="false" movable="false" multiSelect="false" showFocusLine="false" size="5" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<css color="#555555" font-family="GulimChe, Arial" font-size="9pt" font-style="normal" font-weight="normal" />
+			<outerCss background-color="#ffffff" border-bottom-width="" border-color="#A5BACC" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="1px" cursor="default" />
+			<extended cellSpacing="1" focusBackgroundColor="'#F7F3E8'" focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusColor="'#BB7637'" focusDisplay="true" hoverBackgroundColor="'#F0F0F0'" />
+		</style>
+		<ItemGroup>
+			<style>
+				<css background-color="transparent" border-bottom-width="" border-color="#000000" border-left-width="" border-right-width="" border-style="dotted" border-top-width="" border-width="0px" height="25px" padding="0px" padding-bottom="" padding-left="2px" padding-right="" padding-top="" text-align="left" />
+				<extended selectorWidth="20" verticalAlign="'middle'" />
+			</style>
+		</ItemGroup>
+	</ListBox>
+	<Image>
+		<attribute disabled="false" movable="false" showFocusLine="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<css background-color="#ffffff" color="#000000" />
+			<outerCss border-bottom-width="" border-color="#A5BACC" border-left-width="" border-right-width="" border-style="none" border-top-width="" border-width="0px" cursor="default" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'none'" focusBorderWidth="'auto'" focusDisplay="false" imageOpacity="100" />
+		</style>
+	</Image>
+	<FileSelector>
+		<attribute disabled="false" movable="false" showFocusLine="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<css background-color="#ffffff" color="#000000" font-family="GulimChe, Arial" font-size="9pt" font-style="normal" font-weight="normal" padding="0px" padding-bottom="" padding-left="" padding-right="" padding-top="" />
+			<outerCss border-bottom-width="" border-color="#A5BACC" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="1px" cursor="default" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" />
+		</style>
+		<BrowseButton>
+			<attribute text="'Browse'" />
+			<style>
+				<css background-color="#E7E7EB" background-image="" background-position="center center" background-repeat="no-repeat" border-bottom-width="" border-color="#CCCCCC" border-left-width="" border-right-width="" border-style="outset" border-top-width="" border-width="2px" color="#000000" font-family="GulimChe, Arial" font-size="9pt" font-style="normal" font-weight="bold" />
+				<extended width="58" />
+			</style>
+		</BrowseButton>
+	</FileSelector>
+	<SlideTab>
+		<attribute closable="false" disabled="false" expandDirection="'top'" movable="false" renderAll="false" showFocusLine="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<css background-color="#ffffff" color="#000000" />
+			<outerCss border-bottom-width="" border-color="#A5C47D" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="0px" cursor="default" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" />
+		</style>
+		<SlideButtons>
+			<style>
+				<css background-color="#BABABA" background-image="/style/images/tab_button_bg.gif" background-position="left center" background-repeat="repeat-x" color="#555555" cursor="default" font-family="Gulimche, Arial" font-size="9pt" font-style="normal" font-weight="normal" padding="0px" padding-bottom="" padding-left="" padding-right="" padding-top="" text-align="center" text-decoration="none" />
+				<outerCss border-bottom-width="" border-color="#7A7979" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="1px" />
+				<extended focusBackgroundColor="'#8B8B8B'" focusColor="'#BCEDA9'" height="20" imageFocused="'/style/images/tab_button_focus_bg.gif'" />
+			</style>
+		</SlideButtons>
+		<SlidePages>
+			<style>
+				<outerCss background-color="transparent" border-bottom-width="" border-color="#DCD8DA" border-left-width="" border-right-width="" border-style="solid" border-top-width="" overflow="hidden" overflow-x="" overflow-y="" />
+				<extended borderWidth="1" />
+			</style>
+		</SlidePages>
+	</SlideTab>
+	<Group>
+		<attribute disabled="false" movable="false" showFocusLine="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<css background-color="transparent" color="#000000" />
+			<outerCss border-bottom-width="" border-color="#A5C47D" border-left-width="" border-right-width="" border-style="none" border-top-width="" border-width="0px" cursor="default" overflow="hidden" overflow-x="" overflow-y="" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" />
+		</style>
+	</Group>
+	<Tab>
+		<attribute disabled="false" headerHeight="50" movable="false" renderAll="false" showFocusLine="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<css background-color="#ffffff" color="#859CA9" />
+			<outerCss border-bottom-width="" border-color="#A5C47D" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="0px" cursor="default" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" headerHeight="28" headerPos="'top'" />
+		</style>
+		<TabHeader>
+			<style>
+				<css background-color="transparent" />
+				<outerCss border-bottom-width="" border-color="#000000" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="0px" />
+				<extended tabSpinLeftDisabledImg="'/style/images/tbbHeaderLD.gif'" tabSpinLeftImg="'/style/images/tbbHeaderL.gif'" tabSpinLeftWidth="20" tabSpinRightDisabledImg="'/style/images/tbbHeaderRD.gif'" tabSpinRightImg="'/style/images/tbbHeaderR.gif'" tabSpinRightWidth="20" />
+			</style>
+			<TabButtons>
+				<style>
+					<css background-color="#ECECEC" background-image="/images/theme201201/imgs/tab1-1bg.gif" background-position="left center" background-repeat="repeat-x" color="#A5A6A4" cursor="default" font-family="GulimChe, Arial" font-size="9pt" font-style="normal" font-weight="bold" padding="0px" padding-bottom="" padding-left="" padding-right="" padding-top="" text-align="center" text-decoration="none" />
+					<outerCss border-bottom-width="" border-color="#A5A6A4" border-left-width="1px" border-right-width="1px" border-style="solid" border-top-width="" border-width="0px" />
+					<extended cellSpacing="0" focusBackgroundColor="'#ECECEC'" focusColor="'#000000'" imageFocused="'/images/theme201201/imgs/tab1bg.gif'" width="91" />
+				</style>
+			</TabButtons>
+		</TabHeader>
+		<TabPages>
+			<style>
+				<css background-color="transparent" />
+				<outerCss border-bottom-width="" border-color="gray" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="0px" overflow="hidden" overflow-x="" overflow-y="" />
+			</style>
+		</TabPages>
+	</Tab>
+	<Freeform>
+		<attribute disabled="false" movable="false" showFocusLine="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<css background-color="#ffffff" color="#000000" />
+			<outerCss border-bottom-width="" border-color="#A5C47D" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="1px" cursor="default" overflow="hidden" overflow-x="" overflow-y="" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" />
+		</style>
+	</Freeform>
+	<GridEx>
+		<attribute defaultFileName="'/eXria/config/gridex/Defaults.xml'" disabled="false" hideInitRow="false" movable="false" showFocusLine="false" textFileName="'/eXria/config/gridex/Text.xml'" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<css background-color="#ffffff" color="#000000" />
+			<outerCss border-bottom-width="" border-color="#B4BDD8" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="1px" cursor="default" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" />
+		</style>
+		<cfg>
+			<attribute expandAll="false" hscroll="true" keepSelecting="false" multiSelect="false" pageLength="10" pageSelectAll="true" paging="'none'" suppressMessage="false" vscroll="true" />
+		</cfg>
+	</GridEx>
+	<TreeView>
+		<attribute disabled="false" expandAll="false" iconHeight="16" iconWidth="19" keepExpandedState="true" movable="false" selectionMode="'single'" showCheckBox="false" showFocusLine="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<css />
+			<outerCss background-color="#FFFFFF" border-bottom-width="" border-color="#D3D9E9" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="1px" cursor="default" overflow="auto" overflow-x="" overflow-y="" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" />
+		</style>
+		<iconFiles>
+			<style>
+				<extended blank="'/eXria/controls/xhtml/images/blank.png'" closedFolder="'/eXria/controls/xhtml/images/closed_default_folder.png'" closedLastnode="'/eXria/controls/xhtml/images/closed_lastnode.png'" closedNode="'/eXria/controls/xhtml/images/closed_node.png'" lastnode="'/eXria/controls/xhtml/images/lastnode.png'" leafItem="'/eXria/controls/xhtml/images/leaf_item.gif'" node="'/eXria/controls/xhtml/images/node.png'" openedFolder="'/eXria/controls/xhtml/images/opened_default_folder.png'" openedLastnode="'/eXria/controls/xhtml/images/opened_lastnode.png'" openedNode="'/eXria/controls/xhtml/images/opened_node.png'" selectedLeafItem="'/eXria/controls/xhtml/images/selectedleaf_item.gif'" verticalLine="'/eXria/controls/xhtml/images/vertical_line.png'" />
+			</style>
+		</iconFiles>
+		<ItemNodeGroup>
+			<style>
+				<css background-color="#FFFFFF" color="#555555" cursor="pointer" font-family="GulimChe, Arial" font-size="9pt" font-style="normal" font-weight="normal" />
+				<extended selectedBackgroundColor="'#4869AD'" selectedColor="'#FFFFFF'" />
+			</style>
+		</ItemNodeGroup>
+	</TreeView>
+	<Calendar>
+		<attribute defaultFileName="'/eXria/config/gridex/Defaults.xml'" disabled="false" movable="false" showFocusLine="false" textFileName="'/eXria/config/gridex/Text.xml'" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<css background-color="#FFFFFF" color="#000000" font-family="GulimChe, Arial" font-size="9pt" font-style="normal" font-weight="normal" />
+			<outerCss border-bottom-width="" border-color="silver" border-left-width="" border-right-width="" border-style="none" border-top-width="" border-width="0px" cursor="default" />
+			<extended bodyBackgroundColor="'#FFFFFF'" focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" headerBackgroundColor="'#f0f8ff'" innerBorderColor="'#CCCCCC'" innerBorderStyle="'solid'" innerBorderWidth="1" selectedColor="'#CCCCCC'" toNextImage="" toPreviousImage="" />
+		</style>
+	</Calendar>
+	<Object>
+		<attribute disabled="false" movable="false" showFocusLine="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<css background-color="#ffffff" color="#000000" cursor="default" />
+			<outerCss border-bottom-width="" border-color="silver" border-left-width="" border-right-width="" border-style="ridge" border-top-width="" border-width="3px" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" />
+		</style>
+	</Object>
+	<Import>
+		<attribute disabled="false" movable="false" showFocusLine="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<css background-color="transparent" color="#000000" />
+			<outerCss border-bottom-width="" border-color="#A5BACC" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="0px" cursor="default" overflow="hidden" overflow-x="" overflow-y="" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'none'" focusBorderWidth="'auto'" focusDisplay="false" />
+		</style>
+	</Import>
+	<SubPage>
+		<attribute disabled="false" movable="false" showFocusLine="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<outerCss border-bottom-width="" border-color="#A5BACC" border-left-width="" border-right-width="" border-style="none" border-top-width="" border-width="0px" cursor="default" overflow="hidden" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" />
+		</style>
+	</SubPage>
+	<Timer>
+		<attribute interval="1000" stopCount="" />
+	</Timer>
+	<Progress>
+		<attribute disabled="false" interval="100" max="1000" min="0" movable="false" showFocusLine="false" startPos="0" step="1" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<css background-color="#D4D0C9" color="#000000" />
+			<outerCss border-bottom-width="" border-color="#736A5E" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="1px" cursor="default" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" progressColor="'#6AA8E3'" />
+		</style>
+	</Progress>
+	<ContextMenu>
+		<attribute disabled="false" movable="false" showFocusLine="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<css background-color="#FBFBF2" color="#6D5732" />
+			<outerCss border-bottom-width="" border-color="#A5BACC" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="1px" cursor="default" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" />
+		</style>
+		<Iconarea>
+			<style>
+				<css background-color="#FBFBF2" />
+				<extended width="30" />
+			</style>
+		</Iconarea>
+		<MenuItemGroup>
+			<style>
+				<css background-color="#FBFBF2" color="#6D5732" font-family="Gulimche, Arial" font-size="9pt" font-style="normal" font-weight="normal" height="22px" text-align="left" />
+				<extended focusBackgroundColor="'#F1EEE7'" focusColor="'#6D5732'" separatorColor="'#C5C5C5'" separatorHeight="1" textIndent="10" verticalAlign="'middle'" />
+			</style>
+		</MenuItemGroup>
+	</ContextMenu>
+	<Line>
+		<attribute movable="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<outerCss cursor="auto" />
+			<extended angle="0" focusDisplay="false" focusPenColor="'#006600'" focusPenStyle="'solid'" focusPenWeight="" penCap="'round'" penColor="'#A5C47D'" penOpacity="100" penStyle="'solid'" penWeight="1" startPosition="'top'" />
+		</style>
+	</Line>
+	<Rectangle>
+		<attribute movable="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<outerCss cursor="auto" />
+			<extended angle="0" fillAngle="0" fillEndColor="'#f6f6f9'" fillOpacity="100" fillStartColor="'#f6f6f9'" fillType="'solid'" focusDisplay="false" focusPenColor="'#006600'" focusPenStyle="'solid'" focusPenWeight="" joinType="'round'" penColor="'#d3d9e9'" penOpacity="100" penStyle="'solid'" penWeight="1" />
+		</style>
+	</Rectangle>
+	<Roundrect>
+		<attribute movable="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<outerCss cursor="auto" />
+			<extended angle="0" fillAngle="0" fillEndColor="'#ffffff'" fillOpacity="100" fillStartColor="'#FAEBD7'" fillType="'solid'" focusDisplay="false" focusPenColor="'#006600'" focusPenStyle="'solid'" focusPenWeight="" joinType="'round'" penColor="'#A5C47D'" penOpacity="100" penStyle="'solid'" penWeight="1" round="20" />
+		</style>
+	</Roundrect>
+	<Ellipse>
+		<attribute movable="false" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<outerCss cursor="auto" />
+			<extended angle="0" fillAngle="0" fillEndColor="'#ffffff'" fillOpacity="100" fillStartColor="'#D6E3B1'" fillType="'none'" focusDisplay="false" focusPenColor="'#006600'" focusPenStyle="'solid'" focusPenWeight="" joinType="'round'" penColor="'#A5C47D'" penOpacity="100" penStyle="'solid'" penWeight="1" />
+		</style>
+	</Ellipse>
+	<Submission>
+		<attribute async="false" method="'post'" req-charset="'utf-8'" req-protocol="'urlencoded'" req-type="" res-charset="'utf-8'" res-protocol="'xml'" res-type="" waitcursor="true" waitcursorImage="'/style/images/progress.gif'" />
+	</Submission>
+	<HtmlSnippet>
+		<attribute disabled="false" movable="false" showFocusLine="false" userAttr="" visible="true" />
+		<style>
+			<outerCss border-bottom-width="" border-color="#A5BACC" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="1px" cursor="default" overflow="hidden" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" />
+		</style>
+	</HtmlSnippet>
+	<HtmlEditor>
+		<attribute disabled="false" enterMode="'P'" fontListSet="'all'" fontSizeStyle="'numeric'" formatListSet="'default'" language="'auto'" movable="false" shiftEnterMode="'BR'" skin="'default'" styleTagMode="'both'" toolbarSet="'default'" tooltip="" tooltipDisplay="true" tooltipLangKey="" userAttr="" visible="true" />
+		<style>
+			<css color="#000000" cursor="" font-family="Arial" font-size="10pt" font-style="normal" font-weight="normal" padding="0px" padding-bottom="" padding-left="" padding-right="" padding-top="" text-align="left" text-decoration="none" />
+			<outerCss background-color="#ffffff" border-bottom-width="" border-color="#A5BACC" border-left-width="" border-right-width="" border-style="solid" border-top-width="" border-width="1px" />
+			<extended focusBorderColor="'#006600'" focusBorderStyle="'solid'" focusBorderWidth="'auto'" focusDisplay="false" />
+		</style>
+	</HtmlEditor>
+</eXriaCRE>
+

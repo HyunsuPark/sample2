@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exria-multilingual-config xmlns="http://eXria.org/language" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://eXria.org/language language.xsd " version="1.0.0.200910271100">
+  <use-multilingual>true</use-multilingual>
+  <locale-list defaultLocale="ko_KR">
+    <locale name="ko_KR" use="true">ko-KR, ko, koKR, kr, CS003KR</locale>
+    <locale name="en_US" use="true">en_US, enUS, en-US, en, CS003US</locale>
+    <locale name="ja_JP" use="true">ja_JP, jaJP, ja-JP, ja, CS003JP</locale>
+    <locale name="zh_CN" use="true">zh_CN, zhCN, zh-CN, zh, CS003CN</locale>
+  </locale-list>
+  <apply-order-list>
+    <order use="true">Parameter</order>
+    <order use="true">Locale</order>
+    <order use="true">Session</order>
+    <order use="true">Default</order>
+  </apply-order-list>
+  <session-name>default.locale</session-name>
+  <multilingual-type>static</multilingual-type>
+</exria-multilingual-config>
+

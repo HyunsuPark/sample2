@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../.meta/template_xhtml.xsd">
+  <section>
+    <init><![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+]]></init>
+    <include><![CDATA[
+  <script type="text/javascript" src="/${contextpath}/script/stdCmn.js" charset="utf-8"></script>
+  <script type="text/javascript" src="/${contextpath}/script/stdUtil.js" charset="utf-8"></script>
+  <style type="text/css">
+  ::-moz-focus-inner{border: 0px none transparent;}
+  ::-ms-clear { display: none; }
+  </style>
+]]></include>
+    <script><![CDATA[<script type="text/javascript">
+  var page = new ${page}();
+  page.window = window;
+  var metadata = new DomainMetadata(page);
+  metadata.version = "${version}";
+  page.setMetadata(metadata);
+  page.cacheGridExResource = 3;
+  var intervalId = -1;
+  var cnt = 0;
+  var MAX_RETIRY_CNT = 10;
+  function doOnload() {
+    if(page.metadata.modelType != eXria.form.ModelType.XHTML) {
+      cnt++;
+      if(intervalId != -1) {
+        page.window.clearInterval(intervalId);
+        intervalId = -1;
+      }
+      try{
+        page.model.setPlugin();
+        page.model.plugin.getVersion();
+      }catch(e){
+        if(cnt == MAX_RETIRY_CNT) {
+          throw new Error("Plugin create fail!");
+        } else {
+          intervalId = window.setInterval("doOnload()", 50);
+        }
+        return;
+      }
+      //try{
+        var voPageUI = new ${page}UI();
+        page.model.setDefaultProgressImg();
+        page.init(voPageUI);
+      //}catch(e) {
+      //  alert(e);
+      //}
+    } else {
+      var voPageUI = new ${page}UI();
+      page.init(voPageUI);
+    }
+  }
+</script>
+]]></script>
+    <closeheader><![CDATA[</head>
+]]></closeheader>
+    <body><![CDATA[<body onload="javascript:doOnload();">
+<script type="text/javascript">
+page.createModel();
+</script>
+</body>
+]]></body>
+    <close><![CDATA[</html>
+]]></close>
+  </section>
+</template>

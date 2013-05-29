@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://eXria.org/language"
+	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:l="http://eXria.org/language">
+
+	<annotation>
+		<documentation>eXria 솔루션에서 사용하는 다국어 정의 파일의 XML의 스펙을 정의 합니다.
+		</documentation>
+		<appinfo>
+			<version>1.0.0.200910271100</version>
+		</appinfo>
+	</annotation>
+
+
+	<complexType name="MessagesForLanguage">
+		<annotation>
+			<documentation>특정 언어를 대상으로하는 메시지들을 담아두는 노드입니다.</documentation>
+		</annotation>
+		<sequence>
+			<element name="message" type="l:Message" maxOccurs="unbounded"></element>
+		</sequence>
+		<attribute name="id" type="string" use="required">
+			<annotation>
+				<documentation>언어의 고유 식별자(ID)</documentation>
+			</annotation>
+		</attribute>
+	</complexType>
+
+	<complexType name="Message">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="key" type="string" use="required">
+					<annotation>
+						<documentation>메시지의 키</documentation>
+					</annotation>
+				</attribute>
+				<attribute name="format" type="boolean"></attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="DataRoot">
+		<sequence>
+			<element name="domain-structure" type="l:DomainStructure"></element>
+			<element name="ui-messages" type="l:ResourceDomain">
+				<annotation>
+					<documentation>
+						UI에 사용될 메시지 리소스들을 정의 하는 노드입니다.
+                    </documentation>
+				</annotation>
+			</element>
+			<element name="script-messages" type="l:ResourceDomain">
+				<annotation>
+					<documentation>
+						스크립트에서 사용할 메시지 리소스들을 정의하는 노드입니다.
+                    </documentation>
+				</annotation>
+			</element>
+		</sequence>
+		<attribute name="version" type="string"></attribute>
+	</complexType>
+
+	<complexType name="ResourceDomain">
+		<sequence>
+			<element name="language" type="l:MessagesForLanguage"
+				maxOccurs="unbounded"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="ConfigRoot">
+		<sequence>
+			<element name="use-multilingual" type="boolean" minOccurs="0"
+				maxOccurs="1">
+				<annotation>
+					<documentation>다국어 지원의 사용 여부. 생략하면 true.</documentation>
+				</annotation>
+			</element>
+			<element name="locale-list" type="l:LocaleListDefinition">
+				<annotation>
+					<documentation>언어 리스트.</documentation>
+				</annotation>
+			</element>
+			<element name="apply-order-list" type="l:ApplyOrderDefinition">
+				<annotation>
+					<documentation>언어 적용 우선 순위</documentation>
+				</annotation>
+			</element>
+			<element name="session-name" type="string">
+				<annotation>
+					<documentation>언어정보를 처리할 세션 이름</documentation>
+				</annotation>
+			</element>
+			<element name="multilingual-type">
+				<annotation>
+					<documentation>
+						다국어 적용 방식 (dynamic|static)
+                    </documentation>
+				</annotation>
+				<simpleType>
+					<restriction base="string">
+						<enumeration value="static"></enumeration>
+						<enumeration value="dynamic"></enumeration>
+					</restriction>
+				</simpleType>
+			</element>
+			<element name="repository" type="l:Repository" minOccurs="0"
+				maxOccurs="1">
+				<annotation>
+					<documentation>
+						다국어 적용 RDB repository
+          </documentation>
+				</annotation>
+			</element>
+
+		</sequence>
+		<attribute name="version" type="string"></attribute>
+	</complexType>
+
+	<complexType name="LocaleListDefinition">
+		<sequence>
+			<element name="locale" type="l:Locale" maxOccurs="unbounded"
+				minOccurs="1">
+			</element>
+		</sequence>
+		<attribute name="defaultLocale" type="IDREF"></attribute>
+	</complexType>
+
+	<complexType name="Locale">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="use" type="boolean"></attribute>
+				<attribute name="name" type="ID"></attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="ApplyOrderDefinition">
+		<sequence>
+			<element name="order" type="l:OrderDefinition" maxOccurs="unbounded"
+				minOccurs="1"></element>
+		</sequence>
+	</complexType>
+
+	<complexType name="OrderDefinition">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="use" type="boolean"></attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="Repository">
+		<sequence>
+			<element name="vocabulary-query" type="l:VocabularyQuery"
+				maxOccurs="1" minOccurs="1"></element>
+			<element name="message-query" type="l:MessageQuery"
+				maxOccurs="1" minOccurs="1"></element>
+		</sequence>
+		<attribute name="type" type="string"></attribute>
+		<attribute name="jndiName" type="string"></attribute>
+		<attribute name="className" type="string"></attribute>
+		<attribute name="url" type="string"></attribute>
+		<attribute name="user" type="string"></attribute>
+		<attribute name="password" type="string"></attribute>
+	</complexType>
+
+	<complexType name="VocabularyQuery">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="keyFieldName" type="string" use="required"></attribute>
+				<attribute name="valueFieldName" type="string" use="required"></attribute>
+				<attribute name="localeFieldName" type="string" use="required"></attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="MessageQuery">
+		<simpleContent>
+			<extension base="string">
+				<attribute name="keyFieldName" type="string" use="required"></attribute>
+				<attribute name="valueFieldName" type="string" use="required"></attribute>
+				<attribute name="localeFieldName" type="string" use="required"></attribute>
+				<attribute name="formatFieldName" type="string" use="optional"></attribute>
+			</extension>
+		</simpleContent>
+	</complexType>
+
+	<element name="exria-multilingual-data" type="l:DataRoot"></element>
+
+	<element name="exria-multilingual-config" type="l:ConfigRoot"></element>
+
+	<complexType name="DomainStructure">
+		<sequence>
+			<any minOccurs="0" maxOccurs="unbounded" processContents="skip"></any>
+		</sequence>
+	</complexType>
+</schema>
