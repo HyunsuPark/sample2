@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xh:html
+    xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xf="http://www.w3.org/2002/xforms"
+    xmlns:xh="http://www.w3.org/1999/xhtml" xmlns:xr="http://www.exria.org/exria">
+  <xh:head>
+    <xh:title>chart</xh:title>
+    <xh:meta content="text/html+xml; charset=utf-8" http-equiv="content-type"/>
+    <xh:meta content="no-cache" http-equiv="cache-control"/>
+    <xh:meta content="no-cache" http-equiv="pragma"/>
+    <xh:meta content="eXriaSuite v1.0" name="generator"/>
+    <xh:meta content="eXria.1.0" name="version"/>
+    <xh:meta content="eXria, eXriaForm, eXriaSuite, eXriaStudio, Ajax, xrf" name="keywords"/>
+    <xh:meta content="Real_PHS" name="author"/>
+    <xh:meta content="13. 5. 29 오후 4:50" name="date"/>
+    <xh:meta content="2.0.0.201106301149" name="xrf-version"/>
+    <xf:model defaultinstance="instance">
+      <xf:instance id="instance">
+        <root>
+          <EXRIAERRMSG/>
+        </root>
+      </xf:instance>
+    </xf:model>
+    <xh:script page="chart" src="chart.js" type="text/javascript"/>
+  </xh:head>
+  <xh:body style="height:768;width:1024;left:0;top:0;">
+    <xr:tab id="tab1" style="height:715;width:997;left:14;top:36;" z-index="0" selectedPageId="tpg1">
+      <xr:tabheader>
+        <xr:tabbuttons>
+          <xr:tabbutton id="tbt1" pageId="tpg1">
+            <xr:text>Tab1</xr:text>
+          </xr:tabbutton>
+          <xr:tabbutton id="tbt2" pageId="tpg2">
+            <xr:text>Tab2</xr:text>
+          </xr:tabbutton>
+        </xr:tabbuttons>
+      </xr:tabheader>
+      <xr:tabpages>
+        <xr:tabpage id="tpg1">
+          <xr:subpage id="sbp1" style="height:665;width:965;left:16;top:16;" z-index="0"
+              src="page/barchart2.html"/>
+        </xr:tabpage>
+        <xr:tabpage id="tpg2"/>
+      </xr:tabpages>
+    </xr:tab>
+  </xh:body>
+</xh:html>
