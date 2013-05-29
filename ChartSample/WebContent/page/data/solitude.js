@@ -1,5 +1,5 @@
 var soldata = [
-  {
+  { 
     "id":1,
     "district":"종로구",
     "group":"국민기초생활보장수급권자",
