@@ -1,0 +1,105 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>토마토시스템</title>
+<style>
+  .text1 {
+  font-family: "돋움";
+  font-size: 12px;
+  color: 666666;
+  }
+  .text2 {
+    font-family: "굴림";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: bold;
+    color: 3381B6;
+  }
+</style>
+<script language="JavaScript">
+  function checkLoadState() {
+    var voFrm = document.getElementById("frmPlugin");
+    var voObj = null;
+    var voDomObj = null;
+    if(voFrm.contentWindow) {
+      var voDocument = voFrm.contentWindow.document;
+      if(window.execScript) {
+        voObj = voDocument.getElementsByTagName("object")[1];
+        if(voObj.ISETBLOADER) {
+          var vnInstalled = voObj.installETBClient(); // 성공 : 0, 실패 : -1
+          if(vnInstalled == -1) voObj = null;
+        } else {
+          voObj = null;
+        }
+      } else {
+        voObj = voDocument.getElementsByTagName("embed")[0];
+        if(voObj) voObj = voObj.nsIETBClientFox;
+      }
+    }
+    var vaMsxmlName = [
+         "MSXML2.DOMDocument.6.0",
+         "MSXML2.DOMDocument.5.0",
+         "MSXML2.DOMDocument.4.0",
+         "MSXML2.DOMDocument.3.0"
+       ];
+    
+    var msxmlNamesLen = vaMsxmlName.length;
+    for(var i = 0 ; i < msxmlNamesLen ; i++) {
+      try {
+        voDomObj = new ActiveXObject(vaMsxmlName[i]);
+      } catch (e) {}
+      if(voDomObj != null) break;
+    }
+
+    if(voObj && voDomObj) {
+      var vsVer = voObj.getVersion();
+      document.getElementById("pluginDIV").innerHTML = "설치 되었습니다.";
+    } else {
+      setTimeout(function dummyFunc(){checkLoadState();}, 1000);
+      //location.href = "login.jsp?installed=false";
+    }
+  };
+</script>
+</head>
+<body onload="checkLoadState()">
+<iframe id="frmPlugin" src="checkPlugin.html" width=0 height=0 style="visibility:hidden"></iframe>
+<TABLE height=500 cellSpacing=0 cellPadding=0 width=948 align=left border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign="middle">
+      <TABLE cellSpacing=1 cellPadding=1 width=650 align=center bgColor=#cccccc border=0>
+      <TBODY>
+      <TR>
+        <TD bgColor=#ffffff>
+          <TABLE cellSpacing=0 cellPadding=1 width=600 align=center border=0>
+          <TBODY>
+          <TR>
+            <TD height=15><DIV align=center></DIV></TD>
+          </TR>
+          <TR>
+            <TD><DIV align=center><P align=left><SPAN class=text2><BR>※ eXria Suite PlugIn 다운로드센터입니다.</SPAN></P></DIV></TD>
+          </TR>
+          <TR>
+            <TD><DIV align=justify id="pluginDIV">
+              <TABLE cellSpacing=0 cellPadding=0 width=600 border=0>
+              <TBODY>
+              <TR>
+                <TD><SPAN class=text1><BR>ㆍ처음 접속하신 경우에는 통신환경에 따라 약 10초에서 수분이 걸릴 수 도 있습니다. <BR><BR>ㆍ설치여부를 묻는 <STRONG><FONT color=#ff6600>"보안경고" </FONT></STRONG>창이 나타나면 반드시 <FONT color=#ff6600><STRONG>"예"</STRONG></FONT>를 선택하시기바랍니다.<BR><BR></SPAN></TD>
+              </TR>
+              </TBODY>
+              </TABLE>
+              </DIV>
+            </TD>
+          </TR>
+          </TBODY>
+          </TABLE>
+        </TD>
+      </TR>
+      </TBODY>
+      </TABLE>
+    </TD>
+  </TR>
+</TBODY>
+</TABLE>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exria-module name="Plugin"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="MANIFEST.xsd">
+	<module name="ETBClientAXLoader" description="N-terbus Loader ActiveX Control">
+		<file path="ETBLoader.cab" version="1.0.0.36" description="N-terbus Loader ActiveX Release Version" />
+	</module>
+	<module name="ETBClientFF2" description="Firefox 2 N-terbus Plugin">
+		<file path="ETBClientFF2.xpi" version="1.0.0.7" description="Firefox 2 N-terbus Plugin Release Version" />
+		<file path="ETBClientFF2D.xpi" version="1.0.0.7" description="Firefox 2 N-terbus Plugin Developer Version" />
+	</module>
+	<module name="ETBClientFF3" description="Firefox 3 N-terbus Plugin">
+		<file path="ETBClientFF3.xpi" version="1.0.0.126" description="Firefox 3 N-terbus Plugin Release Version" />
+		<file path="ETBClientFF3D.xpi" version="1.0.0.126" description="Firefox 3 N-terbus Plugin Developer Version" />
+	</module>
+	<module name="ETBClientFF35" description="Firefox 3.5 N-terbus Plugin">
+		<file path="ETBClientFF35.xpi" version="1.0.0.126" description="Firefox 3.5 N-terbus Plugin Release Version" />
+		<file path="ETBClientFF35D.xpi" version="1.0.0.126" description="Firefox 3.5 N-terbus Plugin Developer Version" />
+	</module>
+	<module name="MSXML">
+		<file path="msxml4.cab" version="1.0.0.4" description="IE Xml Plugin" />
+	</module>
+	<module name="checkPlugin" description="Plugin checker">
+		<file path="checkPlugin.html" version="1.0.0.qualifier" description="Check Plugin Template" />
+	</module>
+	<module name="RegisterPlugin" description="Register Plugin">
+		<file path="Register.html" version="1.0.0.qualifier" description="Register Plugin Template" />
+	</module>
+</exria-module>

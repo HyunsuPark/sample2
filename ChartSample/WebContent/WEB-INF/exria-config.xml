@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xtm-license xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation=".meta/exria-config.xsd">
+
+	<!-- Server Data Encrypt Type Define -->
+	<encrypt>
+		<algorithm>AES</algorithm>
+		<mode>ECB</mode>
+		<padding>NOPadding</padding>
+		<key-size>128</key-size>
+		<!-- 0985746251hsgeyr -->
+		<key><![CDATA[MDk4NTc0NjI1MWhzZ2V5cg==]]></key>
+	</encrypt>
+
+	<!-- Handler Chain Flow Define for Server Data Handling Filter -->
+	<handler-chain inTx="true"><!-- ALL|FILTER|NONE -->
+		<handler name="Encoding" class="org.exria.encoding.EncodingHandler" />
+		<handler name="Protocol" class="org.exria.protocol.ProtocolHandler" />
+		<handler name="AutoCUD" class="org.exria.autocud.AutoCUDHandler" />
+	</handler-chain>
+
+	<!-- Available Protocol Define of Server Protocol Handler -->
+	<protocols>
+		<available-protocol type="base64" />
+		<available-protocol type="zip" />
+		<available-protocol type="enc" />
+		<available-protocol type="urlencoded" />
+		<available-protocol type="unencoded" />
+		<available-protocol type="json" />
+		<available-protocol type="xml" />
+		<available-protocol type="json/rpc" />
+		<available-protocol type="webservice" />
+	</protocols>
+	<!-- model type : XHTML | JRE -->
+	<ui-platform source="XForms" target="XHTML" modelType="JRE" targetBuilderClass="org.exria.parser.builder.xhtml.XHTMLBuilder">
+		<plugin-support-browser>
+			<browser>
+				<name>MSIE</name>
+				<version>6</version>
+			</browser>
+			<browser>
+				<name>MSIE</name>
+				<version>7</version>
+			</browser>
+			<browser>
+				<name>MSIE</name>
+				<version>8</version>
+			</browser>
+			<browser>
+				<name>Firefox</name>
+				<version>2</version>
+			</browser>
+			<browser>
+				<name>Firefox</name>
+				<version>3</version>
+			</browser>
+			<browser>
+				<name>Mozilla</name>
+				<version>5</version>
+			</browser>
+		</plugin-support-browser>
+		<jre-configuration appletPath="">
+			<jvm version="1.6+" initHeapSize="256m" maxHeapSize="256m" jvm-argument="-XX:MaxPermSize=64m" />
+			<update-option check="" policy="" />
+			<offline-allowed>false</offline-allowed>
+			<properties>
+				<property name="sun.jnu.encoding">utf-8</property>
+				<property name="file.encoding">utf-8</property>
+			</properties>
+		</jre-configuration>
+		<libScope scope="page" enablePageSetting="false" /><!-- page|global default : page -->
+	</ui-platform>
+	<transaction type="EXRIA" /><!-- WAS|EXRIA|NONE default : exria -->
+</xtm-license>

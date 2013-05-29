@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Grid">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Cfg"/>
+        <xs:element ref="Lang"/>
+        <xs:element ref="Toolbar"/>
+        <xs:element ref="Panel"/>
+        <xs:element ref="Header"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Cfg">
+    <xs:complexType>
+      <xs:attribute name="TextVersion" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Lang">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Alert"/>
+        <xs:element ref="Text"/>
+        <xs:element ref="Gantt"/>
+        <xs:element ref="MenuButtons"/>
+        <xs:element ref="MenuCopy"/>
+        <xs:element ref="MenuCfg"/>
+        <xs:element ref="MenuFilter"/>
+        <xs:element ref="Format"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Alert">
+    <xs:complexType>
+      <xs:attribute name="And" use="required" type="xs:NCName"/>
+      <xs:attribute name="AskTimeout" use="required"/>
+      <xs:attribute name="AskUploadTimeout" use="required"/>
+      <xs:attribute name="CanCancelChanges" use="required"/>
+      <xs:attribute name="CanReloadChanges" use="required"/>
+      <xs:attribute name="CanReloadEnd" use="required"/>
+      <xs:attribute name="CanReloadSelect" use="required"/>
+      <xs:attribute name="CanReloadStart" use="required"/>
+      <xs:attribute name="DelRow" use="required"/>
+      <xs:attribute name="DelSelected" use="required"/>
+      <xs:attribute name="ErrAdd" use="required"/>
+      <xs:attribute name="ErrCheck" use="required"/>
+      <xs:attribute name="ErrHide" use="required"/>
+      <xs:attribute name="ErrHideExt" use="required"/>
+      <xs:attribute name="ErrPrint" use="required"/>
+      <xs:attribute name="ErrPrintOpen" use="required"/>
+      <xs:attribute name="ErrTimeout" use="required"/>
+      <xs:attribute name="ExportDownload" use="required" type="xs:NCName"/>
+      <xs:attribute name="Invalid" use="required"/>
+      <xs:attribute name="NotFound" use="required"/>
+      <xs:attribute name="SearchError" use="required"/>
+      <xs:attribute name="SearchHelp" use="required"/>
+      <xs:attribute name="SearchStart" use="required"/>
+      <xs:attribute name="StyleErr" use="required"/>
+      <xs:attribute name="UploadTimeout" use="required"/>
+      <xs:attribute name="V3_1" use="required"/>
+      <xs:attribute name="V3_2" use="required"/>
+      <xs:attribute name="V3_5" use="required"/>
+      <xs:attribute name="V4_2" use="required"/>
+      <xs:attribute name="V4_4_3" use="required"/>
+      <xs:attribute name="V4_7" use="required"/>
+      <xs:attribute name="V5_1" use="required"/>
+      <xs:attribute name="V5_3" use="required"/>
+      <xs:attribute name="V6_0" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Text">
+    <xs:complexType>
+      <xs:attribute name="And" use="required" type="xs:NCName"/>
+      <xs:attribute name="Calculate" use="required"/>
+      <xs:attribute name="ColMove" use="required"/>
+      <xs:attribute name="ColUpdate" use="required"/>
+      <xs:attribute name="ColWidth" use="required"/>
+      <xs:attribute name="CollapseAll" use="required"/>
+      <xs:attribute name="ColumnsCaption" use="required"/>
+      <xs:attribute name="Contains" use="required"/>
+      <xs:attribute name="DefaultsAlphabet" use="required"/>
+      <xs:attribute name="DefaultsButton" use="required"/>
+      <xs:attribute name="DefaultsDate" use="required"/>
+      <xs:attribute name="DefaultsFilterOff" use="required"/>
+      <xs:attribute name="DefaultsNone" use="required"/>
+      <xs:attribute name="DelSelected" use="required"/>
+      <xs:attribute name="DoFilter" use="required"/>
+      <xs:attribute name="DoRedo" use="required"/>
+      <xs:attribute name="DoUndo" use="required"/>
+      <xs:attribute name="DragObjectCopy" use="required"/>
+      <xs:attribute name="DragObjectMoreCopy" use="required"/>
+      <xs:attribute name="DragObjectMoreMove" use="required"/>
+      <xs:attribute name="DragObjectMove" use="required"/>
+      <xs:attribute name="Ends" use="required"/>
+      <xs:attribute name="ExpandAll" use="required"/>
+      <xs:attribute name="ExpandProgressCancel" use="required"/>
+      <xs:attribute name="ExpandProgressCaption" use="required"/>
+      <xs:attribute name="ExpandProgressText" use="required"/>
+      <xs:attribute name="ExportCaption" use="required"/>
+      <xs:attribute name="ExportFinished" use="required"/>
+      <xs:attribute name="ExportProgressCancel" use="required"/>
+      <xs:attribute name="ExportProgressCaption" use="required"/>
+      <xs:attribute name="ExportProgressText" use="required"/>
+      <xs:attribute name="ExtentErr" use="required"/>
+      <xs:attribute name="GanttCreate" use="required"/>
+      <xs:attribute name="GanttUpdate" use="required"/>
+      <xs:attribute name="Group" use="required"/>
+      <xs:attribute name="GroupCustom" use="required"/>
+      <xs:attribute name="Items" use="required"/>
+      <xs:attribute name="Layout" use="required"/>
+      <xs:attribute name="Load" use="required"/>
+      <xs:attribute name="LoadPage" use="required" type="xs:NCName"/>
+      <xs:attribute name="LoadStyles" use="required"/>
+      <xs:attribute name="NoPages" use="required" type="xs:NCName"/>
+      <xs:attribute name="Not" use="required" type="xs:NCName"/>
+      <xs:attribute name="Or" use="required" type="xs:NCName"/>
+      <xs:attribute name="Page" use="required" type="xs:NCName"/>
+      <xs:attribute name="PageErr" use="required"/>
+      <xs:attribute name="Password" use="required"/>
+      <xs:attribute name="Picture" use="required" type="xs:NCName"/>
+      <xs:attribute name="Print" use="required"/>
+      <xs:attribute name="PrintCaption" use="required"/>
+      <xs:attribute name="PrintProgressCancel" use="required"/>
+      <xs:attribute name="PrintProgressCaption" use="required"/>
+      <xs:attribute name="PrintProgressText" use="required"/>
+      <xs:attribute name="Printed" use="required"/>
+      <xs:attribute name="RadioFilterOff" use="required"/>
+      <xs:attribute name="Render" use="required"/>
+      <xs:attribute name="RenderPage" use="required" type="xs:NCName"/>
+      <xs:attribute name="RenderProgressCancel" use="required"/>
+      <xs:attribute name="RenderProgressCaption" use="required"/>
+      <xs:attribute name="RenderProgressText" use="required"/>
+      <xs:attribute name="Search" use="required"/>
+      <xs:attribute name="SearchClear" use="required" type="xs:NCName"/>
+      <xs:attribute name="SearchFilter" use="required" type="xs:NCName"/>
+      <xs:attribute name="SearchFind" use="required" type="xs:NCName"/>
+      <xs:attribute name="SearchHelp" use="required" type="xs:NCName"/>
+      <xs:attribute name="SearchMark" use="required" type="xs:NCName"/>
+      <xs:attribute name="SearchMethodList" use="required"/>
+      <xs:attribute name="SearchSearch" use="required" type="xs:NCName"/>
+      <xs:attribute name="SearchSelect" use="required" type="xs:NCName"/>
+      <xs:attribute name="SelectAll" use="required"/>
+      <xs:attribute name="SetStyle" use="required"/>
+      <xs:attribute name="Sort" use="required"/>
+      <xs:attribute name="StartErr" use="required"/>
+      <xs:attribute name="Starts" use="required"/>
+      <xs:attribute name="UpdateCfg" use="required"/>
+      <xs:attribute name="UpdateGrid" use="required"/>
+      <xs:attribute name="UpdateTree" use="required"/>
+      <xs:attribute name="UpdateValues" use="required"/>
+      <xs:attribute name="V2_0" use="required"/>
+      <xs:attribute name="V2_3" use="required"/>
+      <xs:attribute name="V2_6" use="required"/>
+      <xs:attribute name="V3_0" use="required"/>
+      <xs:attribute name="V3_1" use="required"/>
+      <xs:attribute name="V3_2" use="required"/>
+      <xs:attribute name="V3_5" use="required"/>
+      <xs:attribute name="V4_3" use="required"/>
+      <xs:attribute name="V4_5" use="required"/>
+      <xs:attribute name="V4_7" use="required"/>
+      <xs:attribute name="V5_0_1" use="required"/>
+      <xs:attribute name="V5_6" use="required"/>
+      <xs:attribute name="V5_9" use="required"/>
+      <xs:attribute name="V6_0" use="required"/>
+      <xs:attribute name="V6_1" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Gantt">
+    <xs:complexType>
+      <xs:attribute name="AssignGanttResource" use="required"/>
+      <xs:attribute name="ChooseGanttFlagIcon" use="required"/>
+      <xs:attribute name="ChooseGanttRunType" use="required"/>
+      <xs:attribute name="CorrectAllDependencies" use="required"/>
+      <xs:attribute name="CorrectDep" use="required"/>
+      <xs:attribute name="CorrectRelatedDependencies" use="required"/>
+      <xs:attribute name="DefaultsAll" use="required"/>
+      <xs:attribute name="DelAllGanttDep" use="required"/>
+      <xs:attribute name="DelGanttAll" use="required"/>
+      <xs:attribute name="DelGanttDepEnd" use="required"/>
+      <xs:attribute name="DelGanttDepStart" use="required"/>
+      <xs:attribute name="DelGanttFlag" use="required"/>
+      <xs:attribute name="DelGanttFlags" use="required"/>
+      <xs:attribute name="DelGanttFlow" use="required"/>
+      <xs:attribute name="DelGanttFlowPart" use="required"/>
+      <xs:attribute name="DelGanttMain" use="required"/>
+      <xs:attribute name="DelGanttMainDep" use="required"/>
+      <xs:attribute name="DelGanttMilestone" use="required"/>
+      <xs:attribute name="DelGanttMilestoneDep" use="required"/>
+      <xs:attribute name="DelGanttRun" use="required"/>
+      <xs:attribute name="DelGanttRunPart" use="required"/>
+      <xs:attribute name="EditGanttFlag" use="required"/>
+      <xs:attribute name="EditGanttFlowText" use="required"/>
+      <xs:attribute name="EditGanttPercent" use="required"/>
+      <xs:attribute name="EditGanttResource" use="required"/>
+      <xs:attribute name="EditGanttRun" use="required"/>
+      <xs:attribute name="EditGanttRunTip" use="required"/>
+      <xs:attribute name="EditGanttText" use="required"/>
+      <xs:attribute name="ErrGanttDep" use="required"/>
+      <xs:attribute name="ErrGanttPercentEdit" use="required"/>
+      <xs:attribute name="GanttDepLagChange" use="required"/>
+      <xs:attribute name="GanttDepLagEdit" use="required"/>
+      <xs:attribute name="GanttFlagEdit" use="required"/>
+      <xs:attribute name="GanttFlowTextEdit" use="required"/>
+      <xs:attribute name="GanttPercentEdit" use="required"/>
+      <xs:attribute name="GanttResizeDelete" use="required"/>
+      <xs:attribute name="GanttResourceEdit" use="required"/>
+      <xs:attribute name="GanttRunEdit" use="required"/>
+      <xs:attribute name="GanttRunEditTip" use="required"/>
+      <xs:attribute name="GanttTextEdit" use="required"/>
+      <xs:attribute name="NewGanttFlag" use="required"/>
+      <xs:attribute name="SetGanttPercent" use="required"/>
+      <xs:attribute name="V6_0" use="required"/>
+      <xs:attribute name="V6_0_31" use="required"/>
+      <xs:attribute name="V6_1" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MenuButtons">
+    <xs:complexType>
+      <xs:attribute name="All" use="required"/>
+      <xs:attribute name="Cancel" use="required" type="xs:NCName"/>
+      <xs:attribute name="Clear" use="required" type="xs:NCName"/>
+      <xs:attribute name="Ok" use="required" type="xs:NCName"/>
+      <xs:attribute name="Today" use="required" type="xs:NCName"/>
+      <xs:attribute name="V6_0" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MenuCopy">
+    <xs:complexType>
+      <xs:attribute name="AddChild" use="required"/>
+      <xs:attribute name="AddChildEnd" use="required"/>
+      <xs:attribute name="AddRow" use="required"/>
+      <xs:attribute name="AddRowBelow" use="required"/>
+      <xs:attribute name="AddRowEnd" use="required"/>
+      <xs:attribute name="AddRowEndGrid" use="required"/>
+      <xs:attribute name="AddRowEndPage" use="required"/>
+      <xs:attribute name="CopyEmpty" use="required"/>
+      <xs:attribute name="CopyEmptyBelow" use="required"/>
+      <xs:attribute name="CopyRow" use="required"/>
+      <xs:attribute name="CopyRowBelow" use="required"/>
+      <xs:attribute name="CopySelected" use="required"/>
+      <xs:attribute name="CopySelectedBelow" use="required"/>
+      <xs:attribute name="CopySelectedChild" use="required"/>
+      <xs:attribute name="CopySelectedChildEnd" use="required"/>
+      <xs:attribute name="CopySelectedEmpty" use="required"/>
+      <xs:attribute name="CopySelectedEmptyBelow" use="required"/>
+      <xs:attribute name="CopySelectedEmptyChild" use="required"/>
+      <xs:attribute name="CopySelectedEmptyChildEnd" use="required"/>
+      <xs:attribute name="CopySelectedEmptyEnd" use="required"/>
+      <xs:attribute name="CopySelectedEmptyEndGrid" use="required"/>
+      <xs:attribute name="CopySelectedEmptyEndPage" use="required"/>
+      <xs:attribute name="CopySelectedEnd" use="required"/>
+      <xs:attribute name="CopySelectedEndGrid" use="required"/>
+      <xs:attribute name="CopySelectedEndPage" use="required"/>
+      <xs:attribute name="CopySelectedTree" use="required"/>
+      <xs:attribute name="CopySelectedTreeBelow" use="required"/>
+      <xs:attribute name="CopySelectedTreeChild" use="required"/>
+      <xs:attribute name="CopySelectedTreeChildEnd" use="required"/>
+      <xs:attribute name="CopySelectedTreeEnd" use="required"/>
+      <xs:attribute name="CopySelectedTreeEndGrid" use="required"/>
+      <xs:attribute name="CopySelectedTreeEndPage" use="required"/>
+      <xs:attribute name="CopyTree" use="required"/>
+      <xs:attribute name="CopyTreeBelow" use="required"/>
+      <xs:attribute name="V6_0" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MenuCfg">
+    <xs:complexType>
+      <xs:attribute name="All" use="required"/>
+      <xs:attribute name="AutoSort" use="required"/>
+      <xs:attribute name="AutoUpdate" use="required"/>
+      <xs:attribute name="Cancel" use="required" type="xs:NCName"/>
+      <xs:attribute name="Caption" use="required"/>
+      <xs:attribute name="CheckUpdates" use="required"/>
+      <xs:attribute name="CheckUpdates0" use="required" type="xs:NCName"/>
+      <xs:attribute name="CheckUpdates10" use="required"/>
+      <xs:attribute name="CheckUpdates120" use="required"/>
+      <xs:attribute name="CheckUpdates2" use="required"/>
+      <xs:attribute name="CheckUpdates30" use="required"/>
+      <xs:attribute name="CheckUpdates300" use="required"/>
+      <xs:attribute name="CheckUpdates5" use="required"/>
+      <xs:attribute name="CheckUpdates60" use="required"/>
+      <xs:attribute name="CheckUpdates600" use="required"/>
+      <xs:attribute name="Clear" use="required"/>
+      <xs:attribute name="Hover1" use="required" type="xs:NCName"/>
+      <xs:attribute name="Hover2" use="required"/>
+      <xs:attribute name="Hover3" use="required" type="xs:NCName"/>
+      <xs:attribute name="Hover4" use="required"/>
+      <xs:attribute name="MouseHover" use="required"/>
+      <xs:attribute name="Ok" use="required" type="xs:NCName"/>
+      <xs:attribute name="ShowAllPages" use="required"/>
+      <xs:attribute name="ShowDeleted" use="required"/>
+      <xs:attribute name="ShowDrag" use="required"/>
+      <xs:attribute name="ShowPager" use="required"/>
+      <xs:attribute name="ShowPanel" use="required"/>
+      <xs:attribute name="SortClick" use="required"/>
+      <xs:attribute name="SortClick1" use="required"/>
+      <xs:attribute name="SortClick2" use="required" type="xs:NCName"/>
+      <xs:attribute name="SortClick3" use="required"/>
+      <xs:attribute name="SortClick4" use="required" type="xs:NCName"/>
+      <xs:attribute name="V2_3" use="required"/>
+      <xs:attribute name="V2_6" use="required"/>
+      <xs:attribute name="V4_4" use="required"/>
+      <xs:attribute name="V5_0_20" use="required"/>
+      <xs:attribute name="V6_0" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MenuFilter">
+    <xs:complexType>
+      <xs:attribute name="F0" use="required" type="xs:NCName"/>
+      <xs:attribute name="F1" use="required" type="xs:NCName"/>
+      <xs:attribute name="F10" use="required"/>
+      <xs:attribute name="F11" use="required" type="xs:NCName"/>
+      <xs:attribute name="F12" use="required"/>
+      <xs:attribute name="F2" use="required"/>
+      <xs:attribute name="F3" use="required"/>
+      <xs:attribute name="F4" use="required"/>
+      <xs:attribute name="F5" use="required"/>
+      <xs:attribute name="F6" use="required"/>
+      <xs:attribute name="F7" use="required"/>
+      <xs:attribute name="F8" use="required"/>
+      <xs:attribute name="F9" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Format">
+    <xs:complexType>
+      <xs:attribute name="AMDesignator" use="required" type="xs:NCName"/>
+      <xs:attribute name="Cont" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="ContLeft" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="ContRight" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="D" use="required"/>
+      <xs:attribute name="DateSeparator" use="required"/>
+      <xs:attribute name="Day1CharNames" use="required"/>
+      <xs:attribute name="Day2CharNames" use="required"/>
+      <xs:attribute name="Day2CharNames_chn" use="required"/>
+      <xs:attribute name="Day2CharNames_eng" use="required"/>
+      <xs:attribute name="Day2CharNames_jpn" use="required"/>
+      <xs:attribute name="Day2CharNames_kor" use="required"/>
+      <xs:attribute name="DayNumbers" use="required"/>
+      <xs:attribute name="DecimalSeparator" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="F" use="required"/>
+      <xs:attribute name="FirstWeekDay" use="required" type="xs:integer"/>
+      <xs:attribute name="G" use="required"/>
+      <xs:attribute name="GMT" use="required" type="xs:integer"/>
+      <xs:attribute name="GroupSeparator" use="required"/>
+      <xs:attribute name="Halves" use="required"/>
+      <xs:attribute name="InputDateSeparators" use="required"/>
+      <xs:attribute name="InputDecimalSeparators" use="required"/>
+      <xs:attribute name="InputGroupSeparators" use="required"/>
+      <xs:attribute name="InputTimeSeparators" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="LongDayNames" use="required"/>
+      <xs:attribute name="LongMonthNames" use="required"/>
+      <xs:attribute name="LongMonthNames2" use="required"/>
+      <xs:attribute name="LongMonthNames_chn" use="required"/>
+      <xs:attribute name="LongMonthNames_eng" use="required"/>
+      <xs:attribute name="LongMonthNames_jpn" use="required"/>
+      <xs:attribute name="LongMonthNames_kor" use="required"/>
+      <xs:attribute name="M" use="required"/>
+      <xs:attribute name="NaD" use="required" type="xs:double"/>
+      <xs:attribute name="NaN" use="required" type="xs:double"/>
+      <xs:attribute name="PMDesignator" use="required" type="xs:NCName"/>
+      <xs:attribute name="Percent" use="required"/>
+      <xs:attribute name="Quarters" use="required"/>
+      <xs:attribute name="R" use="required"/>
+      <xs:attribute name="RangeSeparator" use="required"/>
+      <xs:attribute name="RangeSeparatorHtml" use="required"/>
+      <xs:attribute name="ShortDayNames" use="required"/>
+      <xs:attribute name="ShortMonthNames" use="required"/>
+      <xs:attribute name="ShortMonthNames_chn" use="required"/>
+      <xs:attribute name="ShortMonthNames_eng" use="required"/>
+      <xs:attribute name="ShortMonthNames_jpn" use="required"/>
+      <xs:attribute name="ShortMonthNames_kor" use="required"/>
+      <xs:attribute name="T" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="TimeSeparator" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="U" use="required"/>
+      <xs:attribute name="ValueSeparator" use="required"/>
+      <xs:attribute name="ValueSeparatorHtml" use="required"/>
+      <xs:attribute name="Y" use="required"/>
+      <xs:attribute name="d" use="required"/>
+      <xs:attribute name="f" use="required"/>
+      <xs:attribute name="g" use="required"/>
+      <xs:attribute name="m" use="required"/>
+      <xs:attribute name="nc" use="required"/>
+      <xs:attribute name="ne" use="required"/>
+      <xs:attribute name="nf" use="required" type="xs:decimal"/>
+      <xs:attribute name="ng" use="required"/>
+      <xs:attribute name="np" use="required"/>
+      <xs:attribute name="nr" use="required" type="xs:decimal"/>
+      <xs:attribute name="r" use="required"/>
+      <xs:attribute name="s" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="t" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="u" use="required"/>
+      <xs:attribute name="y" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Toolbar">
+    <xs:complexType>
+      <xs:attribute name="AddChildTip" use="required"/>
+      <xs:attribute name="AddTip" use="required"/>
+      <xs:attribute name="CalcTip" use="required"/>
+      <xs:attribute name="CalcTip1" use="required"/>
+      <xs:attribute name="CfgTip" use="required"/>
+      <xs:attribute name="CollapseAllTip" use="required"/>
+      <xs:attribute name="ColumnsTip" use="required"/>
+      <xs:attribute name="DebugTip" use="required"/>
+      <xs:attribute name="ExpandAllTip" use="required"/>
+      <xs:attribute name="ExportTip" use="required"/>
+      <xs:attribute name="HelpTip" use="required"/>
+      <xs:attribute name="PrintTip" use="required"/>
+      <xs:attribute name="ReloadTip" use="required"/>
+      <xs:attribute name="RepaintTip" use="required"/>
+      <xs:attribute name="ResizeTip" use="required"/>
+      <xs:attribute name="SaveTip" use="required"/>
+      <xs:attribute name="SortTip" use="required"/>
+      <xs:attribute name="SortTip1" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Panel">
+    <xs:complexType>
+      <xs:attribute name="PanelCopyTip" use="required"/>
+      <xs:attribute name="PanelDeleteTip" use="required"/>
+      <xs:attribute name="PanelMoveTip" use="required"/>
+      <xs:attribute name="PanelSelectTip" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Header">
+    <xs:complexType>
+      <xs:attribute name="PanelHeaderCopyTip" use="required"/>
+      <xs:attribute name="PanelHeaderDeleteTip" use="required"/>
+      <xs:attribute name="PanelHeaderSelectTip" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

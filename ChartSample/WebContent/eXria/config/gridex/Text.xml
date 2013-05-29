@@ -1,0 +1,461 @@
+<Grid>
+   <Cfg TextVersion="60031"/>
+   <Lang>
+      
+<!-- All alert / confirm non HTML texts -->
+      
+      <Alert
+         
+V3_1=""
+	CanReloadStart = "This command " 
+	CanReloadChanges = "updates all changes to server"
+	CanCancelChanges = "cancels all changes"
+	And = " and "
+	CanReloadSelect = "clears all selection"
+	CanReloadEnd = "! Do you want to continue?"
+V3_2=""
+	ErrTimeout = "Cannot download data, timeout expired"
+	AskTimeout = "Cannot download data, server timeout !&#x0a;Do you want to repeat request ?"
+	UploadTimeout = "Cannot upload data, timeout expired"
+	AskUploadTimeout = "Cannot upload data, server timeout !&#x0a;Do you want to send data again ?"
+V3_5=""
+	ErrHide = "You cannot hide all variable columns!"
+	ErrHideExt = "Width of all fixed columns is too wide!"
+V4_2=""
+	ErrPrintOpen = "The print window could not be opened&#x0a;&#x0a; Permit popup windows to let print the grid"
+	ErrPrint = "The document was not successfully printed"
+V4_4_3=""
+	ErrCheck = "Synchronizing with server failed!&#x0a;Do you want to temporary disable the checking for updates?"
+V4_7=""
+	SearchHelp = "Enter string to search for like in Google&#x0a;&#x0a;individual keywords separate by space&#x0a;phrases place into double quotes&#x0a;variants separate by uppercase OR keyword&#x0a;exceptions precede by &quot;-&quot; (minus)&#x0a;&#x0a;Or enter expression to search by&#x0a;&#x0a;specify columns caption to compare&#x0a;use operators &lt; &lt;= > >= = &lt;> ( ) + - * /&#x0a;use AND OR keywords to join expressions&#x0a;use special keywords STARTS ENDS CONTAINS&#x0a;   for comparing strings (NOT to negate)&#x0a;example: customer starts martin and date &lt;= 1/1/2006"
+	NotFound = "Nothing found"
+	SearchStart = "Nothing found&#x0a;Do you want to continue from beginning?"
+	SearchError = "The search expression is invalid !"
+V5_1=""   
+	ErrAdd="Cannot add new row here!"
+V5_3=""
+	Invalid="Invalid value"
+V6_0="" 
+   DelRow="Are you sure to delete row '%d' ?" 
+   DelSelected="Are you sure to delete %d selected rows ?" 
+   StyleErr = "Cannot load TreeGrid CSS style !"
+   ExportDownload="Download"   
+	/>
+    
+    
+    
+<!-- All message HTML texts -->    
+
+      <Text
+      
+V2_0=""         
+	DelSelected = "Deleting selected rows"
+	ExtentErr = "Too small grid size"
+	Sort = "Sorting rows ..."
+	SelectAll = "Changing selection of all rows"
+	DoFilter = "Filtering rows ..."
+V2_3=""
+	UpdateGrid = "Updating view ..."
+	CollapseAll = "Collapsing all rows ..."
+   ExpandAll = "Expanding all rows ..."
+V2_6=""
+	Render = "Rendering ..."
+	Page = "Page"
+	NoPages = "Empty"
+	UpdateCfg = "Updating settings ..."
+	StartErr = "&lt;b style='color:red;'&gt;Fatal error ! &lt;br/&gt;TreeGrid cannot render&lt;/b&gt;"
+V3_0=""
+	Calculate = "Calculating cells ..."
+	UpdateValues = "Updating values ..."
+	UpdateTree = "Updating tree ..."
+V3_1=""
+	PageErr="Cannot download this data part !"
+V3_2=""
+	Layout = ""
+	Load = "Loading data ..."
+V3_5=""
+	ColumnsCaption = "Select columns to display"
+	ColUpdate = "Updating columns ..."
+V4_3=""
+	Picture = "Picture"	
+	DefaultsDate = "Select date ..."
+	DefaultsButton = "Select ..."
+V4_5=""
+	GroupCustom="To group by, drag column caption here ..."
+	Group="Grouping rows ..."
+	DefaultsFilterOff="(All)"
+	Items="Items %d - %d"
+	Print="&lt;h2>&lt;center>Please wait while generating report for printing ...&lt;/center>&lt;/h2>"
+V4_7=""
+	SearchMethodList="|Automatic|Search&amp;#160;like&amp;#160;Google|Search&amp;#160;by&amp;#160;expression"
+	Contains="contains,has"
+	Starts="starts,starts with,starts by,begins,begins with,begins by"
+	Ends="ends,ends by, ends with"
+	And="and"
+	Or="or"
+	Not="not"
+	SearchSearch="Search"
+	SearchFilter="Filter"
+	SearchSelect="Select"
+	SearchMark="Mark"
+	SearchFind="Find"
+	SearchClear="Clear"
+	SearchHelp="Help"
+	Search="Searching ..."
+V5_0_1=""
+	Printed="Please switch to window containing the report to print it"
+V5_6=""
+   DoUndo="Performing undo ..."
+   DoRedo="Performing redo ..."
+V5_9=""
+   GanttUpdate="Updating Gantt ..."
+V6_0=""   
+   GanttCreate="Creating Gantt ..."
+   LoadStyles="Loading style ..."
+   SetStyle="Updating style ..."
+   LoadPage="Loading"   
+   RenderPage="Rendering"
+   ColWidth = "Changing width of column '%d'"
+   ColMove = "Moving column '%d'"
+   Password="***"
+   DefaultsNone="Clear all"
+   RadioFilterOff="&lt;i>off&lt;/i>"
+   DragObjectMove="moving row &lt;b style='color:green;'>%d&lt;/b>"
+   DragObjectCopy="copying row &lt;b style='color:green;'>%d&lt;/b>"
+   DragObjectMoreMove="moving &lt;b style='color:blue;'>%d&lt;/b> rows"
+   DragObjectMoreCopy="copying &lt;b style='color:blue;'>%d&lt;/b> rows"
+ 	ExportFinished="&lt;center>&lt;b>Report generated&lt;/b>&lt;br/>&lt;br/>Click button for download&lt;br/>&lt;/center>&lt;br/>"
+ 	RenderProgressCaption="Rendering pages"
+ 	RenderProgressText="Finished %d pages from %d"
+ 	RenderProgressCancel="Render on background"
+   PrintProgressCaption="Generating report"
+ 	PrintProgressText="Finished %d rows from %d"
+ 	PrintProgressCancel="Cancel report"
+ 	ExportProgressCaption="Generating report"
+ 	ExportProgressText="Finished %d rows from %d"
+ 	ExportProgressCancel="Cancel report"
+ 	ExpandProgressCaption="Expanding all rows"
+ 	ExpandProgressText="Finished %d rows from %d"
+ 	ExpandProgressCancel="Stop expanding"
+   ExportCaption = "Select columns to export"
+   PrintCaption = "Select columns to print"
+V6_1=""
+   DefaultsAlphabet="%d ..."
+ 	/>
+
+
+
+<!-- Gantt texts -->
+      <Gantt
+V6_0=""
+   ErrGanttDep="Cannot connect dependency here"
+   ErrGanttPercentEdit="Wrong input, the value must be in range 0 - 100"  
+
+   DelGanttDepStart="Disconnect line to &lt;b style='color:#00AA00;'> %d&lt;/b>"
+   DelGanttDepEnd="Disconnect line from &lt;b style='color:blue;'> %d&lt;/b>"
+   DelAllGanttDep="Disconnect all dependency lines"
+   DelGanttMainDep="Delete main bar and dependencies"
+   DelGanttMain="Delete main bar"
+   DelGanttMilestoneDep="Delete milestone and dependencies"
+   DelGanttMilestone="Delete milestone"
+   SetGanttPercent="Update completed status to selected point"
+   EditGanttPercent="Enter completed status"
+   DelGanttFlow="Delete real flow"
+   DelGanttFlowPart="Delete the real flow bar"
+   DelGanttFlags="Delete all flags"
+   DelGanttFlag="Delete the flag"
+   EditGanttFlag="Enter the flag text"
+   DelGanttAll="Clear the gantt cell"
+   NewGanttFlag="Add new flag to selected point"
+   EditGanttResource="Change resources"
+   AssignGanttResource="Assign resources"
+   DefaultsAll="Select all"
+   CorrectAllDependencies="Correct all dependencies in chart"
+   CorrectRelatedDependencies="Correct related dependencies"
+   CorrectDep="Moving %d bars"
+   GanttFlagEdit="Enter text for the flag"
+   GanttPercentEdit="Enter new completed status in percent"
+   GanttResourceEdit="Enter the resource text"
+   GanttDepLagEdit="Enter the lag for the dependency"
+   GanttDepLagChange="Change lag of line to &lt;b style='color:#00AA00;'> %d&lt;/b>"
+V6_0_31="" 
+   GanttTextEdit="Enter the main bar information"
+   GanttFlowTextEdit="Enter the real flow information"
+   EditGanttText="Enter the main bar information"
+   EditGanttFlowText="Enter the real flow information"
+
+V6_1=""
+   GanttResizeDelete="Are you sure to delete the item?"
+   DelGanttRun="Delete all the boxes"
+   DelGanttRunPart="Delete the box"
+   EditGanttRun="Change the box text"
+   EditGanttRunTip="Change the box information"
+   ChooseGanttRunType="Select the box type"
+   GanttRunEdit="Enter the box text"
+   GanttRunEditTip="Enter the box information"
+   ChooseGanttFlagIcon="Select the flag icon"
+   />      
+
+
+
+<!-- Popup dialog buttons, non HTML -->
+
+      <MenuButtons
+      
+V6_0=""
+   Ok="OK"
+   Clear="Clear"
+   Today="Today"
+   All="All on"
+   Cancel="Cancel"
+
+      />
+
+
+
+<!-- Popup copy / add menu item names, HTML -->
+
+      <MenuCopy
+      
+V6_0=""      
+  	CopyRow = "Duplicate the row"
+   CopyRowBelow = "Duplicate the row"
+	CopyTree = "Duplicate the row tree"
+	CopyTreeBelow = "Duplicate the row tree"
+	CopyEmpty = "Duplicate the row tree structure"
+	CopyEmptyBelow = "Duplicate the row tree structure"
+	CopySelected = "Copy selected rows above"
+	CopySelectedBelow = "Copy selected rows below"
+	CopySelectedTree = "Copy selected row trees above"
+	CopySelectedTreeBelow = "Copy selected row trees below"
+	CopySelectedEmpty = "Copy selected row tree structures above"
+	CopySelectedEmptyBelow = "Copy selected row tree structures below"
+	CopySelectedChild = "Copy selected rows as the first children"
+	CopySelectedTreeChild ="Copy selected row trees as the first children"
+	CopySelectedEmptyChild = "Copy selected row tree structures as the first children"
+	CopySelectedChildEnd = "Copy selected rows as the last children"
+	CopySelectedTreeChildEnd = "Copy selected row trees as the last children"
+	CopySelectedEmptyChildEnd = "Copy selected row tree structures as the last children"
+	CopySelectedEnd = "Copy selected rows to the end"
+	CopySelectedEndPage = "Copy selected rows to the end of page"
+	CopySelectedEndGrid = "Copy selected rows to the end of grid"
+	CopySelectedTreeEnd = "Copy selected row trees to the end"
+ 	CopySelectedTreeEndPage = "Copy selected row trees to the end of page"
+	CopySelectedTreeEndGrid = "Copy selected row trees to the end of grid"
+	CopySelectedEmptyEnd = "Copy selected row tree structures to the end"
+	CopySelectedEmptyEndPage = "Copy selected row tree structures to the end of page"
+	CopySelectedEmptyEndGrid = "Copy selected row tree structures to the end of grid"
+
+   AddRow = "Add new empty row above"
+	AddChild = "Add new empty row as the first child"
+	AddChildEnd = "Add new empty row as the last child"
+   AddRowBelow = "Add new empty row below"
+   AddRowEnd = "Add new empty row to the end"
+   AddRowEndPage = "Add new empty row to the end of page"
+   AddRowEndGrid = "Add new empty row to the end of grid"
+
+      />
+
+
+
+<!-- Configuration menu item names, HTML -->
+      
+      <MenuCfg
+         
+V2_3=""		
+	Caption = "TreeGrid settings"
+	ShowDeleted = "Show deleted rows (in red)"
+	AutoSort = "Auto sort rows after change"
+	AutoUpdate = "Auto update changes to server"
+	MouseHover = "Mouse hover"
+	Hover1 = "None"
+	Hover2 = "Cell only"
+	Hover3 = "Row"
+   Hover4 = "Row and column"
+	ShowDrag = "Show dragged object"
+	ShowPanel = "Show row's left panel"
+V2_6=""
+	ShowPager = "Show pager"
+	ShowAllPages = "Show all pages"
+V4_4=""
+	CheckUpdates = "Check for updates on server every"
+	CheckUpdates0 = "Off"
+	CheckUpdates2 = "2 seconds"
+	CheckUpdates5 = "5 seconds"
+	CheckUpdates10 = "10 seconds"
+	CheckUpdates30 = "30 seconds"
+	CheckUpdates60 = "1 minute"
+	CheckUpdates120 = "2 minutes"
+	CheckUpdates300 = "5 minutes"
+	CheckUpdates600 = "10 minutes"
+V5_0_20=""
+	SortClick = "Sorting click"
+	SortClick1 = "Simple, no icons"
+	SortClick2 = "Simple"
+	SortClick3 = "Directional, icons only"
+	SortClick4 = "Directional"
+V6_0=""
+	Ok = "OK"
+	Cancel = "Cancel"
+	All = "Show all"
+	Clear = "Hide all"
+
+	/>
+      
+      
+      
+<!-- Filter menu operator names, HTML -->
+      
+      <MenuFilter
+         
+	F0 = "Off"
+	F1 = "Equal"
+	F2 = "Not equal"
+	F3 = "Less than"
+	F4 = "Less than or equal"
+	F5 = "Greater than"
+	F6 = "Greater than or equal"
+	F7 = "Begins with"
+	F8 = "Does not begin with"
+	F9 = "Ends with"
+	F10 = "Does not end with"
+	F11 = "Contains"
+	F12 = "Does not contain"
+
+	/>
+      
+      
+      
+<!-- Language dependent formatting dates and numbers -->
+      
+      <Format
+         
+	LongDayNames = "Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday"
+	ShortDayNames = "Sun,Mon,Tue,Wed,Thu,Fri,Sat"
+	Day2CharNames = "Su,Mo,Tu,We,Th,Fr,Sa"
+	Day1CharNames = "S,M,T,W,T,F,S"
+	LongMonthNames = "January,February,March,April,May,June,July,August,September,October,November,December"
+	LongMonthNames2 = "January,February,March,April,May,June,July,August,September,October,November,December"
+	ShortMonthNames = "Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec"
+
+			Day2CharNames_kor="일,월,화,수,목,금,토,일" 
+			LongMonthNames_kor="1월,2월,3월,4월,5월,6월,7월,8월,9월,10월,11월,12월"
+			ShortMonthNames_kor="1월,2월,3월,4월,5월,6월,7월,8월,9월,10월,11월,12월"
+
+			Day2CharNames_chn="日,一,二,三,四,五,六" 
+			LongMonthNames_chn="1月,2月,3月,4月,5月,6月,7月,8月,9月,10月,11月,12月"
+			ShortMonthNames_chn="1月,2月,3月,4月,5月,6月,7月,8月,9月,10月,11月,12月"
+
+			Day2CharNames_jpn="日,月,火,水,木,金,土" 
+			LongMonthNames_jpn="1月,2月,3月,4月,5月,6月,7月,8月,9月,10月,11月,12月"
+			ShortMonthNames_jpn="1月,2月,3月,4月,5月,6月,7月,8月,9月,10月,11月,12月"
+
+			Day2CharNames_eng="Su,Mo,Tu,We,Th,Fr,Sa"
+			LongMonthNames_eng="January,February,March,April,May,June,July,August,September,October,November,December"
+			ShortMonthNames_eng="Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec"
+
+
+
+   DayNumbers = "1st,2nd,3rd,4th,5th,6th,7th,8th,9th,10th,11th,12th,13th,14th,15th,16th,17th,18th,19th,20th,21st,22nd,23rd,24th,25th,26th,27th,28th,29th,30th,31st"
+   Quarters = "I,II,III,IV"
+   Halves = "I,II"
+	DateSeparator = "/"
+   InputDateSeparators = "/.-"
+	TimeSeparator = ":"
+	InputTimeSeparators = ":"
+	AMDesignator = "AM"
+	PMDesignator = "PM"
+	FirstWeekDay = "0"
+	NaD = "NaN"
+
+   GMT = "1"
+
+	d = "M/d/yyyy"
+	D = "d. MMMM yyyy"
+	t = "H:mm"
+	T = "H:mm:ss"
+	f = "d. MMMM yyyy H:mm"
+	F = "d. MMMM yyyy H:mm:ss"
+	g = "M/d/yyyy H:mm"
+	G = "M/d/yyyy H:mm:ss"
+	m = "d. MMMM"
+	M = "d. MMMM"
+	s = "yyyy-MM-ddTHH:mm:ss"
+	u = "yyyy-MM-dd HH:mm:ssZ"
+   
+   U = "d. MMMM yyyy HH:mm:ss" 
+   r = "ddd MMM d HH:mm:ss UTCzzzzz yyyy"
+   R = "ddd MMM d HH:mm:ss UTCzzzzz yyyy"
+   y = "MMMMMMM yyyy"
+   Y = "MMMMMMM yyyy"
+
+   ValueSeparator=";" ValueSeparatorHtml="; " 
+   RangeSeparator="~" RangeSeparatorHtml=" ~ " 
+   
+	DecimalSeparator = "."
+   InputDecimalSeparators = ".,"
+	GroupSeparator = ","
+   InputGroupSeparators = ","
+	Percent = "%"
+	NaN = "NaN"
+
+	ng = "0.######"
+	nf = "0.00"
+	nc = "$###########0.00"
+	np = "0.00%"
+	nr = "0.0000"
+	ne = "0.000000 E+000"
+	
+   Cont = "..."
+   ContLeft = "... "
+   ContRight = " ..."
+   
+   />
+   </Lang>
+   
+   
+   
+<!-- Toolbar button tooltips, HTML -->
+   
+   <Toolbar
+      
+   SaveTip="Submit changes to server"
+   ReloadTip="Reload grid, cancel changes"
+   RepaintTip="Refresh pages, click it if grid slows down"
+   PrintTip="Print grid"
+   ExportTip="Export grid data to your spreadsheet program"
+   AddTip="Add new row or move or copy selected rows"
+   AddChildTip="Add new child row or move or copy selected rows to actual cursor position"
+   SortTip="Enable sorting and re-sort rows now"
+   SortTip1="Disable sorting to change sort criteria faster"
+   CalcTip="Enable calculations and re-calculate grid now"
+   CalcTip1="Disable calculations to edit cell values faster"
+   ExpandAllTip="Expand all rows"
+   CollapseAllTip="Collapse all rows"
+   ColumnsTip="Displays menu to choose visible columns"
+   CfgTip="TreeGrid user settings"
+   HelpTip="Show help for TreeGrid control"
+   DebugTip="Shows debug window"
+   ResizeTip="Resize grid"
+	/>
+   
+   
+   
+<!-- Left side panel button tooltips, HTML -->
+   
+   <Panel 
+   
+      PanelSelectTip="Select row"
+      PanelCopyTip="Copy row"
+      PanelMoveTip="Drag row"
+      PanelDeleteTip="Delete row"
+      />
+   
+   <Header 
+      
+      PanelHeaderSelectTip="Select or unselect all rows"
+      PanelHeaderDeleteTip="Delete all selected rows"
+      PanelHeaderCopyTip="Add new row or move or copy selected rows"
+      />
+   
+</Grid>

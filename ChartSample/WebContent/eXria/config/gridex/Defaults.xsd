@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Grid">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Cfg"/>
+        <xs:element ref="Actions"/>
+        <xs:element ref="Def"/>
+        <xs:element ref="DefCols"/>
+        <xs:element ref="Header"/>
+        <xs:element ref="Root"/>
+        <xs:element ref="Panel"/>
+        <xs:element ref="Pager"/>
+        <xs:element ref="Toolbar"/>
+        <xs:element ref="MenuCfg"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Cfg">
+    <xs:complexType>
+      <xs:attribute name="AbsoluteCursors" use="required" type="xs:integer"/>
+      <xs:attribute name="Adding" use="required" type="xs:integer"/>
+      <xs:attribute name="AllPages" use="required" type="xs:integer"/>
+      <xs:attribute name="AutoSort" use="required" type="xs:integer"/>
+      <xs:attribute name="AutoUpdate" use="required" type="xs:integer"/>
+      <xs:attribute name="BoolChars" use="required"/>
+      <xs:attribute name="CacheTimeout" use="required" type="xs:integer"/>
+      <xs:attribute name="Calculated" use="required" type="xs:integer"/>
+      <xs:attribute name="CaseSensitiveId" use="required" type="xs:integer"/>
+      <xs:attribute name="ChildPaging" use="required" type="xs:integer"/>
+      <xs:attribute name="ChildPartLength" use="required" type="xs:integer"/>
+      <xs:attribute name="ChildPartMin" use="required" type="xs:integer"/>
+      <xs:attribute name="ChildParts" use="required"/>
+      <xs:attribute name="ColMoving" use="required" type="xs:integer"/>
+      <xs:attribute name="ColResizing" use="required" type="xs:integer"/>
+      <xs:attribute name="CopyCols" use="required" type="xs:integer"/>
+      <xs:attribute name="CopyFocused" use="required" type="xs:integer"/>
+      <xs:attribute name="CopyPasteInternal" use="required" type="xs:integer"/>
+      <xs:attribute name="CopyPasteTree" use="required" type="xs:integer"/>
+      <xs:attribute name="CopySelected" use="required" type="xs:integer"/>
+      <xs:attribute name="Copying" use="required" type="xs:integer"/>
+      <xs:attribute name="DefaultsAlphabetWhite" use="required"/>
+      <xs:attribute name="DefaultsVersion" use="required" type="xs:integer"/>
+      <xs:attribute name="Deleting" use="required" type="xs:integer"/>
+      <xs:attribute name="DetailOn" use="required" type="xs:integer"/>
+      <xs:attribute name="DragObject" use="required" type="xs:integer"/>
+      <xs:attribute name="Dragging" use="required" type="xs:integer"/>
+      <xs:attribute name="Dropping" use="required" type="xs:integer"/>
+      <xs:attribute name="Editing" use="required" type="xs:integer"/>
+      <xs:attribute name="ExactSize" use="required" type="xs:integer"/>
+      <xs:attribute name="ExpandAllLevels" use="required" type="xs:integer"/>
+      <xs:attribute name="ExpandAllLoaded" use="required" type="xs:integer"/>
+      <xs:attribute name="ExpandOnDrag" use="required" type="xs:integer"/>
+      <xs:attribute name="ExportFormat" use="required" type="xs:integer"/>
+      <xs:attribute name="ExportRows" use="required" type="xs:integer"/>
+      <xs:attribute name="ExportType" use="required"/>
+      <xs:attribute name="FastColumns" use="required" type="xs:integer"/>
+      <xs:attribute name="FastMerge" use="required" type="xs:integer"/>
+      <xs:attribute name="FastPanel" use="required" type="xs:integer"/>
+      <xs:attribute name="Filtered" use="required" type="xs:integer"/>
+      <xs:attribute name="Filtering" use="required" type="xs:integer"/>
+      <xs:attribute name="FocusWholeRow" use="required" type="xs:integer"/>
+      <xs:attribute name="Grouped" use="required" type="xs:integer"/>
+      <xs:attribute name="Grouping" use="required" type="xs:integer"/>
+      <xs:attribute name="HideRootTree" use="required" type="xs:integer"/>
+      <xs:attribute name="Hover" use="required" type="xs:integer"/>
+      <xs:attribute name="IdChars" use="required"/>
+      <xs:attribute name="IdPostfix" use="required"/>
+      <xs:attribute name="IdPrefix" use="required"/>
+      <xs:attribute name="LastId" use="required"/>
+      <xs:attribute name="MaxGroupLength" use="required" type="xs:integer"/>
+      <xs:attribute name="MaxPages" use="required" type="xs:integer"/>
+      <xs:attribute name="MaxSort" use="required" type="xs:integer"/>
+      <xs:attribute name="MessageWidth" use="required" type="xs:integer"/>
+      <xs:attribute name="NoTreeLines" use="required" type="xs:integer"/>
+      <xs:attribute name="PageLength" use="required" type="xs:integer"/>
+      <xs:attribute name="PageLengthDiv" use="required" type="xs:integer"/>
+      <xs:attribute name="PageTime" use="required" type="xs:integer"/>
+      <xs:attribute name="Paging" use="required" type="xs:integer"/>
+      <xs:attribute name="PasteCols" use="required" type="xs:integer"/>
+      <xs:attribute name="PasteFocused" use="required" type="xs:integer"/>
+      <xs:attribute name="PasteSelected" use="required" type="xs:integer"/>
+      <xs:attribute name="PasteTree" use="required" type="xs:integer"/>
+      <xs:attribute name="Pasting" use="required" type="xs:integer"/>
+      <xs:attribute name="PrintRows" use="required" type="xs:integer"/>
+      <xs:attribute name="ReloadChanged" use="required" type="xs:integer"/>
+      <xs:attribute name="RemoveCollapsed" use="required" type="xs:integer"/>
+      <xs:attribute name="SafariCursors" use="required" type="xs:integer"/>
+      <xs:attribute name="ScrollOnDrag" use="required" type="xs:integer"/>
+      <xs:attribute name="SearchExpand" use="required" type="xs:integer"/>
+      <xs:attribute name="SearchFocused" use="required" type="xs:integer"/>
+      <xs:attribute name="SearchNotFound" use="required" type="xs:integer"/>
+      <xs:attribute name="Searched" use="required" type="xs:integer"/>
+      <xs:attribute name="Searching" use="required" type="xs:integer"/>
+      <xs:attribute name="Selecting" use="required" type="xs:integer"/>
+      <xs:attribute name="SetIds" use="required" type="xs:integer"/>
+      <xs:attribute name="ShowDeleted" use="required" type="xs:integer"/>
+      <xs:attribute name="ShowDrag" use="required" type="xs:integer"/>
+      <xs:attribute name="Silent" use="required" type="xs:integer"/>
+      <xs:attribute name="SortIcons" use="required" type="xs:integer"/>
+      <xs:attribute name="Sorted" use="required" type="xs:integer"/>
+      <xs:attribute name="Sorting" use="required" type="xs:integer"/>
+      <xs:attribute name="StoreOriginalValues" use="required" type="xs:integer"/>
+      <xs:attribute name="Style" use="required" type="xs:NCName"/>
+      <xs:attribute name="StyleLap" use="required" type="xs:integer"/>
+      <xs:attribute name="SuppressCfg" use="required" type="xs:integer"/>
+      <xs:attribute name="SynchroCount" use="required" type="xs:integer"/>
+      <xs:attribute name="TabStop" use="required" type="xs:integer"/>
+      <xs:attribute name="TipStart" use="required" type="xs:integer"/>
+      <xs:attribute name="Version" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Actions">
+    <xs:complexType>
+      <xs:attribute name="ClickSize" use="required" type="xs:integer"/>
+      <xs:attribute name="DragSize" use="required" type="xs:integer"/>
+      <xs:attribute name="EdgeSize" use="required" type="xs:integer"/>
+      <xs:attribute name="KeyCodes1" use="required"/>
+      <xs:attribute name="KeyCodes2" use="required"/>
+      <xs:attribute name="KeyCodes3" use="required"/>
+      <xs:attribute name="KeyCodes4" use="required"/>
+      <xs:attribute name="KeyCodes5" use="required"/>
+      <xs:attribute name="KeyCodes6" use="required"/>
+      <xs:attribute name="KeyCodes7" use="required"/>
+      <xs:attribute name="KeyCodes8" use="required"/>
+      <xs:attribute name="OnAltEnterEdit" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnBackspace" use="required"/>
+      <xs:attribute name="OnClickButton" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnClickButtonAdd" use="required"/>
+      <xs:attribute name="OnClickButtonAddChild" use="required"/>
+      <xs:attribute name="OnClickButtonCalc" use="required"/>
+      <xs:attribute name="OnClickButtonCfg" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnClickButtonCollapseAll" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnClickButtonColumns" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnClickButtonDebug" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnClickButtonExpandAll" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnClickButtonExport" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnClickButtonHelp" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnClickButtonPrint" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnClickButtonReload" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnClickButtonRepaint" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnClickButtonSave" use="required"/>
+      <xs:attribute name="OnClickButtonSort" use="required"/>
+      <xs:attribute name="OnClickCell" use="required"/>
+      <xs:attribute name="OnClickEditBool" use="required"/>
+      <xs:attribute name="OnClickEditEnum" use="required"/>
+      <xs:attribute name="OnClickEditRadio" use="required"/>
+      <xs:attribute name="OnClickExpand" use="required"/>
+      <xs:attribute name="OnClickHeaderCopy" use="required"/>
+      <xs:attribute name="OnClickHeaderDelete" use="required"/>
+      <xs:attribute name="OnClickHeaderSelect" use="required"/>
+      <xs:attribute name="OnClickLink" use="required"/>
+      <xs:attribute name="OnClickNoFocus" use="required"/>
+      <xs:attribute name="OnClickOutside" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnClickPagerPage" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnClickPanelCopy" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnClickPanelDelete" use="required"/>
+      <xs:attribute name="OnClickPanelFiltered" use="required"/>
+      <xs:attribute name="OnClickPanelGrouped" use="required"/>
+      <xs:attribute name="OnClickPanelSearched" use="required"/>
+      <xs:attribute name="OnClickPanelSelect" use="required"/>
+      <xs:attribute name="OnClickSideButton" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnClickSideDate" use="required"/>
+      <xs:attribute name="OnClickSideDefaults" use="required"/>
+      <xs:attribute name="OnClickSideFilter" use="required"/>
+      <xs:attribute name="OnClickSideIcon" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnClickSidePopup" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnClickSort" use="required"/>
+      <xs:attribute name="OnClickSortDown" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnClickSortUp" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnCtrlC" use="required"/>
+      <xs:attribute name="OnCtrlClickCell" use="required"/>
+      <xs:attribute name="OnCtrlClickGantt" use="required"/>
+      <xs:attribute name="OnCtrlClickHeaderSelect" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnCtrlClickSort" use="required"/>
+      <xs:attribute name="OnCtrlClickSortDown" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnCtrlClickSortUp" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnCtrlDel" use="required"/>
+      <xs:attribute name="OnCtrlDown" use="required"/>
+      <xs:attribute name="OnCtrlDragRow" use="required"/>
+      <xs:attribute name="OnCtrlEnter" use="required"/>
+      <xs:attribute name="OnCtrlEnterEdit" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnCtrlIns" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnCtrlRightClickGantt" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnCtrlSpace" use="required"/>
+      <xs:attribute name="OnCtrlV" use="required"/>
+      <xs:attribute name="OnCtrlX" use="required"/>
+      <xs:attribute name="OnCtrlY" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnCtrlZ" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnDblClickCell" use="required"/>
+      <xs:attribute name="OnDblClickExpand" use="required" type="xs:integer"/>
+      <xs:attribute name="OnDblClickGantt" use="required"/>
+      <xs:attribute name="OnDblClickResize" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnDel" use="required"/>
+      <xs:attribute name="OnDown" use="required"/>
+      <xs:attribute name="OnDownEdit" use="required"/>
+      <xs:attribute name="OnDragDropCol" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnDragGantt" use="required"/>
+      <xs:attribute name="OnDragHeader" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnDragHeaderLeft" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnDragHeaderRight" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnDragOverCell" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnDragPagerHeaderRight" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnDragPanelMove" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnDragPanelSelect" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnDragResize" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnDragRow" use="required"/>
+      <xs:attribute name="OnEnd" use="required"/>
+      <xs:attribute name="OnEnter" use="required"/>
+      <xs:attribute name="OnEnterEdit" use="required"/>
+      <xs:attribute name="OnEscEdit" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnF2" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnHome" use="required"/>
+      <xs:attribute name="OnIns" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnKey" use="required"/>
+      <xs:attribute name="OnLeft" use="required"/>
+      <xs:attribute name="OnLeftEdit" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverButton" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverCaption" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverContent" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverEditBool" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverEditEnum" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverEditRadio" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverEditable" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverExpand" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverHeaderLeft" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverHeaderMove" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverHeaderOff" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverHeaderRight" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverNoFocus" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverNothing" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverPagerHeaderRight" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverPanel" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverPanelMove" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverPanelOff" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverReadOnly" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverResize" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverSide" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverSideDefaults" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverSort" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverSortDown" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverSortUp" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverSpaceOff" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnMouseOverTree" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnPageDown" use="required"/>
+      <xs:attribute name="OnPageUp" use="required"/>
+      <xs:attribute name="OnRight" use="required"/>
+      <xs:attribute name="OnRightClickCell" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnRightClickGantt" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnRightEdit" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnShiftClickCell" use="required"/>
+      <xs:attribute name="OnShiftDragRow" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnShiftTab" use="required"/>
+      <xs:attribute name="OnShiftTabEdit" use="required"/>
+      <xs:attribute name="OnShiftTabEnum" use="required"/>
+      <xs:attribute name="OnSpace" use="required"/>
+      <xs:attribute name="OnSpaceEdit" use="required" type="xs:NCName"/>
+      <xs:attribute name="OnTab" use="required"/>
+      <xs:attribute name="OnTabEdit" use="required"/>
+      <xs:attribute name="OnTabEnum" use="required"/>
+      <xs:attribute name="OnUp" use="required"/>
+      <xs:attribute name="OnUpEdit" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Def">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="D"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DefCols">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="D"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Header">
+    <xs:complexType>
+      <xs:attribute name="CanCopy" use="required" type="xs:integer"/>
+      <xs:attribute name="CanDelete" use="required" type="xs:integer"/>
+      <xs:attribute name="CanDrag" use="required" type="xs:integer"/>
+      <xs:attribute name="CanSelect" use="required" type="xs:integer"/>
+      <xs:attribute name="Def" use="required" type="xs:NCName"/>
+      <xs:attribute name="Kind" use="required" type="xs:NCName"/>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Root">
+    <xs:complexType>
+      <xs:attribute name="AddParent" use="required" type="xs:integer"/>
+      <xs:attribute name="CDef" use="required" type="xs:NCName"/>
+      <xs:attribute name="CanSort" use="required" type="xs:integer"/>
+      <xs:attribute name="FocusCell" use="required" type="xs:NCName"/>
+      <xs:attribute name="FocusRow" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Panel">
+    <xs:complexType>
+      <xs:attribute name="CanCopyPaste" use="required" type="xs:integer"/>
+      <xs:attribute name="CanDrag" use="required" type="xs:integer"/>
+      <xs:attribute name="CanExport" use="required" type="xs:integer"/>
+      <xs:attribute name="CanHide" use="required" type="xs:integer"/>
+      <xs:attribute name="CanMove" use="required" type="xs:integer"/>
+      <xs:attribute name="CanPrint" use="required" type="xs:integer"/>
+      <xs:attribute name="CanResize" use="required" type="xs:integer"/>
+      <xs:attribute name="Copy" use="required" type="xs:integer"/>
+      <xs:attribute name="CopyMenu" use="required"/>
+      <xs:attribute name="Def" use="required"/>
+      <xs:attribute name="Delete" use="required" type="xs:integer"/>
+      <xs:attribute name="HoverCell" use="required" type="xs:NCName"/>
+      <xs:attribute name="HoverRow" use="required" type="xs:NCName"/>
+      <xs:attribute name="Move" use="required" type="xs:integer"/>
+      <xs:attribute name="Select" use="required" type="xs:integer"/>
+      <xs:attribute name="Visible" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Pager">
+    <xs:complexType>
+      <xs:attribute name="CanHide" use="required" type="xs:integer"/>
+      <xs:attribute name="CanResize" use="required" type="xs:integer"/>
+      <xs:attribute name="Caption" use="required" type="xs:NCName"/>
+      <xs:attribute name="Hover" use="required" type="xs:integer"/>
+      <xs:attribute name="MinWidth" use="required" type="xs:integer"/>
+      <xs:attribute name="Visible" use="required" type="xs:integer"/>
+      <xs:attribute name="Width" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Toolbar">
+    <xs:complexType>
+      <xs:attribute name="AddChildCopyMenu" use="required"/>
+      <xs:attribute name="AddChildOnEnter" use="required"/>
+      <xs:attribute name="AddChildVisibleFormula" use="required"/>
+      <xs:attribute name="AddCopyMenu" use="required"/>
+      <xs:attribute name="AddOnEnter" use="required"/>
+      <xs:attribute name="AddVisibleFormula" use="required" type="xs:NCName"/>
+      <xs:attribute name="CalcFormula" use="required" type="xs:NCName"/>
+      <xs:attribute name="CalcOnEnter" use="required"/>
+      <xs:attribute name="CalcVisibleFormula" use="required" type="xs:NCName"/>
+      <xs:attribute name="CanEdit" use="required" type="xs:integer"/>
+      <xs:attribute name="CanFocus" use="required" type="xs:integer"/>
+      <xs:attribute name="CanPrint" use="required" type="xs:integer"/>
+      <xs:attribute name="Cells" use="required"/>
+      <xs:attribute name="CfgOnEnter" use="required" type="xs:NCName"/>
+      <xs:attribute name="CollapseAllOnEnter" use="required" type="xs:NCName"/>
+      <xs:attribute name="CollapseAllVisibleFormula" use="required"/>
+      <xs:attribute name="ColumnsOnEnter" use="required" type="xs:NCName"/>
+      <xs:attribute name="DebugOnEnter" use="required" type="xs:NCName"/>
+      <xs:attribute name="DebugVisibleFormula" use="required"/>
+      <xs:attribute name="EmptyNoColor" use="required" type="xs:integer"/>
+      <xs:attribute name="EmptyRelWidth" use="required" type="xs:integer"/>
+      <xs:attribute name="ExpandAllOnEnter" use="required" type="xs:NCName"/>
+      <xs:attribute name="ExpandAllVisibleFormula" use="required"/>
+      <xs:attribute name="ExportOnEnter" use="required" type="xs:NCName"/>
+      <xs:attribute name="ExportVisibleFormula" use="required"/>
+      <xs:attribute name="FormulaCanFocus" use="required" type="xs:integer"/>
+      <xs:attribute name="FormulaNoColor" use="required" type="xs:integer"/>
+      <xs:attribute name="FormulaType" use="required" type="xs:NCName"/>
+      <xs:attribute name="FormulaWidth" use="required" type="xs:integer"/>
+      <xs:attribute name="FormulaWrap" use="required" type="xs:integer"/>
+      <xs:attribute name="HelpOnEnter" use="required" type="xs:NCName"/>
+      <xs:attribute name="PrintOnEnter" use="required" type="xs:NCName"/>
+      <xs:attribute name="ReloadOnEnter" use="required" type="xs:NCName"/>
+      <xs:attribute name="ReloadVisibleFormula" use="required"/>
+      <xs:attribute name="RepaintOnEnter" use="required" type="xs:NCName"/>
+      <xs:attribute name="RepaintVisibleFormula" use="required"/>
+      <xs:attribute name="ResizeType" use="required" type="xs:NCName"/>
+      <xs:attribute name="ResizeWidth" use="required" type="xs:integer"/>
+      <xs:attribute name="SaveOnEnter" use="required"/>
+      <xs:attribute name="SaveVisibleFormula" use="required"/>
+      <xs:attribute name="SortFormula" use="required" type="xs:NCName"/>
+      <xs:attribute name="SortOnEnter" use="required"/>
+      <xs:attribute name="SortVisibleFormula" use="required" type="xs:NCName"/>
+      <xs:attribute name="StyleBordersFormula" use="required"/>
+      <xs:attribute name="StyleBordersIcon" use="required" type="xs:NCName"/>
+      <xs:attribute name="StyleBordersOnClick" use="required"/>
+      <xs:attribute name="StyleBordersOnEnter" use="required"/>
+      <xs:attribute name="StyleBordersSwitch" use="required" type="xs:integer"/>
+      <xs:attribute name="StyleLightFormula" use="required"/>
+      <xs:attribute name="StyleLightIcon" use="required" type="xs:NCName"/>
+      <xs:attribute name="StyleLightOnClick" use="required"/>
+      <xs:attribute name="StyleLightOnEnter" use="required"/>
+      <xs:attribute name="StyleLightSwitch" use="required" type="xs:integer"/>
+      <xs:attribute name="StyleModernFormula" use="required"/>
+      <xs:attribute name="StyleModernIcon" use="required" type="xs:NCName"/>
+      <xs:attribute name="StyleModernOnClick" use="required"/>
+      <xs:attribute name="StyleModernOnEnter" use="required"/>
+      <xs:attribute name="StyleModernSwitch" use="required" type="xs:integer"/>
+      <xs:attribute name="StyleOfficeFormula" use="required"/>
+      <xs:attribute name="StyleOfficeIcon" use="required" type="xs:NCName"/>
+      <xs:attribute name="StyleOfficeOnClick" use="required"/>
+      <xs:attribute name="StyleOfficeOnEnter" use="required"/>
+      <xs:attribute name="StyleOfficeSwitch" use="required" type="xs:integer"/>
+      <xs:attribute name="StylePlainFormula" use="required"/>
+      <xs:attribute name="StylePlainIcon" use="required" type="xs:NCName"/>
+      <xs:attribute name="StylePlainOnClick" use="required"/>
+      <xs:attribute name="StylePlainOnEnter" use="required"/>
+      <xs:attribute name="StylePlainSwitch" use="required" type="xs:integer"/>
+      <xs:attribute name="StyleRobustFormula" use="required"/>
+      <xs:attribute name="StyleRobustIcon" use="required" type="xs:NCName"/>
+      <xs:attribute name="StyleRobustOnClick" use="required"/>
+      <xs:attribute name="StyleRobustOnEnter" use="required"/>
+      <xs:attribute name="StyleRobustSwitch" use="required" type="xs:integer"/>
+      <xs:attribute name="StyleStandardFormula" use="required"/>
+      <xs:attribute name="StyleStandardIcon" use="required" type="xs:NCName"/>
+      <xs:attribute name="StyleStandardOnClick" use="required"/>
+      <xs:attribute name="StyleStandardOnEnter" use="required"/>
+      <xs:attribute name="StyleStandardSwitch" use="required" type="xs:integer"/>
+      <xs:attribute name="StyleTitle" use="required"/>
+      <xs:attribute name="StyleTitleCanFocus" use="required" type="xs:integer"/>
+      <xs:attribute name="StyleTitleNoColor" use="required" type="xs:integer"/>
+      <xs:attribute name="StyleTitleType" use="required" type="xs:NCName"/>
+      <xs:attribute name="StyleTitleWidth" use="required" type="xs:integer"/>
+      <xs:attribute name="Styles" use="required" type="xs:integer"/>
+      <xs:attribute name="Tag" use="required"/>
+      <xs:attribute name="Visible" use="required" type="xs:integer"/>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MenuCfg">
+    <xs:complexType>
+      <xs:attribute name="Items" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="D">
+    <xs:complexType>
+      <xs:attribute name="AcceptChild" type="xs:integer"/>
+      <xs:attribute name="AcceptDef"/>
+      <xs:attribute name="Added" type="xs:integer"/>
+      <xs:attribute name="CDef" type="xs:NCName"/>
+      <xs:attribute name="CalcOrder"/>
+      <xs:attribute name="Calculated" type="xs:integer"/>
+      <xs:attribute name="CanCopy" type="xs:integer"/>
+      <xs:attribute name="CanCopyPaste" type="xs:integer"/>
+      <xs:attribute name="CanDelete" type="xs:integer"/>
+      <xs:attribute name="CanDrag" type="xs:integer"/>
+      <xs:attribute name="CanEdit" type="xs:integer"/>
+      <xs:attribute name="CanExpand" type="xs:integer"/>
+      <xs:attribute name="CanExport" type="xs:integer"/>
+      <xs:attribute name="CanFilter" use="required" type="xs:integer"/>
+      <xs:attribute name="CanFocus" type="xs:integer"/>
+      <xs:attribute name="CanGroup" type="xs:integer"/>
+      <xs:attribute name="CanHide" type="xs:integer"/>
+      <xs:attribute name="CanMove" type="xs:integer"/>
+      <xs:attribute name="CanPrint" type="xs:integer"/>
+      <xs:attribute name="CanResize" type="xs:integer"/>
+      <xs:attribute name="CanSearch" type="xs:integer"/>
+      <xs:attribute name="CanSelect" type="xs:integer"/>
+      <xs:attribute name="CanSort" type="xs:integer"/>
+      <xs:attribute name="CaseSensitive" type="xs:integer"/>
+      <xs:attribute name="Changed" type="xs:integer"/>
+      <xs:attribute name="Def"/>
+      <xs:attribute name="Deleted" type="xs:integer"/>
+      <xs:attribute name="EditFormat"/>
+      <xs:attribute name="EmptyValue"/>
+      <xs:attribute name="Expanded" type="xs:integer"/>
+      <xs:attribute name="FocusCell"/>
+      <xs:attribute name="FocusRow"/>
+      <xs:attribute name="Format"/>
+      <xs:attribute name="GanttEdit" type="xs:NCName"/>
+      <xs:attribute name="GanttHover" type="xs:integer"/>
+      <xs:attribute name="GanttResizeDelete" type="xs:integer"/>
+      <xs:attribute name="GanttRunNew"/>
+      <xs:attribute name="GanttRunNewStart"/>
+      <xs:attribute name="Group" type="xs:integer"/>
+      <xs:attribute name="GroupDeleted" type="xs:integer"/>
+      <xs:attribute name="GroupEmpty" type="xs:integer"/>
+      <xs:attribute name="GroupSingle" type="xs:integer"/>
+      <xs:attribute name="GroupSole" type="xs:integer"/>
+      <xs:attribute name="HoverCell"/>
+      <xs:attribute name="HoverRow"/>
+      <xs:attribute name="Kind" type="xs:NCName"/>
+      <xs:attribute name="MaxChildren" type="xs:integer"/>
+      <xs:attribute name="MaxChildrenDiff" type="xs:integer"/>
+      <xs:attribute name="MenuName"/>
+      <xs:attribute name="Moved" type="xs:integer"/>
+      <xs:attribute name="Name" use="required" type="xs:NCName"/>
+      <xs:attribute name="Recalc" type="xs:integer"/>
+      <xs:attribute name="Selected" type="xs:integer"/>
+      <xs:attribute name="ShowHint" type="xs:integer"/>
+      <xs:attribute name="Type" type="xs:NCName"/>
+      <xs:attribute name="Visible" type="xs:integer"/>
+      <xs:attribute name="WidthPad"/>
+      <xs:attribute name="Wrap" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

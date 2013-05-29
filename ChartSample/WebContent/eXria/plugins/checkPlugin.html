@@ -1,0 +1,59 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Register Sample Page</title>
+</head>
+
+<body>
+<!--  -->
+<script language="javascript">
+ var MSXML_version = "4,30,2100,0";
+ var ETBLoader_version = "1,0,0,36";
+ var ETBClientFF2_version = "1,0,0,7";
+ var ETBClientFF3_version = "1,0,0,126";
+ var ETBClientFF35_version = "1,0,0,126";
+ 
+ // var contextPath = "http://localhost:_SERVER_PORT_/_CONTEXT_WEB_ROOT_/";
+ // var pluginRelativePath = "eXria/plugins/";
+ // var pluginAbsolutePath = contextPath + pluginRelativePath;
+
+ var pluginAbsolutePath = "";
+
+ if(window.execScript) {
+ 	//CODEBASE는 사용자 환경에 맞게 수정해야 합니다. 서비스할 도메인명과 해당 웹서버의 포트번호를 적어주십시요.
+ 	document.write("<OBJECT style=\"visibility:hidden\" CLASSID=\"CLSID:88d969c0-f192-11d4-a65f-0040963251e5\" CODEBASE=\"" + pluginAbsolutePath + "msxml4.cab#version=" + MSXML_version + "\"></OBJECT>");
+ 	document.write("<OBJECT classid=\"CLSID:6B6F975B-B57F-4409-B185-4549A5336B04\" codebase=\"" + pluginAbsolutePath + "ETBLoader.cab#version=" + ETBLoader_version  + "\" width=\"32\" height=\"32\" id=\"ETBClient\" title=\"Plugin\"></OBJECT>");
+	document.write("Internet Explorer: N-terbus Plugin 설치중");
+  } else {
+
+    var vbSafari = navigator.userAgent.match(/\Safari/i)!=null;
+	
+    if(vbSafari) {
+        alert("지원하지 않는 브라우져 입니다.");
+    } else {
+        //CODEBASE는 사용자 환경에 맞게 수정해야 합니다. 서비스할 도메인명과 해당 웹서버의 포트번호를 적어주십시요.
+		var sVersion = navigator.userAgent;
+		
+		if( sVersion.indexOf("Firefox/2") != -1 )
+		{
+			document.write("<embed id=\"plugin\" type=\"application/npETBClient;version=" + ETBClientFF2_version +"\" width=\"0\" height=\"0\" hidden=\"true\" PLUGINSPAGE=\"" + pluginAbsolutePath + "ETBClientFF2.xpi\"></embed>");
+			document.write("FireFox 2 N-terbus Plugin 설치중");
+		}
+		// 3과 3.5 모두 3으로 시작 하기 때문에 3.5 부터 채크합니다.
+		else if( sVersion.indexOf("Firefox/3.5") != -1 )
+		{
+			document.write("<embed id=\"plugin\" type=\"application/npETBClient;version=" + ETBClientFF35_version + "\" width=\"0\" height=\"0\" hidden=\"true\" PLUGINSPAGE=\"" + pluginAbsolutePath + "ETBClientFF35.xpi\"></embed>");
+			document.write("FireFox 3.5 N-terbus Plugin 설치중");
+		}
+		else if( sVersion.indexOf("Firefox/3") != -1 )
+		{
+			document.write("<embed id=\"plugin\" type=\"application/npETBClient;version=" + ETBClientFF3_version + "\" width=\"0\" height=\"0\" hidden=\"true\" PLUGINSPAGE=\"" + pluginAbsolutePath + "ETBClientFF3.xpi\"></embed>");
+			document.write("FireFox 3 N-terbus Plugin 설치중");
+		}
+		else
+			alert("지원하지 않는 브라우져 입니다.");
+    }
+  }
+</script>
+</body>
+</html>
