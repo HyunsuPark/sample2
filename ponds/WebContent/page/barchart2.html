@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>D3.js Bar Chart</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			font-family: dotum;
+			font-size: 11px;
+			background-color: #f4f4f4;
+		}
+	
+		#chart-container {
+			margin: 100px auto;
+			padding: 10px 20px;
+			width: 1000px;
+			height: 1000px;
+			border: 1px solid #ccc;
+			background-color: white;
+		}
+		
+		.chart rect {
+			stroke: none;
+			fill: steelblue;
+		}
+	</style>
+</head>
+<body>
+	<script type="text/javascript" src="data/solitude.js"></script>
+	<!-- 차트 컨테이너 -->
+	<div id="chart-container"></div>
+	
+	<script type="text/javascript" src="..\common\script\d3.v3.min.js"></script>
+	<script>
+		// 숫자 천단위마다 콤마 찍어주는 함수, d3로 차트 만드는 작업과는 관계 없음
+		function addCommas(nStr) {
+			nStr += '';
+			x = nStr.split('.');
+			x1 = x[0];
+			x2 = x.length > 1 ? '.' + x[1] : '';
+			var rgx = /(\d+)(\d{3})/;
+			while (rgx.test(x1)) {
+				x1 = x1.replace(rgx, '$1' + ',' + '$2');
+			}
+			return x1 + x2;
+		}
+		
+		var width = 1000,		// 차트 너비
+			height = 1000,		// 차트 높이
+			topPadding = 70,	// 상단 간격
+			leftPadding = 50,	// 좌측 간격
+			barPadding = 10,		// 바 사이 간격
+			duration = 1000;	// 바 transition duration
+	
+		// 차트 그리는 함수
+		function drawChart(data) {
+			
+			var chart = d3.select('#chart-container')
+							.append('svg')
+							.attr('class', 'chart')
+							.attr('width', width)
+							.attr('height', height)
+						.append('g')
+							.attr('transform', 'translate(0, ' + topPadding + ')');
+			
+			var len = data.length,
+				population = [],
+				i;
+			
+			for (i = 0; i < len; i++) {
+				population.push(data[i].population);
+			}
+			
+			var xScale = d3.scale.linear()
+							.domain([0, d3.max(population)])
+							.range([0, 950]);
+			
+			// 세로 눈금 표시
+			chart.selectAll('g')
+					.data(xScale.ticks(10))
+				.enter().append('line')
+					.attr('x1', function (d) {
+						return xScale(d) + leftPadding;
+					})
+					.attr('x2', function (d) {
+						return xScale(d) + leftPadding;
+					})
+					.attr('y1', 0 - barPadding)
+					.attr('y2', height - topPadding - barPadding)
+					.style('stroke', '#ccc');
+					
+			// 세로 눈금 위에 숫자 표시
+			chart.selectAll('g')
+					.data(xScale.ticks(10))
+				.enter().append('text')
+					.attr('x', function (d) {
+						return xScale(d) + leftPadding;
+					})
+					.attr('y', 0)
+					.attr('dy', -10)
+					.attr('text-anchor', 'middle')
+					.text(function (d) {
+						return addCommas(d);
+					});
+			
+			// 바 만들기
+			var barHeight = (height - topPadding) / data.length - barPadding;
+			
+			chart.selectAll('rect')
+					.data(data)
+				.enter().append('rect')
+					.attr('x', leftPadding)
+					.attr('y', function (d, i) {
+						return i * ((height - topPadding) / data.length);
+					})
+					.attr('width', 0)
+					.attr('height', barHeight);
+					
+			chart.selectAll('rect')
+					.transition().duration(duration)
+					.attr('width', function (d) {
+						return xScale(d.population);
+					})
+					.each('end', function (d, i) {
+						if (i === len - 1) {
+							displayPopulation();
+						}
+					});
+					
+			// 바 우측 안쪽에 인구수 표시
+			function displayPopulation() {
+				chart.selectAll('g')
+						.data(data)
+					.enter().append('text')
+						.attr('x', function (d) {
+							return xScale(d.population) + leftPadding;
+						})
+						.attr('y', function (d, i) {
+							return i * ((height - topPadding) / data.length) + (height / data.length / 2);
+						})
+						.attr('dx', -5)
+						.attr('text-anchor', 'end')
+						.attr('fill', 'white')
+						.text(function (d) {
+							return addCommas(d.population);
+						});
+			}
+					
+			// 바 좌측에 지역 표시
+			chart.selectAll('g')
+					.data(data)
+				.enter().append('text')
+					.attr('x', leftPadding)
+					.attr('y', function (d, i) {
+						return i * ((height - topPadding) / data.length) + (height / data.length / 2);
+					})
+					.attr('dx', -5)
+					.attr('text-anchor', 'end')
+					.text(function (d) {
+						return d.district;
+					});
+					
+			// 차트 우측 상단에 표시
+			chart.append('text')
+				.text('2010년 서울 독거노인 현황')
+				.attr('x', 980)
+				.attr('y', -50)
+				.attr('text-anchor', 'end')
+				.attr('font-size', '15px')
+				.attr('fill', 'black');
+			
+		}
+	
+						
+		// json으로 자료 가져와서 차트 그리기
+		drawChart(soldata);
+			// data url - http://codefactory.kr/examples/d3/data/popuplation.json
+	</script>
+</body>
+</html>

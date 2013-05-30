@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://linkit.kr/demos/solitude/ -->
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang="ko"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>2010년 서울 독거노인 현황</title>
+
+  <!-- CSS concatenated and minified via ant build script-->
+  <link rel="stylesheet" href="http://linkit.kr/demos/solitude/css/reset.css">
+  <link rel="stylesheet" href="http://linkit.kr/demos/solitude/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://linkit.kr/demos/solitude/css/style.css">
+  <!-- end CSS-->
+
+  <script type="text/javascript" async="" src="../common/script/ga.js"></script><script src="../common/script/modernizr-2.0.6.min.js"></script>
+</head>
+
+<body>
+
+  <div id="container" class="container">
+    <header>
+    	<h1>2010년 서울 독거노인 현황</h1>
+    	<p>경제상황에 따른 서울의 독거노인(65세 이상) 현황입니다.</p>
+    	<p>[자료 출처] (1) <a href="https://www.facebook.com/OKFNKorea" target="_blank">Open Data Day in Korea</a>, (2) <a href="https://docs.google.com/spreadsheet/pub?key=0AoGswzvw-8nLdHhKSTJHSDQydFhFMXhrRzlpSTlCX3c" target="_blank">복지팀(독거노인2010) 데이터</a>, (3) <a href="http://linkit.kr/demos/solitude/data/solitude.csv" target="_blank">차트용으로 수정한 데이터</a></p>
+    </header>
+    <div id="main" role="main">
+    	<div class="main_header">
+    		<div id="view_selection" class="btn-group">
+	        <a href="http://linkit.kr/demos/solitude/#" id="all" class="btn active">독거노인 인구수 구별 분포</a>
+          <a href="http://linkit.kr/demos/solitude/#" id="district" class="btn">독거노인 인구수 구별 순위</a>
+	      </div>
+	      
+	      <div class="legend">
+	      	<ul>
+	      		<li><span class="color blue"></span> 일반</li>
+	      		<li><span class="color green"></span> 저소득</li>
+	      		<li><span class="color purple"></span> 국민기초생활보장수급권자</li>
+	      	</ul>
+	      </div>
+    	</div>
+	      
+      <div id="vis" class="bg"><svg width="940" height="700" id="svg_vis"><circle r="50" fill="#aee4ff" stroke-width="2" stroke="black" id="bubble_62" class="all" cx="349.958756455861" cy="185.4463282043578"></circle><circle r="46.589636686620935" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_61" class="all" cx="669.1434709224833" cy="126.4339030760395"></circle><circle r="42.703811614903266" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_74" class="all" cx="729.5045360833444" cy="515.9547301306236"></circle><circle r="40.7273297787443" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_66" class="all" cx="157.1351745978889" cy="327.8768947677852"></circle><circle r="39.84016655839078" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_64" class="all" cx="312.6121048890663" cy="374.6570510088117"></circle><circle r="38.93670301977124" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_70" class="all" cx="423.99791304533113" cy="512.707768253343"></circle><circle r="37.698613402857234" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_63" class="all" cx="357.40343950031286" cy="305.4858902145153"></circle><circle r="37.49851979618787" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_69" class="all" cx="328.2100483097664" cy="489.298593465213"></circle><circle r="37.02974149996758" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_57" class="all" cx="698.0323799907459" cy="262.7691249182746"></circle><circle r="36.79060051730484" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_67" class="all" cx="172.8100752143067" cy="536.2844060091228"></circle><circle r="36.490679605711314" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_65" class="all" cx="227.57168272579764" cy="469.8051428566497"></circle><circle r="35.431999013671174" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_54" class="all" cx="592.5187981314263" cy="388.2741978937984"></circle><circle r="34.63232155659377" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_59" class="all" cx="507.67231515420764" cy="156.0546735864794"></circle><circle r="34.358748587788355" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_55" class="all" cx="674.2825191257673" cy="392.73398333515087"></circle><circle r="33.660688548135866" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_75" class="all" cx="796.5873097463572" cy="372.44421858972174"></circle><circle r="32.640548221240714" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_73" class="all" cx="594.7580965375299" cy="524.4641119262473"></circle><circle r="31.645725049700186" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_46" class="all" cx="438.32348316869883" cy="611.6882817935098"></circle><circle r="30.681110483254407" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_51" class="all" cx="451.0229117287449" cy="282.06747676710677"></circle><circle r="29.56608587579779" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_33" class="all" cx="555.3000783982752" cy="264.99865492556074"></circle><circle r="28.50711079463982" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_72" class="all" cx="557.1121715481537" cy="590.9802906243596"></circle><circle r="27.23676277019777" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_53" class="all" cx="461.2668174033093" cy="426.42225644043623"></circle><circle r="25.669802376651877" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_52" class="all" cx="503.6193450754096" cy="364.6696975029927"></circle><circle r="24.914281540939545" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_56" class="all" cx="610.8950055629409" cy="300.43526678604553"></circle><circle r="24.188782521550817" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_35" class="all" cx="567.2726333628018" cy="64.48377635948988"></circle><circle r="23.55414737830926" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_71" class="all" cx="395.8537454663203" cy="625.4858652996841"></circle><circle r="20.396851089653122" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_68" class="all" cx="310.7335000827331" cy="622.1539724390107"></circle><circle r="20.35257465080017" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_11" class="all" cx="684.9848994077444" cy="173.84110843077096"></circle><circle r="19.522459748589515" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_16" class="all" cx="165.64242523745696" cy="373.7633824388936"></circle><circle r="17.97122711433103" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_60" class="all" cx="546.5388803040222" cy="85.87218441840892"></circle><circle r="17.561473116811896" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_28" class="all" cx="490.7532621678562" cy="449.4232569459537"></circle><circle r="16.67897651892597" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_48" class="all" cx="630.8402042273445" cy="522.8004085382668"></circle><circle r="16.297681794431675" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_7" class="all" cx="655.4230160206033" cy="246.67129901134524"></circle><circle r="16.121920464182928" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_12" class="all" cx="397.578569796244" cy="157.3381313430848"></circle><circle r="16.08334778650924" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_21" class="all" cx="392.763785360419" cy="589.9937594253212"></circle><circle r="16.08334778650924" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_19" class="all" cx="308.89658314181247" cy="452.040058203271"></circle><circle r="15.889799777936886" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_9" class="all" cx="544.1377342296962" cy="180.50059664385992"></circle><circle r="14.355133711946456" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_25" class="all" cx="805.4962998259493" cy="410.5612517943288"></circle><circle r="14.15616297600183" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_18" class="all" cx="321.53667523465816" cy="646.1593466116567"></circle><circle r="14.020770674468892" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_20" class="all" cx="385.2277221112823" cy="539.2320537776704"></circle><circle r="13.961700424281359" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_47" class="all" cx="532.557510279563" cy="563.082108452719"></circle><circle r="13.68834551535188" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_15" class="all" cx="210.07492100641366" cy="429.32891112893736"></circle><circle r="13.303394052721645" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_17" class="all" cx="203.80221579679088" cy="568.9731341112638"></circle><circle r="13.194114588840378" fill="#aee4ff" stroke-width="2" stroke="#799fb2" id="bubble_58" class="all" cx="565.3329950975689" cy="234.50994873236058"></circle><circle r="12.7275482860781" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_6" class="all" cx="632.4486848052668" cy="322.6200914460272"></circle><circle r="12.58463636363999" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_3" class="all" cx="440.90862322446117" cy="401.00740483422715"></circle><circle r="12.503493459992914" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_5" class="all" cx="684.0529244016789" cy="353.5773738703501"></circle><circle r="12.39697618802904" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_14" class="all" cx="289.1803943035848" cy="404.52864363079834"></circle><circle r="12.39697618802904" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_23" class="all" cx="594.8950488294277" cy="486.85932332104227"></circle><circle r="12.384414033452853" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_8" class="all" cx="535.2413784565794" cy="291.13988428421413"></circle><circle r="12.371845362669443" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_4" class="all" cx="570.502180225988" cy="354.09373726862975"></circle><circle r="12.321505223136413" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_34" class="all" cx="509.8072403180769" cy="195.00782581832522"></circle><circle r="11.921312785429418" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_13" class="all" cx="396.4151169872622" cy="302.97526660902327"></circle><circle r="11.218569123734031" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_24" class="all" cx="766.4056706635448" cy="486.45505607941834"></circle><circle r="10.764128530872807" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_50" class="all" cx="811.2816219948339" cy="338.0301486410935"></circle><circle r="10.737084691128183" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_2" class="all" cx="494.79008848649624" cy="336.2276426301578"></circle><circle r="10.62854801576154" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_1" class="all" cx="442.1222770239693" cy="246.29581671627744"></circle><circle r="10.320088509881433" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_36" class="all" cx="621.7335948454012" cy="143.0692260682489"></circle><circle r="9.472147774956671" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_49" class="all" cx="755.4362945413496" cy="549.7246632640746"></circle><circle r="9.319554058885643" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_10" class="all" cx="590.5271608604651" cy="80.20309999763755"></circle><circle r="8.496416172695085" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_43" class="all" cx="289.6784108763179" cy="614.0383415056145"></circle><circle r="8.162391492086673" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_41" class="all" cx="134.3865724353645" cy="377.4906354973774"></circle><circle r="8.07569881869793" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5" id="bubble_22" class="all" cx="549.3677739461389" cy="554.4274294508625"></circle><circle r="7.519117422594455" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_44" class="all" cx="347.58910734451945" cy="445.7932547796503"></circle><circle r="6.710410600578444" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_38" class="all" cx="392.14313479426363" cy="341.3146538052422"></circle><circle r="6.260201601412548" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_29" class="all" cx="593.4728018224727" cy="347.508060266564"></circle><circle r="6.027341672770004" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_37" class="all" cx="309.4084622312232" cy="220.26493139658663"></circle><circle r="5.989551313493679" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_32" class="all" cx="721.1928649846859" cy="292.7293462884561"></circle><circle r="5.817547790064644" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_40" class="all" cx="197.75482690115408" cy="443.09449092966054"></circle><circle r="5.422728777800716" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_31" class="all" cx="640.6089748218043" cy="303.82161203458935"></circle><circle r="5.402484439516946" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_30" class="all" cx="704.1732070447741" cy="366.1232188192857"></circle><circle r="5.144866037590185" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_42" class="all" cx="151.42771099556037" cy="496.9609745676962"></circle><circle r="4.845107075745293" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_26" class="all" cx="460.271441016234" cy="247.459588756472"></circle><circle r="4.812197163324284" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_39" class="all" cx="357.4371035198609" cy="396.31329088031856"></circle><circle r="4.248065655304008" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_27" class="all" cx="477.10174513341883" cy="349.5985008103467"></circle><circle r="4.162629994634224" fill="#bee9b4" stroke-width="2" stroke="#85a37d" id="bubble_45" class="all" cx="462.48575353350503" cy="529.2480001091845"></circle><g x="0" y="0" class="all_stat" transform="translate(820, 30)" width="120" height="200"><rect x="10" y="33.096000000000004" class="all_stat_1" width="20" height="141.904" fill="#aee4ff" stroke-width="2" stroke="#799fb2"></rect><rect x="35" y="148.261" class="all_stat_2" width="20" height="26.739" fill="#bee9b4" stroke-width="2" stroke="#85a37d"></rect><rect x="60" y="140.663" class="all_stat_3" width="20" height="34.337" fill="#b5c7ed" stroke-width="2" stroke="#7e8ba5"></rect><text y="23.096000000000004" text-anchor="start" transform="translate(0, 5) rotate(-30)" style="font-size: 10px;">141,904명</text><text y="138.261" text-anchor="start" transform="translate(-25, 20) rotate(-30)" style="font-size: 10px;">26,739명</text><text y="130.663" text-anchor="start" transform="translate(15, 20) rotate(-30)" style="font-size: 10px;">34,337명</text><text x="0" y="200" class="all_stat" text-anchor="start">전체: 202,980명</text></g></svg></div>
+      <div class="alt-image">
+      	<p><strong>지금 사용하고 계신 웹브라우저에서 기능이 지원되지 않아 이미지로 대체했습니다. <a href="http://browsehappy.com/">더 좋은 웹브라우저</a>를 사용하시면 실제 동작하는 차트를 보실 수 있습니다.</strong></p>
+      	<img src="../common/image/bubble-chart.jpg" alt="2010년 서울 독거노인 현황 차트 이미지">
+      </div>
+      
+      <table class="visuallyhidden" summary="이 표는 2010년 서울 독거노인 현황을 구와 경제상황으로 나누어 표현하였습니다. 경제상황은 일반, 저소득, 국민기초생활보장수급권자로 구분하였습니다.">
+      	<caption class="visuallyhidden">2010년 서울 독거노인 현황</caption>
+      	<thead>
+      		<tr>
+      			<th class="visuallyhidden" scope="col">구</th>
+	      		<th class="visuallyhidden" scope="col">그룹</th>
+	      		<th class="visuallyhidden" scope="col">인구수</th>
+      		</tr>
+      	</thead>
+      	<tbody class="visuallyhidden">
+      											<tr>
+										<td class="visuallyhidden">종로구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">888</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">중구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">904</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">용산구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">1189</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">성동구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">1155</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">광진구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">1176</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">동대문구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">1212</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">중랑구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">1827</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">성북구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">1157</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">강북구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">1753</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">도봉구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">702</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">노원구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">2610</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">은평구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">1795</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">서대문구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">1084</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">마포구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">1159</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">양천구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">1370</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">강서구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">2443</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">구로구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">1306</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">금천구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">1449</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">영등포구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">1788</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">동작구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">1426</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">관악구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">1788</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">서초구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">538</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">강남구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">1159</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">송파구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">976</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">강동구</td>
+										<td class="visuallyhidden">국민기초생활보장수급권자</td>
+										<td class="visuallyhidden">1483</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">종로구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">182</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">중구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">130</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">용산구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">2062</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">성동구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">324</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">광진구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">235</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">동대문구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">237</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">중랑구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">295</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">성북구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">4667</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">강북구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">1147</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">도봉구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">3423</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">노원구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">843</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">은평구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">299</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">서대문구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">374</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">마포구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">179</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">양천구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">277</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">강서구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">549</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">구로구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">210</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">금천구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">592</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">영등포구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">469</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">동작구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">123</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">관악구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">5178</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">서초구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">1416</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">강남구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">1897</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">송파구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">723</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">강동구</td>
+										<td class="visuallyhidden">저소득</td>
+										<td class="visuallyhidden">908</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">종로구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">4939</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">중구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">3754</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">용산구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">4114</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">성동구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">6148</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">광진구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">5868</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">동대문구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">3584</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">중랑구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">6572</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">성북구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">1288</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">강북구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">5939</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">도봉구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">2140</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">노원구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">9277</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">은평구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">10307</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">서대문구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">6752</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">마포구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">7338</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">양천구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">6428</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">강서구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">7585</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">구로구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">6508</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">금천구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">2619</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">영등포구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">6698</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">동작구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">7089</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">관악구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">3284</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">서초구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">4413</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">강남구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">5428</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">송파구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">8144</td>
+									</tr>
+														<tr>
+										<td class="visuallyhidden">강동구</td>
+										<td class="visuallyhidden">일반</td>
+										<td class="visuallyhidden">5688</td>
+									</tr>
+					      	</tbody>
+      </table>
+    </div>
+    <footer>
+    	<p>이 차트는 <a href="http://d3js.org/">D3.js</a>로 만들었으며 <a href="http://vallandingham.me/bubble_charts_in_d3.html">"Creating Animated Bubble Charts in D3"</a>를 보고 만든 것입니다.</p>
+    	<p>개발: 김영국 (<a href="mailto:master@linkit.kr">master@linkit.kr</a>), 도움: 전진우 (<a href="mailto:apps4one@gmail.com">apps4one@gmail.com</a>)</p>
+    	<p>링크잇 데이터 시각화 갤러리 <a href="http://linkit.kr/data-visualization-gallery/#bubble-chart" target="_blank">#bubble-chart</a></p>
+    </footer>
+  </div> <!--! end of #container -->
+
+
+  <script src="../common/script/jquery.min.js"></script>
+  <script src="../common/script/script.js"></script>
+  <script src="../common/script/CustomTooltip.js"></script>
+  <script>!(document.documentElement.className.match('no-svg')) && (document.write('<script src="../common/script/d3.min.js"><\/script><script src="../common/script/d3.csv.min.js"><\/script><script src="../common/script/d3.layout.min.js"><\/script><script src="../common/script/d3.geom.min.js"><\/script><script src="../common/script/vis.js"><\/script>'))</script><script src="../common/script/d3.min.js"></script><script src="../common/script/d3.csv.min.js"></script><script src="../common/script/d3.layout.min.js"></script><script src="../common/script/d3.geom.min.js"></script><script src="../common/script/vis.js"></script>
+  <script>
+    (function($) {
+    	if (document.documentElement.className.match('no-svg')) {
+    		return;
+    	}
+    	
+      $('#view_selection a').on('click', function(e) {
+      	e.preventDefault();
+      	
+        var view_type = $(this).attr('id');
+        
+        $('#view_selection a').removeClass('active');
+        $(this).toggleClass('active');
+        
+        toggle_view(view_type);
+      });
+    })(jQuery);
+  </script>
+  <script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-32332596-1']);
+	  _gaq.push(['_trackPageview']);
+	
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	
+	</script>
+
+
+<div class="tooltip" id="gates_tooltip" style="width: auto; display: block; top: 388px; left: 544px;"><span class="value"> <strong>은평구</strong></span><br><span class="value"> <strong>일반: 10,307명</strong></span><br><span class="value" style="font-size:10px;"> 전체: 12,401명 (2 / 25위)</span></div></body></html>

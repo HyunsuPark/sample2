@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>3개의 도형을 합쳐서 나타내기</title>
+</head>
+<body>
+<script type="text/javascript" src="..\common\script\d3.v3.min.js"></script>
+<script type="text/javascript">
+var circleRadi = [40,30,20];
+
+var bodySelection = d3.select("body"); 
+//svg생성 가로세로 200
+var svgSelection = bodySelection.append("svg").attr("width", 200).attr("height", 200);
+//
+var circles = svgSelection.selectAll("circle")
+                          .data(circleRadi)
+                          .enter()
+                          .append("circle");
+                          
+var circleAttributes = circles
+                       .attr("cx", 50)
+                       .attr("cy", 50)
+                       .attr("r", function (d) { return d; })
+                       .style("fill", function (d){
+           					var returnColor;
+           					if (d === 40) {
+           						returnColor = "green";
+           					} else if (d === 30) {
+           						returnColor = "purple";
+           					} else if (d === 20) {
+           						returnColor = "red";
+           					}
+           					return returnColor;
+                       });
+
+</script>
+
+</body>
+</html>

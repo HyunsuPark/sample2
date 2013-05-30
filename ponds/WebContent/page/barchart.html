@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>2010년 서울 독거노인 현황</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+		body {
+			font-family: dotum;
+			font-size: 11px;
+			background-color: #f4f4f4;
+		}
+	
+		#chart-container {
+			margin: 100px auto;
+			padding: 10px 20px;
+			width: 1000px;
+			height: 200px;
+			border: 1px solid #ccc;
+			background-color: white;
+		}
+	</style>
+	<script type="text/javascript" src="..\common\script\jquery-1.10.0.min.js"></script>
+</head>
+<body>
+<script src="data/solitudeMini.js"></script>
+<!-- 차트 컨테이너 -->
+	<div id="chart-container"></div>
+	
+	<script type="text/javascript" src="..\common\script\d3.v3.min.js"></script>
+	<script>
+		// 숫자 천단위마다 콤마 찍어주는 함수, d3로 차트 만드는 작업과는 관계 없음
+		function addCommas(nStr) {
+			nStr += '';
+			x = nStr.split('.');
+			x1 = x[0];
+			x2 = x.length > 1 ? '.' + x[1] : '';
+			var rgx = /(\d+)(\d{3})/;
+			while (rgx.test(x1)) {
+				x1 = x1.replace(rgx, '$1' + ',' + '$2');
+			}
+			return x1 + x2;
+		}
+		
+		var width = 1000,		// 차트 너비
+			height = 500,		// 차트 높이
+			padding = 5,		// 바 사이 간격
+			division = 30,	// 바 높이를 알맞게 표현하기 위해 나눠주는 적당한 수
+			duration = 1000;	// 바 생성할 때 transition delay 값
+		
+		// 차트 그리는 함수
+		function drawChart(data) {
+			
+			var svg = window.svg = d3.select('#chart-container')
+							.append('svg')
+							.attr('width', width)
+							.attr('height', height);
+							
+			// 바 만들기
+			svg.selectAll('rect')
+				.data(data)
+				.enter()
+				.append('rect')
+					.transition()
+					.delay(function (d, i) {
+						return i / data.length * 1000;
+					})
+					.attr('x', function (d, i) {
+						return i * ((width + padding) / data.length);
+					})
+					.attr('y', function (d) {
+						return height - parseInt(d.population / division, 10);
+							// 인구수는 천만, 몇백만 하는 큰 수이므로 화면에 적당한 픽셀로 표시하기 위해 적당한 division 값으로 나눠줌
+					})
+					.attr('width', width / data.length - padding)
+					.attr('height', function (d) {
+						return parseInt(d.population / division, 10);
+					})
+					.attr('fill', function (d) {
+						return 'rgb(0, 0, ' + parseInt(d.population / division, 10) + ')';
+					});
+					
+			// 바 위에 인구수 표시
+			svg.selectAll('g')
+				.data(data)
+				.enter()
+				.append('text')
+					.transition()
+					.delay(duration * 1.2)
+					.text(function (d) {
+						return addCommas(d.population);
+					})
+					.attr('x', function (d, i) {
+						return i * ((width + padding) / data.length) + (width / data.length - padding) / 2;
+					})
+					.attr('y', function (d) {
+						return height - parseInt(d.population /division, 10) - 5;
+					})
+					.attr('fill', 'blue')
+					.attr('text-anchor', 'middle');
+					
+			// 바 아래에 지역 표시
+			svg.selectAll('g')
+				.data(data)
+				.enter()
+				.append('text')
+					.transition()
+					.delay(duration * 1.2)
+					.text(function (d) {
+						return d.district;
+					})
+					.attr('x', function (d, i) {
+						return i * ((width + padding) / data.length) + (width / data.length - padding) / 2;
+					})
+					.attr('y', function (d) {
+						return height - 5;
+					})
+					.attr('fill', 'white')
+					.attr('text-anchor', 'middle');
+					
+			// 차트 우측 상단에 표시
+			svg.append('text')
+				.transition()
+				.delay(duration * 1.2)
+				.text('2010년 서울 독거노인 현황')
+				.attr('x', 980)
+				.attr('y', 50)
+				.attr('text-anchor', 'end')
+				.attr('font-size', '15px')
+				.attr('fill', 'black');
+			
+// 			(function() {
+				
+// 				  d3.select("#chart-container button").on("click", function() {
+// 					  svg.selectAll('rect').style("stroke", "red")
+// 				        .style("stroke-opacity", 1e-6)
+// 				        .style("stroke-width", 3)
+// 				      .transition()
+// 				        .duration(750)
+// 				        .attr("r", 12)
+// 				        .style("stroke-opacity", 1);
+
+// 					d3.select("#chart-container button").on("click", function() {
+// 					  svg.selectAll('rect').transition()
+// 						.delay(duration * 1.2)
+// 						.style("stroke", "red")
+// 						.style("stroke-opacity", 1e-6)
+// 						.style("stroke-width", 3)
+// 						.style("stroke-opacity", 1);
+// 						});
+// // 				})();
+			
+		};
+		
+// 		d3.json('data/ListWelfareFacilitiesAged.json', drawChart);
+	///	d3.json('data/solitude.json', drawChart);
+		drawChart(soldata);
+	</script>
+	
+
+</body>
+</html>
