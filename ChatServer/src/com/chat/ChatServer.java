@@ -24,8 +24,10 @@ public  class  ChatServer  {
                     //Client와  통신할  스레드  구현  클래스
                     ChatServerHandler  handler  =  new  ChatServerHandler(socket);
                     handler.start();
-                    BufferedReader  in  =  new  BufferedReader(new  InputStreamReader(System.in));                    
+                  
+                    BufferedReader  in  =  new  BufferedReader(new  InputStreamReader(System.in,"utf-8"));                    
                     String  s="";
+                  
                     while(true)  {
                             try  {
                                 System.out.print("☞  ");
