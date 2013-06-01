@@ -26,7 +26,7 @@ public class Connection {
 	
 	private List<String> butLabelList;
 
-	private static final String HANDSHAKE_CLIENT = "remote-control handshake client\n";
+	private static final String HANDSHAKE_CLIENT = "";
 	private static final String HANDSHAKE_SERVER = "remote-control handshake server\n";
 
 	public Connection() {
@@ -47,7 +47,7 @@ public class Connection {
 		bufIn = new BufferedReader(new InputStreamReader(socket	.getInputStream()));
 		bufOut = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 
-		isConnected = true; // ¿¬°á
+		isConnected = true; // ï¿½ï¿½ï¿½ï¿½
 
 		try {
 			write(HANDSHAKE_CLIENT);

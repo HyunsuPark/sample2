@@ -5,16 +5,20 @@ import java.io.IOException;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class CtrActivity extends Activity {
 
 	private Connection connection = new Connection();
 	private String ip;
+	int dx = 0;
+	int dy = 0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -26,30 +30,99 @@ public class CtrActivity extends Activity {
 		ip = super.getIntent().getExtras().getString(
 				"ipAddr");
 		
-//		TextView textView = (TextView) findViewById(R.id.mousePad);
+		ImageView textView = (ImageView) findViewById(R.id.imageView1);
 		Button button = (Button) findViewById(R.id.button1);
 
-		//πˆ∆∞≈¨∏Ø
-		button.setOnClickListener(new OnClickListener() {
+		textView.setOnTouchListener(new OnTouchListener() {
+			float startX = 0;
+			float startY = 0;
+			float endX = 0;
+			float endY = 0;
+			
 			@Override
-			public void onClick(View v) {
-				try {
-					//m ¿Ã∂Û¥¬ Ω∫∆Æ∏µ¿ª ∫∏≥ª¡‹.
-					connection.sendButClick("m".getBytes());
-					//move∂Û¥¬ ∏ﬁΩ√¡ˆ∏¶ ∂ÁæÓ¡‹
-					Toast.makeText(getApplicationContext(), "move",	Toast.LENGTH_SHORT).show();
-				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			public boolean onTouch(View view, MotionEvent event) {
+				switch(event.getAction()) {
+				  case MotionEvent.ACTION_DOWN:
+//					  Log.d("XDwon", event.getX()+"/"+event.getY());
+//					  startX = event.getX();
+//					  startY = event.getY();
+				
+					  break;
+				  case MotionEvent.ACTION_UP:
+//					  Log.d("Xup", event.getX()+"/"+event.getY());
+//					  endX = event.getX();
+//					  endY = event.getY();
+					 
+//					  try {
+//							sendGeo(startX, startY, endX, endY);
+//						} catch (IOException e) {
+//							// TODO Auto-generated catch block
+//							e.printStackTrace();
+//						}
+					  break;
+				  case MotionEvent.ACTION_MOVE:
+				// Ï£ºÎ£®Î£© dragÌñàÏùÑ Í≤ΩÏö∞ ÌûàÏä§ÌÜ†Î¶¨Í∞Ä Î™®Îëê Í∏∞Î°ùÎêòÏñ¥ÏÑú Ï†ÑÎã¨Îê®
+				  int length=event.getHistorySize();
+				  float sx, sy, ex, ey;
+				  
+				  Log.d("length", length+"");
+				  
+				   if (length != 0) {
+				    sx = event.getHistoricalX(0);
+				    sy = event.getHistoricalY(0);
+				    ex = event.getHistoricalX(length-1);
+				    ey = event.getHistoricalY(length-1);
+
+				    Log.d("getHistoricalX", event.getHistoricalX(0)+"");
+				    
+				    dx += (int)(ex-sx);
+				    dy += (int)(ey-sy);
+				    
+				    Log.d("dx", dx+"");
+				    Log.d("dy", dy+"");
+				   }
+					try {
+						sendGeo(dx, dy);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				  break;
+				  case MotionEvent.ACTION_CANCEL:
+						  break;
 				}
+				
+				return true;
 			}
 		});
 		
 	}
 	
+	/**
+	 * Ï¢åÌëúÎ•º Í≥ÑÏÇ∞ÌïòÏó¨ Ï†ÑÏÜ°
+	 * @throws IOException 
+	 */
+	public void sendGeo(int sendX,int sendY) throws IOException{
+		Log.d("XY!!!!!!!!!!", sendX+"/"+sendY);
+		connection.sendButClick((sendX+"/"+sendY).getBytes());
+	}
+	
+	/**
+	 * Ï¢åÌëúÎ•º Í≥ÑÏÇ∞ÌïòÏó¨ Ï†ÑÏÜ°
+	 * @throws IOException 
+	 */
+	public void sendGeo(float startX, float startY,float endX, float endY ) throws IOException{
+		String sendX = endX - startX+"";
+		String sendY = endY - startY+"";
+		Log.d("XY!!!!!!!!!!", sendX+"/"+sendY);
+		connection.sendButClick((sendX+"/"+sendY).getBytes());
+	}
+	
+	/**
+	 * ÏÑúÎ≤ÑÏôÄ Ïó∞Í≤∞
+	 * @author RealPHS
+	 *
+	 */
 	class RetreiveFeedTask extends AsyncTask<Void, Void, Void>{
 
 		@Override

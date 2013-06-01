@@ -14,13 +14,11 @@
         android:layout_marginTop="17dp"
         android:text="Button" />
 
-    <TextView
-        android:id="@+id/mousePad"
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="263dp"
         android:layout_height="wrap_content"
-        android:layout_weight="0.70"
-        android:background="#555555"
-        android:enabled="false"
-        android:text="TextView" />
+        android:layout_weight="0.59"
+        android:src="@drawable/ic_launcher" />
 
 </LinearLayout>
