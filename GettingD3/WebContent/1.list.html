@@ -7,24 +7,28 @@
 <script>
 	function draw(data) {
 		"use strict";
-		d3.select("body")
-		.append("ul")
-		.selectAll("li") //이 호출은 시각화가 보여질 새로운 리스트 요소들을 추가하기 전에 선행해야함.
-		.data(data)
-		.enter()
-		.append("li").text(function(d) {
-					return d.district + ":" + d.population;
-				});
+		d3.select("body").append("ul").selectAll("li") //이 호출은 시각화가 보여질 새로운 리스트 요소들을 추가하기 전에 선행해야함.
+		.data(data).enter().append("li").text(function(d) {
+			return d.district + ":" + d.population;
+		});
+		
+		d3.selectAll("li").style("font-weight", function(d) {
+			if (d.population > 6000) {
+				return "bold";
+			} else {
+				return "normal";
+			}
+		});
+
 	}
-	
-// 	.selectAll("li") 이것은 어
-// 떠한 항목도 가지지 않는 배열인 빈 셀렉션을 생성하지만, 앞으로 데이터를 받아들
-// 이는 데 쓸 data 메서드를 갖고 있다
+	// 	.selectAll("li") 이것은 어
+	// 떠한 항목도 가지지 않는 배열인 빈 셀렉션을 생성하지만, 앞으로 데이터를 받아들
+	// 이는 데 쓸 data 메서드를 갖고 있다
 </script>
 </head>
 <body>
 	<script>
-	draw(soldata);
+		draw(soldata);
 	</script>
 </body>
 </html>
