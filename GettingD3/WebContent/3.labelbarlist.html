@@ -9,13 +9,24 @@ div.chart {
 }
 
 div.bar {
-	background-color: DarkRed;
-	color: white;
+	background-color: blue;
+	color: black;
+	height: 3em;
+	line-height: 3em;
+	padding-right: 2em;
+	margin-bottom: 2px;
+	text-align: right;
+}
+
+div.label {
 	height: 3em;
 	line-height: 3em;
 	padding-right: 1em;
 	margin-bottom: 2px;
-	text-align: right;
+	float: left;
+	width: 20em;
+	text-align: left;
+	color: yellow;
 }
 </style>
 <script src="js/d3.v3.min.js"></script>
@@ -24,14 +35,22 @@ div.bar {
 	function draw(data) {
 		d3.select("body")
 		.append("div")
-		.attr("class","chart")
-		.selectAll(".bar") //클래스가 bar 인것을 모두 선택
+		.attr("class", "chart")
+		.selectAll("div.line")
 		.data(data)
 		.enter()
 		.append("div")
+		.attr("class","line");
+		
+		d3.selectAll("div.line")
+		.append("div")
+		.attr("class","label")
+		.text(function(d){return d.district});
+		
+		d3.selectAll("div.line")
+		.append("div")
 		.attr("class","bar")
 		.style("width", function(d){return d.population/100 + "px"})
-		.style("outline", function(d){return d.population*1 > 10000 ? "2px solid red":"1px solid black"})
 		.text(function(d){return Math.round(d.population)});
 	}
 </script>
