@@ -12,10 +12,12 @@ public class MouseHandler {
 	public void mouseMove(String msg) throws AWTException{
 		Map<String, String> geoMap = getMouseGeo(msg);
 	    Robot robot = new Robot();
-         
+        
+	    //폰에서 넘어온 벡터값
 	    int screenX = (int)Float.parseFloat(geoMap.get("screenX")) ;
 	    int screenY = (int)Float.parseFloat(geoMap.get("screenY")) ;
 	    
+	    //현재 x,y좌표
 	    int defX = MouseInfo.getPointerInfo().getLocation().x;
 	    int defY = MouseInfo.getPointerInfo().getLocation().y;
 	    
