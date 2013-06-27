@@ -3,6 +3,7 @@ package com.example.remotetest;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,46 +37,25 @@ public class CtrActivity extends Activity {
 			float startY = 0;
 			float endX = 0;
 			float endY = 0;
-			float pX = 0;
-			float pY = 0;
-			int sense = 2;
 			
 			@Override
 			public boolean onTouch(View view, MotionEvent event) {
 				switch (event.getAction()) {
 				case MotionEvent.ACTION_DOWN:
-					startX = Math.round(event.getX()/10.0)*10;
-					startY = Math.round(event.getY()/10.0)*10;
+					startX = event.getX();
+					startY = event.getY();
 					break;
 				case MotionEvent.ACTION_UP:
-					break;
-				case MotionEvent.ACTION_MOVE:
-					Log.d("X", Math.round(event.getX()/10.0)*10+"");
-					Log.d("Y", Math.round(event.getY()/10.0)*10+"");
-					endX = Math.round(event.getX()/10.0)*10;
-					endY = Math.round(event.getY()/10.0)*10;
-					if(endX > startX){
-						pX = 0 + sense;
-					}else if(endX == startX){
-						pX = 0;
-					}else{
-						pX = 0 - sense;
-					}
-					
-					if(endY > startY){
-						pY = 0 + sense;
-					}else if(endY == startY){
-						pY = 0;
-					}else{
-						pY = 0 - sense;
-					}
-					
+					endX = event.getX();
+					endY = event.getY();
 					try {
-						sendGeo((int)pX, (int)pY);
+						sendGeo(startX, startY, endX, endY);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+					break;
+				case MotionEvent.ACTION_MOVE:
 					break;
 				case MotionEvent.ACTION_CANCEL:
 					break;
