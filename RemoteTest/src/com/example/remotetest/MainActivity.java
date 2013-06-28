@@ -1,10 +1,9 @@
 package com.example.remotetest;
 
-import java.io.IOException;
-
-import android.os.Bundle;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,7 +26,11 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				onConnect(text.getText().toString());
+				if(text.getText().toString().equals("")){
+					Toast.makeText(getApplicationContext(), "IP를 입력하세요", Toast.LENGTH_SHORT).show();
+				}else{
+					onConnect(text.getText().toString());
+				}
 			}
 		});
 	}

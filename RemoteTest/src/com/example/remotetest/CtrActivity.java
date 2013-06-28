@@ -3,12 +3,12 @@ package com.example.remotetest;
 import java.io.IOException;
 
 import android.app.Activity;
-import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -29,14 +29,14 @@ public class CtrActivity extends Activity {
 
 		ip = super.getIntent().getExtras().getString("ipAddr");
 
-		ImageView textView = (ImageView) findViewById(R.id.imageView1);
-		Button button = (Button) findViewById(R.id.button1);
-
+		ImageView textView = (ImageView) findViewById(R.id.controller);
+		//패드부분
 		textView.setOnTouchListener(new OnTouchListener() {
 			float startX = 0;
 			float startY = 0;
 			float endX = 0;
 			float endY = 0;
+			long lastTouchTime = -1;
 			
 			@Override
 			public boolean onTouch(View view, MotionEvent event) {
@@ -44,6 +44,17 @@ public class CtrActivity extends Activity {
 				case MotionEvent.ACTION_DOWN:
 					startX = event.getX();
 					startY = event.getY();
+					Log.d("getAction", event.getAction()+"");
+					Log.d("ACTION_MOVE", MotionEvent.ACTION_MOVE+"");
+					if(event.getAction()!=MotionEvent.ACTION_MOVE){
+						try {
+							sendLeftBtn();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					
 					break;
 				case MotionEvent.ACTION_UP:
 					endX = event.getX();
@@ -63,7 +74,43 @@ public class CtrActivity extends Activity {
 				return true;
 			}
 		});
-
+		//패드 끝
+		
+		//왼족버튼
+		Button lbutton = (Button) findViewById(R.id.lbtn);
+		
+		lbutton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				try {
+					sendLeftBtn();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		//왼족버튼끝
+		
+		//오른쪽버튼
+		Button rbutton = (Button) findViewById(R.id.rbtn);
+		
+		rbutton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				try {
+					sendRightBtn();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		});
+		//오른쪽버튼
 	}
 
 	/**
@@ -89,6 +136,25 @@ public class CtrActivity extends Activity {
 		connection.sendButClick((sendX + "/" + sendY).getBytes());
 	}
 
+	/**
+	 * 오른쪽버튼클릭
+	 * @throws IOException
+	 */
+	public void sendRightBtn() throws IOException {
+		Log.d("XY!!!!!!!!!!","RRR");
+		connection.sendButClick("R".getBytes());
+	}
+
+	/**
+	 * 왼쪽버튼클릭
+	 * @throws IOException
+	 */
+	public void sendLeftBtn() throws IOException {
+		Log.d("XY!!!!!!!!!!","LLL");
+		connection.sendButClick("L".getBytes());
+	}
+	
+	
 	/**
 	 * 서버와 연결
 	 * 
