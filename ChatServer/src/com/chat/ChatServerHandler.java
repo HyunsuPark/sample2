@@ -1,7 +1,6 @@
 package com.chat;
 
 import java.awt.AWTException;
-import java.awt.Robot;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,7 +18,7 @@ public class ChatServerHandler extends Thread {
 
 	public void run() {
 		try {
-			MouseHandler handler = new MouseHandler();
+			MoveHandler handler = new MoveHandler();
 
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
 					socket.getInputStream(), "utf-8"));
@@ -29,12 +28,21 @@ public class ChatServerHandler extends Thread {
 				// System.out.print("☞  ");
 //				logger.info("받은글:  " + line);
 				
-				if(!line.equals("")){
+				if(line.equals("R")){
+					handler.mouseRightClick();
+				}else if(line.equals("L")){
+					handler.mouseLeftClick();
+				}else{
 					handler.mouseMove(line);
 				}
+				
+//				if(!line.equals("")){
+//					handler.mouseMove(line);
+//				}
 			}
 
 		} catch (IOException ignored) {
+			System.err.println("오류로 인해 연결이 종료되었습니다.");
 		} catch (AWTException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -42,6 +50,7 @@ public class ChatServerHandler extends Thread {
 			try {
 				socket.close();
 			} catch (IOException ignored) {
+				System.err.println("오류로 인해 연결이 종료되었습니다.");
 			}
 		}
 	}

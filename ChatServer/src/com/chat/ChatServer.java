@@ -5,22 +5,26 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 public  class  ChatServer  {
     BufferedWriter  writer=null;
     Socket  socket=null;
     ServerSocket  server  =  null;
 
-    public  void  serverStart(){
-            System.out.println("접속자를  기다리는  중입니다.");
+    public  void  serverStart() throws UnknownHostException{
+    		InetAddress Address = InetAddress.getLocalHost();
+    	
+            System.out.println(Address.getHostAddress()+"로 접속하세요.");
             try  {
                     server  =  new  ServerSocket(57891);
                     socket  =  server.accept();
                     writer  =  new  BufferedWriter(new  OutputStreamWriter(socket.getOutputStream()));
                   
-                    System.out.println("클라이언트  IP:  "  +  socket.getInetAddress().getHostAddress()  +  "  이름:  "  +    socket.getInetAddress().getHostName()  +  "  연결되었습니다.");
+                    System.out.println("연결되었습니다.");
                     //Client와  통신할  스레드  구현  클래스
                     ChatServerHandler  handler  =  new  ChatServerHandler(socket);
                     handler.start();
@@ -44,16 +48,18 @@ public  class  ChatServer  {
                             //System.out.println("보낸  글:"  +  s);//입력받은  내용  출력
                     }
             }  catch(IOException  ioe)  {
-                    System.err.println("Exception  generated...");
+            	System.err.println("오류로 인해 연결이 종료되었습니다.");
             }  finally  {
                     try  {
                             server.close();
-                    }  catch(IOException  ignored)  {}
+                    }  catch(IOException  ignored)  {
+                    	System.err.println("오류로 인해 연결이 종료되었습니다.");
+                    }
             }
           
     }
 
-    public  static  void  main(String[]  args)  {
+    public  static  void  main(String[]  args) throws UnknownHostException  {
             ChatServer  cs  =  new  ChatServer();
             cs.serverStart();
     }

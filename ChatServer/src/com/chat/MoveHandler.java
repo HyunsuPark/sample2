@@ -3,15 +3,18 @@ package com.chat;
 import java.awt.AWTException;
 import java.awt.MouseInfo;
 import java.awt.Robot;
+import java.awt.event.InputEvent;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-public class MouseHandler {
+public class MoveHandler {
+	
+	Robot robot = null;
 	
 	public void mouseMove(String msg) throws AWTException{
 		Map<String, String> geoMap = getMouseGeo(msg);
-	    Robot robot = new Robot();
+	    robot = new Robot();
         
 	    //폰에서 넘어온 벡터값
 	    int screenX = (int)Float.parseFloat(geoMap.get("screenX")) ;
@@ -22,6 +25,18 @@ public class MouseHandler {
 	    int defY = MouseInfo.getPointerInfo().getLocation().y;
 	    
         robot.mouseMove(defX + screenX, defY + screenY);
+	}
+	
+	public void mouseRightClick() throws AWTException {
+		robot = new Robot();
+		robot.mousePress(InputEvent.BUTTON3_MASK); //눌럿다 
+		robot.mouseRelease(InputEvent.BUTTON3_MASK); //땟다
+	}
+	
+	public void mouseLeftClick() throws AWTException {
+		robot = new Robot();
+		robot.mousePress(InputEvent.BUTTON1_MASK);//눌럿다 
+		robot.mouseRelease(InputEvent.BUTTON1_MASK); //땟다
 	}
 	
 	private Map<String, String> getMouseGeo(String msg){
