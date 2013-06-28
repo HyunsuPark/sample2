@@ -7,17 +7,17 @@
     <ImageView
         android:id="@+id/padbg"
         android:layout_width="fill_parent"
-        android:layout_height="460dp"
-        android:scaleType="centerCrop"
+        android:layout_height="match_parent"
         android:padding="0sp"
+        android:scaleType="centerCrop"
         android:src="@drawable/pad" />
 
     <ImageView
         android:id="@+id/controller"
         android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_height="418dp"
         android:background="#00000000"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/controller" />
 
     <RelativeLayout 
     android:layout_width="match_parent"
@@ -26,20 +26,20 @@
          <Button
              android:id="@+id/lbtn"
              android:layout_width="160dp"
-             android:layout_height="100dp"
+             android:layout_height="80dp"
              android:layout_alignParentBottom="true"
              android:layout_alignParentLeft="true"
-             android:background="#00000000"
-              />
+             android:layout_marginBottom="20dp"
+             android:background="#00000000" />
 
          <Button
              android:id="@+id/rbtn"
              android:layout_width="160dp"
-             android:layout_height="100dp"
-             android:layout_alignParentBottom="true"
+             android:layout_height="80dp"
+             android:layout_alignBaseline="@+id/lbtn"
+             android:layout_alignBottom="@+id/lbtn"
              android:layout_alignParentRight="true"
-             android:background="#00000000"
-               />
+             android:background="#00000000" />
         
     </RelativeLayout>
 </FrameLayout>
