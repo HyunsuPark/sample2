@@ -1,0 +1,41 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Lazy Load Enabled With FadeIn Effect</title>
+<script src="jquery-1.8.1.min.js" charset="utf-8"></script>
+  <script src="jquery.lazyload.min.js" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8">
+      $(function() {
+          $("img").lazyload({
+              effect : "fadeIn"
+              /*
+              appear : function(elements_left, settings) {
+                  console.log("appear");
+                  console.log(elements_left);
+                  //console.log(this, elements_left, settings);
+              },
+              load : function(elements_left, settings) {
+                  console.log("load");
+                  console.log(elements_left);
+                  //console.log(this, elements_left, settings);
+              }
+              */
+          });
+      });
+  </script>
+</head>
+
+<body>
+
+    <img src=" " data-original="bmw_m1_hood.jpg" width="765" height="574" alt="BMW M1 Hood">
+    <img src=" " data-original="bmw_m1_side.jpg" width="765" height="574" alt="BMW M1 Side">
+    <img src=" " data-original="viper_1.jpg" width="765" height="574" alt="Viper 1">
+    <img src=" " data-original="viper_corner.jpg" width="765" height="574" alt="Viper Corner">
+    <img src=" " data-original="bmw_m3_gt.jpg" width="765" height="574" alt="BMW M3 GT">
+    <img src=" " data-original="corvette_pitstop.jpg" width="765" height="574" alt="Corvette Pitstop">
+
+</body>
+</html>
