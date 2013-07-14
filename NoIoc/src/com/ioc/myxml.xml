@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+ <!--  
+     DI를 사용함으로서 위에서 사용했던 예제와 달리 클래스간의 의존성을 없앤다.
+ -->
+ <bean id="appFactory" class="com.ioc.appFactory">
+  <property name="inter"> 
+   <ref bean="a3" /> <!-- 우선 기본 인자값으로 a1 을 준다 -->
+  </property>  
+ </bean>
+ <bean id="a1" class="com.ioc.app1" />
+ <bean id="a2" class="com.ioc.app2" />
+ <bean id="a3" class="com.ioc.app3" />
+</beans>
