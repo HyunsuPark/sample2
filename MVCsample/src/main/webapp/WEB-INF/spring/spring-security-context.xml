@@ -10,8 +10,8 @@
 <!--    http 요소는 Authentication(인증)절차  -->
     <security:http auto-config="true"  use-expressions="true">
   	    <security:intercept-url pattern="/login" access="permitAll" />
-        <security:intercept-url pattern="/favicon.ico" access="ROLE_ANONYMOUS" />
         <security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
+<!--         웹사이트 모든 경로에 대해서 ROLE_USER 권한이 있어야 접근할 수 있다는 내용이다.  -->
 <!--         로그인 커스텀페이지 -->
         <security:form-login login-page="/login" username-parameter="username" password-parameter="password" login-processing-url="/authentication" />
         <security:logout invalidate-session="true" logout-url="/unAuthentication" logout-success-url="/login" />
