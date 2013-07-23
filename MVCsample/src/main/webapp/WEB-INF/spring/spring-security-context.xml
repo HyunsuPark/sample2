@@ -18,11 +18,45 @@
     </security:http>
  
 <!-- Authorization(권한부여)의 영역 -->
-    <security:authentication-manager>
-        <security:authentication-provider>
-            <security:user-service>
-                <security:user name="guest" password="guest" authorities="ROLE_USER" />
-            </security:user-service>
-        </security:authentication-provider>
-    </security:authentication-manager>
+<!--     <security:authentication-manager> -->
+<!--         <security:authentication-provider> -->
+<!--             <security:user-service> -->
+<!--                 <security:user name="guest" password="guest" authorities="ROLE_USER" /> -->
+<!--             </security:user-service> -->
+<!--         </security:authentication-provider> -->
+<!--     </security:authentication-manager> -->
+
+<security:authentication-manager>
+<security:authentication-provider>
+<security:password-encoder ref="passwordEncoder"></security:password-encoder> <!-- 비밀번호 암호화 -->
+<security:jdbc-user-service data-source-ref="defaultDataSource"
+users-by-username-query="
+select username,password, enabled 
+from users where username=?"
+authorities-by-username-query="
+select u.username, ur.authority from users u, user_roles ur 
+where u.user_id = ur.user_id and u.username=?" />
+</security:authentication-provider>
+</security:authentication-manager>
+
+<bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder" />
+
+<!-- Local Apache Commons DBCP DataSource -->
+    <bean id="defaultDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost/artsoul?useUnicod=true&amp;characterEncoding=utf8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="autoset"/>
+        <property name="maxActive" value="15" />
+        <property name="initialSize" value="15" />
+        <property name="maxIdle" value="15" />
+        <property name="minIdle" value="15" />
+        <property name="testOnBorrow" value="false" />
+        <property name="timeBetweenEvictionRunsMillis" value="10000" />
+        <property name="testWhileIdle" value="true" />  
+        <property name="numTestsPerEvictionRun" value="3" />        
+        <property name="minEvictableIdleTimeMillis" value="-1" />
+    </bean>
+    
+
 </beans>
