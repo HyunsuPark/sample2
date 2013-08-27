@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapping -->
+<mapper namespace="com.web.codekin.member.MemberDAO">
+
+<!-- vo변수에 맞게 values변수 작성 -->
+<insert id="insert"  parameterType="com.web.codekin.member.MemberVO">
+insert into tbl_member (id, pw, username, email) 
+values( #{id}, #{pw}, #{userName}, #{email})
+</insert>
+
+<!-- <select id="findMovie" resultType="com.web.codekin.member.MemberVO" parameterType="long"> -->
+
+<!-- select mid, mtitle as title, director, actor from tbl_movie where mid= #{mid} -->
+<!-- </select> -->
+
+</mapper>
