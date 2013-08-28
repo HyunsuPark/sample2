@@ -30,4 +30,10 @@ public class MemberTest {
 		
 		dao.insert(vo);
 	}
+	
+	@Test
+	public void test2() throws Exception{
+		System.out.println(dao.getAll());
+		
+	}
 }
