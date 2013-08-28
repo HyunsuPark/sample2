@@ -5,15 +5,14 @@
 <!-- mapping -->
 <mapper namespace="com.web.codekin.member.MemberDAO">
 
-<!-- vo변수에 맞게 values변수 작성 -->
-<insert id="insert"  parameterType="com.web.codekin.member.MemberVO">
-insert into tbl_member (id, pw, username, email) 
-values( #{id}, #{pw}, #{userName}, #{email})
-</insert>
+	<!-- vo변수에 맞게 values변수 작성 -->
+	<insert id="insert" parameterType="com.web.codekin.member.MemberVO">
+		insert into tbl_member (id, pw, username, email)
+		values( #{id}, #{pw}, #{userName}, #{email})
+	</insert>
 
-<!-- <select id="findMovie" resultType="com.web.codekin.member.MemberVO" parameterType="long"> -->
-
-<!-- select mid, mtitle as title, director, actor from tbl_movie where mid= #{mid} -->
-<!-- </select> -->
+	<select id="getAll" resultType="com.web.codekin.member.MemberVO">
+		select id, pw, username, email from tbl_member 
+	</select>
 
 </mapper>
