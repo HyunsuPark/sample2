@@ -7,6 +7,6 @@ public class Test {
 		String imgFileName = "capture.jpg";	//발송할 이미지경로
 		
 		br.execute(fileSrc);
-		m.sendMail(imgFileName);
+//		m.sendMail(imgFileName);
 	}
 }

@@ -23,7 +23,7 @@ public class Mail {
 		String from = "ekrnfkdi@gmail.com"; // 보내는 메일
 		String fromName = "dfsdf";
 		String to = "ekrnfkdi@naver.com";
-//		String content = "aaaaaaaaaaaaaaaa";
+		String content = "aaaaaaaaaaaaaaaa";
 		try {
 			// 프로퍼티 값 인스턴스 생성과 기본세션(SMTP 서버 호스트 지정)
 			Properties props = new Properties();
