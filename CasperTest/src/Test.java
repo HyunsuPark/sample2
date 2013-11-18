@@ -3,9 +3,10 @@ public class Test {
 	static Mail m = new Mail();
 	
 	public static void main(String[] args) {
-		String fileSrc = ".\\casperjs\\bin\\test.bat";
+		String fileSrc = ".\\casperjs\\batchbin\\test.bat"; //bat파일 실행경로
+		String imgFileName = "capture.jpg";	//발송할 이미지경로
 		
 		br.execute(fileSrc);
-		m.sendMail();
+		m.sendMail(imgFileName);
 	}
 }

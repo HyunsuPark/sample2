@@ -16,7 +16,7 @@ import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.MimeUtility;
 
 public class Mail {
-	public void sendMail() {
+	public void sendMail(String imgFileName) {
 		// TODO Auto-generated method stub
 		String host = "smtp.gmail.com";// smtp 서버
 		String subject = "안녕";
@@ -63,7 +63,7 @@ public class Mail {
 
 			// second part (the image)
 			messageBodyPart = new MimeBodyPart();
-			DataSource fds = new FileDataSource("weather.jpg");
+			DataSource fds = new FileDataSource(imgFileName);
 			messageBodyPart.setDataHandler(new DataHandler(fds));
 			messageBodyPart.setHeader("Content-ID", "<image>");
 
