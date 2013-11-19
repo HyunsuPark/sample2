@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>로그인</title>
+<script type="text/javascript">
+<!--
+	function check_login(){
+		var tid = document.getElementById("tid");
+		var tpwd = document.getElementById("tpwd");	
+		
+		if(tid.value.length < 4 || tid.value.length > 10){
+			alert("아이디는 4~10글자 사이로 입력하여야 합니다.");
+			tid.select();
+			return false;
+		}
+		
+		if(tpwd.value.length < 4 || tpwd.value.length > 10){
+			alert("암호는 4~10글자 이내로 입력하여야 합니다.");
+			tpwd.select();
+			return false;
+		}
+		
+		return true;		
+	}
+//-->
+</script>
+
+<style type="text/css">
+	div {
+		position : relative;
+		top : 100px;
+
+	}
+	
+	a {
+		text-decoration : none;
+	}
+</style>
+</head>
+
+<body>
+<div align="center">
+	<form method="post" action="/travel/login" name="loginForm" onsubmit="return check_login();">
+	<table style="border-collapse: collapse; border: 3px black solid; text-align:center;">
+		<tr>
+		<td><img src="/travel/images/login.gif"></td>
+		<td style="padding: 30px">
+		<table align="center">
+		<tr>
+		<td colspan="2">
+			로그인하여 주세요<br><br>
+		</td></tr>
+		<tr><td> ID </td>
+			<td><input type="text" autofocus required name="user_id" size="20" id="tid" placeholder="4~10글자">
+			</td></tr>
+			<tr><td>
+			PASSWORD </td>
+			<td><input type="password" required name="user_pwd" size="20" id="tpwd" placeholder="4~10글자"> 
+			</td></tr>
+			<tr><td colspan="2">			
+			<input type="submit" value="LOGIN"> 
+			</td></tr>
+		</table>
+		</td>
+		</tr>
+	</table>
+	</form>
+	
+	<p>
+	<hr/>
+	<a href="/travel/index.jsp" target="_top">첫페이지로 이동</a>
+	&nbsp; &nbsp; &nbsp; 
+	<a href="/travel/member/memberin.html" target="_self">회원가입</a>
+	<p>
+</div>	
+</body>
+</html>
