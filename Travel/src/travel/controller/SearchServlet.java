@@ -3,12 +3,12 @@ package travel.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import travel.model.dao.TravelDao;
 import travel.model.vo.Travel;
@@ -16,7 +16,7 @@ import travel.model.vo.Travel;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/tslist")
+@WebServlet("/tlist")
 public class SearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -39,19 +39,25 @@ public class SearchServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 로그인 처리용 서블릿
 		response.setContentType("text/html;charset=utf-8");
 		
 		String loc =  request.getParameter("loc");
 		
 		TravelDao tDao = new TravelDao();
-		ArrayList<Travel> list = tDao.listSearch(loc);
+		
+		ArrayList<Travel> list = null;
+		
+		if("".equals(loc) || loc == null){
+			list = tDao.listAll();
+		}else{
+			list = tDao.listSearch(loc);
+		}
 		
 		if(list != null)
 		{
-			HttpSession session = request.getSession();
-			session.setAttribute("list", list);
-			response.sendRedirect("listView.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("listView.jsp");
+			request.setAttribute("list", list);
+			rd.forward(request, response);
 		}else{
 			response.sendRedirect("fail.html");
 		}
