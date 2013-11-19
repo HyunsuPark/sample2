@@ -41,6 +41,11 @@ public class Member {
 		this.hobby = hobby;
 		this.etc = etc;
 	}
+	
+	public Member(String memberId) {
+		super();
+		this.memberId = memberId;
+	}
 
 
 
