@@ -43,7 +43,7 @@
 	<li><a href="tlist">여행상품검색</a></li>
 	<li>여행상품수정</li>
 	<li>여행상품삭제</li>
-	<li><a href="tinsert">여행상품등록</a></li>
+	<li><a href="insertProduct.html">여행상품등록</a></li>
 </ul>
 <% } %>
 </body>

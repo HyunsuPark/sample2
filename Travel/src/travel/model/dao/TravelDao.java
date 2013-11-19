@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import travel.model.vo.Travel;
@@ -20,21 +21,21 @@ public class TravelDao {
 	// 리스트조회
 	public ArrayList<Travel> listAll() {
 		Travel travel = null;
-		String query = "select * from TB_TRAVEL ";
+		String query = "select * from TB_TRAVEL order by 1 desc";
 		Connection conn = getConnection();
-		PreparedStatement pstmt = null;
+		Statement pstmt = null;
 		ResultSet rs = null;
 
 		ArrayList<Travel> list = new ArrayList<Travel>();
 
 		try {
-			pstmt = conn.prepareStatement(query);
+			pstmt = conn.createStatement();
 
 			// pstmt.setString(1, uid);
 
-			rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery(query);
 
-			if (rs.next()) {
+			while (rs.next()) {
 				travel = new Travel();
 
 				travel.setTravel_code(rs.getString("TRAVEL_CODE"));
@@ -75,7 +76,7 @@ public class TravelDao {
 
 			rs = pstmt.executeQuery();
 
-			if (rs.next()) {
+			while (rs.next()) {
 				travel = new Travel();
 
 				travel.setTravel_code(rs.getString("TRAVEL_CODE"));
