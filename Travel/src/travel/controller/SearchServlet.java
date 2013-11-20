@@ -43,6 +43,7 @@ public class SearchServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		
 		String loc =  request.getParameter("loc");
+		String div =  request.getParameter("div");
 		
 		TravelDao tDao = new TravelDao();
 		
@@ -56,7 +57,14 @@ public class SearchServlet extends HttpServlet {
 		
 		if(list != null)
 		{
-			RequestDispatcher rd = request.getRequestDispatcher("listView.jsp");
+			RequestDispatcher rd = null;
+			if(div.equals("del")){
+				rd = request.getRequestDispatcher("listDelete.jsp");
+			}else if(div.equals("udt")){
+				rd = request.getRequestDispatcher("listUpdate.jsp");
+			}else if(div.equals("all")){
+				rd = request.getRequestDispatcher("listView.jsp");
+			}
 			request.setAttribute("list", list);
 			rd.forward(request, response);
 		}else{

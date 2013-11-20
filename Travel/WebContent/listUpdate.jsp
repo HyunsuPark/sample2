@@ -1,5 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page import="java.util.ArrayList,travel.model.vo.Travel"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8" %>
 <!DOCTYPE html>
@@ -37,7 +36,7 @@
 	</c:forEach>
 	</table>
 	<div align="center">
-		<button>가격수정</button><input type="button" value="다시쓰기" onclick="reset()">
+		<input type="submit" value="가격수정"><input type="button" value="다시쓰기" onclick="reset()">
 	</div>
 	</form>
 	<p/>

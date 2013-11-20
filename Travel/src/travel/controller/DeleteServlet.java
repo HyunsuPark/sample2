@@ -2,6 +2,8 @@ package travel.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import travel.model.dao.TravelDao;
 import travel.model.vo.Travel;
@@ -16,14 +19,14 @@ import travel.model.vo.Travel;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/tupdateList")
-public class SearchUdtServlet extends HttpServlet {
+@WebServlet("/tdelete")
+public class DeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchUdtServlet() {
+    public DeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,21 +45,21 @@ public class SearchUdtServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 		
-		String loc =  request.getParameter("loc");
+		String[] travel_code = request.getParameterValues("travel_code");
+		
+		int result = 0;
 		
 		TravelDao tDao = new TravelDao();
 		
-		ArrayList<Travel> list = null;
-		
-		if("".equals(loc) || loc == null){
-			list = tDao.listAll();
-		}else{
-			list = tDao.listSearch(loc);
+		for (int i = 0; i < travel_code.length; i++) {
+			result += tDao.listDelete(travel_code[i]);
 		}
 		
-		if(list != null)
+		if(result > 0)
 		{
-			RequestDispatcher rd = request.getRequestDispatcher("listUpdate.jsp");
+			ArrayList<Travel> list = tDao.listAll();
+			
+			RequestDispatcher rd = request.getRequestDispatcher("listDelete.jsp");
 			request.setAttribute("list", list);
 			rd.forward(request, response);
 		}else{

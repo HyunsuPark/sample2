@@ -47,9 +47,9 @@ hr {
 	<ul>
 		<li>${ sessionScope.loginUser.name }</li>
 		<li><a href="logout">로그아웃</a></li>
-		<li><a href="tlist">여행상품검색</a></li>
-		<li><a href="tupdateList">여행상품수정</a></li>
-		<li><a href="tdelete">여행상품삭제</a></li>
+		<li><a href="tlist?div=all">여행상품검색</a></li>
+		<li><a href="tlist?div=udt">여행상품수정</a></li>
+		<li><a href="tlist?div=del">여행상품삭제</a></li>
 		<li><a href="insertProduct.html">여행상품등록</a></li>
 	</ul>
 	<%
