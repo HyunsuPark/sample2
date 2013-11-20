@@ -2,7 +2,10 @@ package user.model.dao;
 
 import user.model.vo.User;
 import static common.JdbcTemplate.*;
+
 import java.sql.*;
+
+import common.LoggableStatement;
 
 public class UserDao {
 	public UserDao(){}
@@ -18,10 +21,14 @@ public class UserDao {
 		ResultSet rs = null;
 		
 		try {
-			pstmt = conn.prepareStatement(query);
+//			pstmt = conn.prepareStatement(query);
+			
+			pstmt = new LoggableStatement(conn, query);
 			
 			pstmt.setString(1, uid);
 			pstmt.setString(2, upwd);
+			
+			System.out.println(("Query :: "+((LoggableStatement)pstmt).getQueryString()));
 			
 			rs = pstmt.executeQuery();
 			
