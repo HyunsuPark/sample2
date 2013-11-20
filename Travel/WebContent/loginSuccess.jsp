@@ -1,10 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8" import="user.model.vo.User"%>
-<%
-	//전달받은 request 가 가진 세션객체의 ID를 사용해서
-	//해당 세션객체를 찾아서 객체 정보를 리턴받음	
-	User login = (User)session.getAttribute("loginUser");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +24,7 @@
 	<p/><p/><p/><p/>
 	
 	<h1 align="center">
-		<%= login.getUserId() %> 님 로그인되었습니다.
+		${ sessionScope.loginUser.userId } 님 로그인되었습니다.
 	</h1>
 
 	<a href="/travel/index.jsp">첫페이지로 이동</a>

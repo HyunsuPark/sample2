@@ -1,8 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<%@ page import="user.model.vo.User" %>
+	pageEncoding="utf-8"%>
+<%@ page import="user.model.vo.User"%>
 <%
-	User loginUser = (User)session.getAttribute("loginUser");
+	User loginUser = (User) session.getAttribute("loginUser");
 %>
 
 <!DOCTYPE html>
@@ -11,40 +12,48 @@
 <meta charset="utf-8">
 <title>메뉴 페이지</title>
 <style type="text/css">
-	ul {
-		list-style : none;
-	}
-	
-	ul li{
-		display : inline;
-		float : left;
-		padding-left : 30px;
+ul {
+	list-style: none;
+}
+
+ul li {
+	display: inline;
+	float: left;
+	padding-left: 30px;
+}
+
+a {
+		text-decoration : none;
+		color : navy;
+		text-style : bolder;
+		vertical-align : base;
+		margin : 0px;
+		padding : 0px;
 	}
 
-	a {
-		text-decoration : none;
-	}
-	
-	hr {
-		clear : left;
-	}
+hr {
+	clear: left;
+}
 </style>
 </head>
 <body>
-<%
-	if(loginUser == null)
-	{
-%>
-<a href="/travel/login.html">로그인</a>
-<% }else { %>
-<ul>
-	<li><%= loginUser.getName() %></li>
-	<li><a href="logout">로그아웃</a></li>
-	<li><a href="tlist">여행상품검색</a></li>
-	<li>여행상품수정</li>
-	<li>여행상품삭제</li>
-	<li><a href="insertProduct.html">여행상품등록</a></li>
-</ul>
-<% } %>
+	<%
+		if (loginUser == null) {
+	%>
+	<a href="/travel/login.html">로그인</a>
+	<%
+		} else {
+	%>
+	<ul>
+		<li>${ sessionScope.loginUser.name }</li>
+		<li><a href="logout">로그아웃</a></li>
+		<li><a href="tlist">여행상품검색</a></li>
+		<li><a href="tupdateList">여행상품수정</a></li>
+		<li><a href="tdelete">여행상품삭제</a></li>
+		<li><a href="insertProduct.html">여행상품등록</a></li>
+	</ul>
+	<%
+		}
+	%>
 </body>
 </html>

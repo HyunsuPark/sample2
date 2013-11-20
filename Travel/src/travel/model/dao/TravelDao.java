@@ -99,6 +99,38 @@ public class TravelDao {
 
 		return list;
 	}
+	
+	// 리스트조회
+		public String titleSearch(String code) {
+			Travel travel = null;
+			String query = "select TRAVEL_TITLE from TB_TRAVEL where TRAVEL_CODE = ? ";
+			Connection conn = getConnection();
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+
+			String title = "";
+
+			try {
+				pstmt = conn.prepareStatement(query);
+
+				pstmt.setString(1, code);
+
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+
+					title = rs.getString("TRAVEL_TITLE");
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rs);
+				close(pstmt);
+				close(conn);
+			}
+
+			return title;
+		}
 
 	// 리스트추가
 		public int listInsert(Travel t) {
@@ -139,8 +171,8 @@ public class TravelDao {
 		}
 		
 	// 리스트수정
-	public int listUpdate(Travel t) {
-		String query = "update TB_TRAVEL set LOCATION = ? , TRAVEL_TITLE = ? , DEPARTURE_DATE = ? , RETURN_DATE = ? , PRICE = ? , AIRLINE = ? where TRAVEL_CODE = ? ";
+	public int listUpdate(String code  ,String price) {
+		String query = "update TB_TRAVEL set PRICE = ? where TRAVEL_CODE = ? ";
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -150,13 +182,8 @@ public class TravelDao {
 		try {
 			pstmt = conn.prepareStatement(query);
 
-			pstmt.setString(1, t.getLocation());
-			pstmt.setString(2, t.getTravel_title());
-			pstmt.setString(3, t.getDeparture_date());
-			pstmt.setString(4, t.getReturn_date());
-			pstmt.setString(5, t.getPrice());
-			pstmt.setString(6, t.getAirline());
-			pstmt.setString(7, t.getTravel_code());
+			pstmt.setString(1, price);
+			pstmt.setString(2, code);
 
 			result = pstmt.executeUpdate();
 			

@@ -9,8 +9,10 @@
 <title>게시글 목록보기</title>
 </head>
 <body>
-	<h1 align="center">게시글 목록</h1>
+	<h1 align="center">목록 수정</h1>
 	<hr align="center" size="2" width="50%" color="green" />
+	
+	<form action="tupdate" method="post">
 	<table align="center" width="70%" border="1" cellspacing="0" cellpadding="5">
 		<tr bgcolor="#99ccff">
 			<th width="50">번호</th>
@@ -28,17 +30,18 @@
 			<td><c:out value="${result.travel_title}"/></td>
 			<td><c:out value="${result.departure_date}"/></td>
 			<td><c:out value="${result.return_date}"/></td>
-			<td><c:out value="${result.price}"/></td>
+			<td><input type="text" name="price"></td>
 			<td><c:out value="${result.airline}"/></td>
+			<input type="hidden" name="travel_code" value='<c:out value="${result.travel_code}"/>'>
 		</tr>
 	</c:forEach>
 	</table>
+	<div align="center">
+		<button>가격수정</button><input type="button" value="다시쓰기" onclick="reset()">
+	</div>
+	</form>
 	<p/>
 	<div align="center">
-	<form action="tlist" method="post">
-		지역검색 <input type="text" name="loc"> <button>검색</button>
-	</form>
-		<br>
 		<a href="index.jsp">첫페이지로</a>
 	</div>
 </body>
