@@ -34,7 +34,7 @@
 	</table>
 	<p/>
 	<div align="center">
-	<form action="tlist" method="post">
+	<form action="tlist?div=all" method="post">
 		지역검색 <input type="text" name="loc"> <button>검색</button>
 	</form>
 		<br>
