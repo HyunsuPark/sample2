@@ -8,15 +8,15 @@
 </head>
 <body>
 	<div id="content">
-		<div id="top" style="width: 1200px; height: 100px; border: solid 1px;">
+		<div id="top" style="width: 801px; height: 100px; border: solid 1px; border-bottom: none;">
 			<jsp:include page="top.jsp" />
 		</div>
-		<div id="left"
-			style="width: 200px; height: 800px; border: solid 1px; float: left">
+		<div id="left" 
+			style="width: 150px; height: 800px; border: solid 1px; border-right:none; float: left">
 			<jsp:include page="menu.jsp" />
 		</div>
 		<div id="right"  
-			style="width: 1000px; height: 800px; border: solid 1px; float: left">
+			style="width: 650px; height: 800px; border: solid 1px; float: left">
 			<jsp:include page="login.jsp" />
 		</div>
 	</div>

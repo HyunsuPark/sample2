@@ -8,7 +8,7 @@
 </head>
 <body>
 <div align="center">
-	<form method="post" action="" name="loginForm" >
+	<form action="">
 	<table style="border-collapse: collapse; border: 3px black solid; text-align:center;">
 		<tr>
 		<td style="padding: 30px">
@@ -25,7 +25,8 @@
 			<td><input type="password" required name="user_pwd" size="20" id="tpwd" placeholder="4~10글자"> 
 			</td></tr>
 			<tr><td colspan="2">			
-			<input type="submit" value="LOGIN"> 
+			<button><a href="home.jsp" style="text-decoration: none; color: black; cursor: default;">로그인</a></button>
+			<input type="button" onclick="reset()" value="취소"> 
 			</td></tr>
 		</table>
 		</td>
