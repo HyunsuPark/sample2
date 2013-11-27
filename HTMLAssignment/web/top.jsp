@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,26 +9,25 @@
 <script src="js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript">
 	function linkedPage(URL){
-		$("div#right").html("<object data=\"" + URL + "\" width=100% height=100%>")
-		$("div#left").html("직원관리시스템");
-	}
-	
-	function linkedPage2(URL){
-		var html = '<a href="javascript:linkedPage3(\'empList.jsp\')">[직원조회]</a><br><a href="javascript:linkedPage3(\'empRegister.jsp\')">[직원등록]</a>';
+		var html = '<a href="list">[직원조회]</a><br><a href="list?div=insert">[직원등록]</a>';
 		$("div#left").html(html);
-	}
-	
-	function linkedPage3(URL){
-		$("div#right").html("<object data=\"" + URL + "\" width=100% height=100%>")
 	}
 </script>
 </head>
 <body>
 	<div>
 	<br><br>
-		<a href="javascript:linkedPage('home.jsp')">[홈]</a>
-		<a href="javascript:linkedPage('login.jsp')">[로그인]</a>
-		<a id="emp" href="javascript:linkedPage2('menu.jsp')">[직원관리]</a>
+		<c:choose>
+		 <c:when test="${sessionScope.loginUser ==null}">
+		 	<a href="index.jsp">[홈]</a>
+		 	<a href="index.jsp">[로그인]</a>
+		 </c:when>
+ 		 <c:otherwise>
+ 		    <a href="index.jsp">[홈]</a>
+ 		 	<a href="logout">[로그아웃]</a>
+ 		 	<a id="emp" href="javascript:linkedPage('menu.jsp')">[직원관리]</a>
+ 		 </c:otherwise>
+		</c:choose>
 	</div>
 </body>
 </html>

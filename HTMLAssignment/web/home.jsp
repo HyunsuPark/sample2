@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div style="text-align: center;">
-				<p>관리자님 로그인되었습니다.</p>
+				<p>${sessionScope.loginUser.name} 님 로그인되었습니다.</p>
 				<p>즐거운하루되세요</p>
 				<img alt="" src="images/Koala.jpg" width="200px" height="200px">
 			</div>

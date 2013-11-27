@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<% 
-request.setCharacterEncoding("utf-8");
-response.setContentType("text/html;charset=utf-8");
-
-String id = request.getParameter("id");
-String name = new String(request.getParameter("name").getBytes("ISO-8859-1"), "UTF-8");
-String jik = new String(request.getParameter("jik").getBytes("ISO-8859-1"), "UTF-8");
-String tel = request.getParameter("tel");
-%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,19 +13,19 @@ String tel = request.getParameter("tel");
 				<table border="1">
 					<tr>
 						<th>사번</th>
-						<td><%= id %></td>
+						<td>${row.no}</td>
 					</tr>
 					<tr>
 						<th>이름</th>
-						<td><%= name %></td>
+						<td>${row.name}</td>
 					</tr>
 					<tr>
 						<th>직위</th>
-						<td><%= jik %></td>
+						<td>${row.jik}</td>
 					</tr>
 					<tr>
 						<th>전화번호</th>
-						<td><%= tel %></td>
+						<td>${row.tel}</td>
 					</tr>
 				</table>
 			</div>

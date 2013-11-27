@@ -9,49 +9,46 @@
 <body>
 	<div align="center">
 	<h2>직원 정보 등록</h2>
-	<form method="post" action="insert">
+	<form method="get" action="register">
 	<table width="500" cellspacing="0" cellpadding="2" align="center">
-		
 		<tr>
 			<th width="100" bgcolor="#ffcc00">사번</th>
-			<td width="400" align="left"><input type="text" required name="title" size="50"></td>
+			<td width="400" align="left"><input type="text" required name="no" size="50"></td>
 		</tr>		
 		<tr>
 			<th width="100" bgcolor="#ffcc00">이름</th>
-			<td width="400" align="left"><input type="text" required name="title" size="50"></td>
+			<td width="400" align="left"><input type="text" required name="name" size="50"></td>
 		</tr>
 		<tr>
 			<th width="100" bgcolor="#ffcc00">전화번호</th>
-			<td width="400" align="left"><input type="text" required name="title" size="50"></td>
+			<td width="400" align="left"><input type="text" required name="tel" size="50"></td>
 		</tr>
 		<tr>
 			<th width="100" bgcolor="#ffcc00">직위</th>
 			<td width="400">
-				<select style="width: 333px">
-					<option>이사</option>
-					<option>부장</option>
-					<option>차장</option>
-					<option>과장</option>
-					<option>대리</option>
+				<select name="jik" style="width: 333px">
+					<option value="이사">이사</option>
+					<option value="부장">부장</option>
+					<option value="차장">차장</option>
+					<option value="과장">과장</option>
+					<option value="대리">대리</option>
 				</select>
 			</td>
 		</tr>
 		<tr>
 			<th width="100" bgcolor="#ffcc00">취미</th>
 			<td width="400">
-				<input type="checkbox" value="문화">문화
-				<input type="checkbox" value="스포츠">스포츠
-				<input type="checkbox" value="기타">기타
+				<input type="checkbox" value="문화" name="hobby">문화
+				<input type="checkbox" value="스포츠" name="hobby">스포츠
+				<input type="checkbox" value="기타" name="hobby">기타
 			</td>
 		</tr>
 		<tr>
 			<th width="100" bgcolor="#ffcc00">비고</th>
 			<td width="400">
-				<textarea rows="5" cols="10" style="width: 333px"></textarea>
+				<textarea name="etc" rows="5" cols="10" style="width: 333px"></textarea>
 			</td>
 		</tr>
-		
-		
 		
 		<tr>			
 			<td colspan="2">
