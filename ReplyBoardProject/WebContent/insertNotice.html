@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>글쓰기 페이지</title>
+</head>
+<body>
+	<h1 align="center">글쓰기 페이지입니다.</h1>
+	<hr/>
+	<div align="center">
+	<form method="post" action="insert" enctype="multipart/form-data">
+	<table width="500" cellspacing="0" cellpadding="2" align="center">
+		<tr>
+			<th width="100" bgcolor="#ffcc00">작성자</th>
+			<td width="400" align="left"><input type="text" required name="writer" size="50"></td>
+		</tr>		
+		<tr>
+			<th width="100" bgcolor="#ffcc00">비밀번호</th>
+			<td width="400" align="left"><input type="password" required name="pwd" size="50"></td>
+		</tr>
+		<tr>
+			<th width="100" bgcolor="#ffcc00">제목</th>
+			<td width="400" align="left"><input type="text" required name="subject" size="50"></td>
+		</tr>
+		<tr>
+			<th width="100" bgcolor="#ffcc00">내용</th>
+			<td width="400" align="left"><input type="text" required name="content" size="50"></td>
+		</tr>
+		<tr>
+			<th width="100" bgcolor="#ffcc00">파일첨부</th>
+			<td width="400">
+			 <input type="file" name="fileup"> <br/>
+			</td>
+		</tr>
+		<tr>			
+			<td colspan="2">
+			<input type="submit" value="글올리기"> &nbsp;
+			<input type="button" value="취소" onclick="location.replace('list');">
+			</td>
+		</tr>
+	</table>
+	</form>
+	</div>
+</body>
+</html>

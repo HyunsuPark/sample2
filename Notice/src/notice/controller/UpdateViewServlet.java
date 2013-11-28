@@ -1,4 +1,4 @@
-package notice.controller;
+package board.controller;
 
 import java.io.IOException;
 
@@ -8,9 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import notice.model.dao.NoticeDao;
-import notice.model.vo.Notice;
 
 /**
  * Servlet implementation class UpdateViewServlet
@@ -41,19 +38,19 @@ public class UpdateViewServlet extends HttpServlet {
 		// 수정하기 페이지 뷰 출력용 서블릿
 		response.setContentType("text/html;charset=utf-8");
 		
-		int no = Integer.parseInt(request.getParameter("no"));
-		
-		NoticeDao ndao = new NoticeDao();
-		Notice notice = ndao.selectRow(no);
-		
-		if(notice != null)
-		{
-			RequestDispatcher rd = request.getRequestDispatcher("updateView.jsp");
-			request.setAttribute("notice", notice);
-			rd.forward(request, response);
-		}else{
-			response.sendRedirect("datailError.html");
-		}
+//		int no = Integer.parseInt(request.getParameter("no"));
+//		
+//		NoticeDao ndao = new NoticeDao();
+//		Notice notice = ndao.selectRow(no);
+//		
+//		if(notice != null)
+//		{
+//			RequestDispatcher rd = request.getRequestDispatcher("updateView.jsp");
+//			request.setAttribute("notice", notice);
+//			rd.forward(request, response);
+//		}else{
+//			response.sendRedirect("datailError.html");
+//		}
 	}
 
 }

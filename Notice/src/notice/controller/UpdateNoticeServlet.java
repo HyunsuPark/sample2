@@ -1,4 +1,4 @@
-package notice.controller;
+package board.controller;
 
 import java.io.IOException;
 
@@ -7,9 +7,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import notice.model.dao.NoticeDao;
-import notice.model.vo.Notice;
 
 /**
  * Servlet implementation class UpdateNoticeServlet
@@ -40,27 +37,27 @@ public class UpdateNoticeServlet extends HttpServlet {
 		// 글제목 또는 글내용 수정용 서블릿
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		
-		int no = Integer.parseInt(request.getParameter("no"));
-		String title = request.getParameter("title");
-		String writer = request.getParameter("writer");
-		String content = request.getParameter("content");
-		
-		Notice updateNotice = new Notice();
-		updateNotice.setNoticeNo(no);
-		updateNotice.setNoticeWriter(writer);
-		updateNotice.setNoticeTitle(title);
-		updateNotice.setNoticeContent(content);
-		
-		NoticeDao ndao = new NoticeDao();
-		int result = ndao.updateRow(updateNotice);
-		
-		if(result > 0)
-		{
+//		
+//		int no = Integer.parseInt(request.getParameter("no"));
+//		String title = request.getParameter("title");
+//		String writer = request.getParameter("writer");
+//		String content = request.getParameter("content");
+//		
+//		Notice updateNotice = new Notice();
+//		updateNotice.setNoticeNo(no);
+//		updateNotice.setNoticeWriter(writer);
+//		updateNotice.setNoticeTitle(title);
+//		updateNotice.setNoticeContent(content);
+//		
+//		NoticeDao ndao = new NoticeDao();
+//		int result = ndao.updateRow(updateNotice);
+//		
+//		if(result > 0)
+//		{
 			response.sendRedirect("list");
-		}else{
-			response.sendRedirect("updateError.html");
-		}
+//		}else{
+//			response.sendRedirect("updateError.html");
+//		}
 	}
 
 }

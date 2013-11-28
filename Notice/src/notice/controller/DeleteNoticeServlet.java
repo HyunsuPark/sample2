@@ -1,4 +1,4 @@
-package notice.controller;
+package board.controller;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import notice.model.dao.NoticeDao;
+import board.model.dao.BoardDao;
 
 /**
  * Servlet implementation class DeleteNoticeServlet
@@ -39,10 +39,10 @@ public class DeleteNoticeServlet extends HttpServlet {
 		// 글 삭제용 서블릿
 		response.setContentType("text/html;charset=utf-8");
 		
-		int no = Integer.parseInt(request.getParameter("no"));
+		int idx = Integer.parseInt(request.getParameter("idx"));
 		
-		NoticeDao ndao = new NoticeDao();
-		int result = ndao.deleteRow(no);
+		BoardDao ndao = new BoardDao();
+		int result = ndao.deleteRow(idx);
 		
 		if(result > 0)
 		{

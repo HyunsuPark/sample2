@@ -1,0 +1,72 @@
+1. 기존의 NoticeProject 의 소스와 파일들을 그대로
+  ReplyBoardProject 복사해 넣음
+2. insertNotice.jsp 파일이름변경함 : insertBoard.jsp 
+	=> 파일에 파일첨부 항목 추가함.
+	=> insert 서블릿에 파일업로드 추출 소스 추가함.
+	=> NoticeDao의 insertRow() 메소드에도 항목 추가
+	   접근할 테이블명, 컬럼명 수정함
+	refer, lev, sunbun, readnum은 insert시 아래 필드 값 처리함.
+	refer : 부모의 글번호를 저장하는 필드
+	lev : 원글의 답글인지 답글의 답글인지를 구분하기위한 들여쓰기횟수.
+	sunbun : 같은 답글끼리의 출력순서를 위한 필드.
+
+3. db 테이블 정보 변경 및 추가
+4. 전체목록 조회에 '조회수' readnum 값 출력칸 만들고, 값 출력함  
+5. 상세보기페이지에서
+	=> '답글달기' 추가함
+	   : 클릭시 답글달기 페이지 나타남 (reply.jsp)
+	    원게시글에 대한 제목이 출력되어야 함. (제목과 번호 전달함)
+
+	<input type=button value="답글달기" 
+	     OnClick="window.location='reply.jsp?idx=<%=idx%>'">
+
+	    원게시글의 번호는 hidden으로 서블릿으로 전송되게 처리함.
+	=> 글에 대한 상세보기(dao의 selectRow() 메소드)가 요청될 때마다
+	   readnum 컬럼의 값이 1증가되도록 처리함.(update 추가)
+6. 답글달기 처리
+	=> dao에 replyInsert()메소드 추가함
+	원글의 refer, lev, sunbun 값을 조회해서,
+
+	String sql = "SELECT REFER, LEV, SUNBUN FROM board 
+		WHERE IDX =" + idx;
+	ResultSet rs = stmt.executeQuery(sql);
+		
+	if(rs.next()) {
+		refer = rs.getInt(1);
+		lev = rs.getInt(2);
+		sunbun = rs.getInt(3);
+	} 
+
+	Update문을 이용해서 refer값이 원게시글의 refer와 같고 
+	lev가 원게시글의 lev값보다 큰 자료들의 lev 값을 +1 시킴.
+	=> insert문을 이용해서 데이터베이스에 자료를 입력합니다. 
+	reply.jsp에서 가져온 값들과 select문을 이용한 값들을 넣어 주되 
+	refer는 같은 값을 넣고 lev와 sunbun은 원글의 값보다 +1 시켜서 
+	넣음.
+	sql = "INSERT INTO board(IDX,
+		 WRITER, TITLE, CONTENT, 
+		WRITEDATE, READNUM, FILENAME, FILESIZE,REFER, 
+		LEV, SUNBUN) "+ "values(?,?,?,?,SYSDATE,0,NULL, 0, ?,?,?)";
+	SQL = select max(idx) + 1 max from board;
+	pstmt.setInt(1, max);
+	pstmt.setInt(5, refer);
+	pstmt.setInt(6, lev+1);
+	pstmt.setInt(7, sunbun+1);
+
+7. 전체목록보기 페이지 처리
+	=> dao 의 selectAll() 메소드에서
+	String sqlList = "SELECT * from board 
+		order by REFER DESC, LEV ASC";
+	=> listView.jsp 에서 답글에 대한 들여쓰기 추가함
+	<td align="left">
+	<% 
+		
+	for(int j=0;j<lev;j++){
+%>		&nbsp;&nbsp;&nbsp;<%
+	}
+	if(lev !=0){
+%>		<img src='img/reply_icon.gif' />
+<%
+	}
+%> 
+<a href="detailView.jsp?idx=<%=idx%>"><%=title %></td>

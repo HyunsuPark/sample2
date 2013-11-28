@@ -1,4 +1,4 @@
-package notice.controller;
+package board.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import notice.model.dao.NoticeDao;
-import notice.model.vo.Notice;
+import board.model.dao.BoardDao;
+import board.model.vo.Board;
 
 /**
  * Servlet implementation class ListServlet
@@ -45,9 +45,9 @@ public class ListServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		
 		//비즈니스 로직을 처리할 모델 객체 생성하고
-		NoticeDao ndao = new NoticeDao();
+		BoardDao ndao = new BoardDao();
 		//전체조회 처리용 메소드 실행함
-		ArrayList<Notice> list = ndao.selectAll();
+		ArrayList<Board> list = ndao.selectAll();
 			
 		//리턴값을 가지고 뷰를 선택함.
 		if(list != null)
