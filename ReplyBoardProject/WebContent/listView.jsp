@@ -20,8 +20,12 @@
 		</tr>
 		<c:forEach var="result" items="${list}" varStatus="status">
 		<tr>
+			<c:url value="detail" var="url"><c:param name="idx" value="${result.idx}" /></c:url>
 			<td><c:out value="${result.idx}"/></td>
-			<td><c:out value="${result.subject}"/></td>
+			<td>
+				<c:forEach var="i" begin="0" end="${result.lev}">&nbsp;&nbsp;&nbsp;</c:forEach>
+				<a href="${url}"><c:out value="${result.subject}"/></a>
+			</td>
 			<td><c:out value="${result.writer}"/></td>
 			<td><c:out value="${result.writedate}"/></td>
 			<td><c:out value="${result.readnum}"/></td>

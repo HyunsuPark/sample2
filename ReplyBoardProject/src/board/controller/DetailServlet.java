@@ -1,4 +1,4 @@
-package notice.controller;
+package board.controller;
 
 import java.io.IOException;
 
@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import notice.model.dao.NoticeDao;
-import notice.model.vo.Notice;
+import board.model.dao.BoardDao;
+import board.model.vo.Board;
 
 /**
  * Servlet implementation class DetailServlet
@@ -45,11 +45,11 @@ public class DetailServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		
 		//전송값 꺼내기
-		int no = Integer.parseInt(request.getParameter("no"));
+		int idx = Integer.parseInt(request.getParameter("idx"));
 		
 		//dao 객체 생성하고, 메소드 실행하고, 반환값 받음
-		NoticeDao ndao = new NoticeDao();
-		Notice row = ndao.selectRow(no);
+		BoardDao ndao = new BoardDao();
+		Board row = ndao.selectRow(idx);
 		
 		if(row != null)
 		{

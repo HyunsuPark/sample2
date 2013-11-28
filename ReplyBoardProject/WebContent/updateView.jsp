@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@ page import="notice.model.vo.Notice" %>
-<%
-	Notice n = (Notice)request.getAttribute("notice");
-%>     
 <!DOCTYPE html>
 <html>
 <head>

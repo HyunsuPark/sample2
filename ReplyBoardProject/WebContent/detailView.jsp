@@ -1,9 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@ page import="notice.model.vo.Notice" %>
-<%
-	Notice n = (Notice)request.getAttribute("row");
-%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,31 +18,36 @@
 	<table width="500" cellspacing="0" cellpadding="2" align="center">
 		<tr>
 			<th width="100" bgcolor="#ffcc00">글번호</th>
-			<td width="400"><%= n.getNoticeNo() %></td>
+			<td width="400">${row.idx}</td>
+		</tr>
+		<tr>
+			<th width="100" bgcolor="#ffcc00">제목</th>
+			<td width="400">${row.subject}</td>
 		</tr>
 		<tr>
 			<th width="100" bgcolor="#ffcc00">작성자</th>
-			<td width="400"><%= n.getNoticeWriter() %></td>
+			<td width="400">${row.writer}</td>
 		</tr>
 		<tr>
-			<th width="100" bgcolor="#ffcc00">글제목</th>
-			<td width="400"><%= n.getNoticeTitle() %></td>
+			<th width="100" bgcolor="#ffcc00">작성일</th>
+			<td width="400">${row.writedate}</td>
 		</tr>
 		<tr>
-			<th width="100" bgcolor="#ffcc00">글쓴날</th>
-			<td width="400"><%= n.getNoticeDate() %></td>
-		</tr>
-		<tr>
-			<th width="100" bgcolor="#ffcc00">글내용</th>
-			<td width="400"><%= n.getNoticeContent() %></td>
+			<th width="100" bgcolor="#ffcc00">조회수</th>
+			<td width="400">${row.readnum}</td>
 		</tr>
 	</table>
 	<p/>
 	<hr/>
 	<div align="center">
-	<a href="updateview?no=<%= n.getNoticeNo() %>">수정하기</a>
+	<c:url value="reply" var="urlReply"><c:param name="idx" value="${row.idx}" /><c:param name="view" value="ok" /></c:url>
+	<a href="${urlReply}">댓글달기</a>
 	&nbsp; &nbsp; &nbsp; &nbsp;
-	<a href="delete?no=<%= n.getNoticeNo() %>">삭제하기</a>
+	<c:url value="updateview" var="urlUdt"><c:param name="idx" value="${row.idx}" /></c:url>
+	<a href="${urlUdt}">수정하기</a>
+	&nbsp; &nbsp; &nbsp; &nbsp;
+	<c:url value="delete" var="urlDel"><c:param name="idx" value="${row.idx}" /></c:url>
+	<a href="${urlDel}">삭제하기</a>
 	<p/>
 	</div>
 	<a href="list">목록으로</a><br/>

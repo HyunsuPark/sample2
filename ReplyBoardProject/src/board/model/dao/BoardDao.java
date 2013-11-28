@@ -93,7 +93,7 @@ public class BoardDao {
 				board.setSunbun(rs.getInt("sunbun"));
 			}
 		} catch (SQLException e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}finally{
 			close(rs);
 			close(pstmt);
@@ -103,6 +103,36 @@ public class BoardDao {
 		return board;
 	}
 	
+	public int countRef(int idx)
+	{
+		String query = "SELECT count(*) as cnt from board where refer = ? ";
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		int count = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, idx);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next())
+			{
+				count = rs.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			close(rs);
+			close(pstmt);
+			close(conn);
+		}
+		
+		return count;
+	}
+	
 	//새 글 추가 처리용
 	public int insertRow(Board board)
 	{
@@ -110,7 +140,7 @@ public class BoardDao {
 		String query = "INSERT INTO board(IDX," +
 				" WRITER, PWD, SUBJECT, " + 
 				" CONTENT, WRITEDATE, READNUM, FILENAME, FILESIZE, " + 
-				" REFER , LEV, SUNBUN) "+ "values(NVL((SELECT MAX(IDX) FROM BOARD),0)+1,?,?,?,?,SYSDATE,0,?,?,0,0,0)";
+				" REFER , LEV, SUNBUN) "+ "values(seq_board_idx.nextval,?,?,?,?,SYSDATE,0,?,?,seq_board_idx.currval,0,0)";
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
 		
@@ -130,6 +160,131 @@ public class BoardDao {
 			else
 				rollback(conn);
 			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(conn);
+		}
+		
+		return result;
+	}
+	
+	public int updateRef(int idx)
+	{
+		int result = 0;
+		String query = "update board set refer = ? where idx = ?";
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, idx);
+			pstmt.setInt(2, idx);
+			
+			result = pstmt.executeUpdate();
+			
+			if(result > 0)
+				commit(conn);
+			else
+				rollback(conn);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(conn);
+		}
+		
+		return result;
+	}
+	
+	public int updateSunbun(int idx)
+	{
+		int result = 0;
+		String query = "update board set sunbun = (select max(sunbun)+1 from board where idx = seq_board_idx.currval) where idx = seq_board_idx.currval ";
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, idx);
+			pstmt.setInt(2, idx);
+			result = pstmt.executeUpdate();
+			
+			if(result > 0)
+				commit(conn);
+			else
+				rollback(conn);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(conn);
+		}
+		
+		return result;
+	}
+	
+	public int[] getEtc(int idx){
+		int[] etc = new int[3];
+		
+		String sql = "SELECT REFER ,LEV, SUNBUN " +
+				 "FROM board WHERE idx = ?";
+		
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				etc[0] = rs.getInt(1);
+				etc[1] = rs.getInt(2);
+			} 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(conn);
+		}
+		
+		return etc;
+	}
+	
+	public int insertReply(Board board,int idx,int lev)
+	{ 
+		int result = 0;
+		int[] etc = new int[2];
+		
+		etc = getEtc(idx); 
+				
+		String query = "INSERT INTO board(IDX," +
+				" WRITER, PWD, SUBJECT, " + 
+				" CONTENT, WRITEDATE, READNUM, FILENAME, FILESIZE, " + 
+				" REFER , LEV, SUNBUN) "+ "values(seq_board_idx.nextval,?,?,?,?,SYSDATE,0,'',0,?,?,?)";
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, board.getWriter());
+			pstmt.setString(2, board.getPwd());
+			pstmt.setString(3, board.getSubject());
+			pstmt.setString(4, board.getContent());
+			pstmt.setInt(5, etc[0]);
+			pstmt.setInt(6, etc[1]+1);
+			pstmt.setInt(7, etc[2]+1);
+			
+			result = pstmt.executeUpdate();
+			
+			if(result > 0)
+				commit(conn);
+			else
+				rollback(conn);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally{
