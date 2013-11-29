@@ -6,6 +6,8 @@
 <head>
 <meta charset="utf-8">
 <title>게시글 목록보기</title>
+<link href="css/table.css" rel="stylesheet" type="text/css"/>
+<link href="css/button.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 	<h1 align="center">게시글 목록</h1>
@@ -16,15 +18,15 @@
 			<th width="350">제목</th>
 			<th width="100">작성자</th>
 			<th width="200">작성일</th>
-			<th width="50">조회수</th>
+			<th width="80">조회수</th>
 		</tr>
 		<c:forEach var="result" items="${list}" varStatus="status">
 		<tr>
 			<c:url value="detail" var="url"><c:param name="idx" value="${result.idx}" /></c:url>
 			<td><c:out value="${result.idx}"/></td>
 			<td>
-				<c:forEach var="i" begin="0" end="${result.lev}">&nbsp;&nbsp;&nbsp;</c:forEach>
-				<a href="${url}"><c:out value="${result.subject}"/></a>
+				<c:forEach var="i" begin="1" end="${result.lev}">&nbsp;&nbsp;&nbsp;</c:forEach>
+				<c:if test="${result.lev > 0}"><img width="12px" height="12px" src="images/reply.png"> </c:if><a href="${url}"><c:out value="${result.subject}"/></a>
 			</td>
 			<td><c:out value="${result.writer}"/></td>
 			<td><c:out value="${result.writedate}"/></td>
@@ -34,8 +36,8 @@
 	</table>
 	<p/>
 	<div align="center">
-		<a href="insertNotice.html">글쓰기</a><br/>
-		<a href="index.html">첫페이지로</a>
+		<span class="button medium"><a href="insertNotice.html">글쓰기</a><br/></span>
+		<span class="button medium"><a href="index.html">첫페이지로</a></span>
 	</div>
 </body>
 </html>
