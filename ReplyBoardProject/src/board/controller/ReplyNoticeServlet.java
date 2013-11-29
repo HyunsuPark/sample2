@@ -82,7 +82,7 @@ public class ReplyNoticeServlet extends HttpServlet {
 				response.sendRedirect("list");
 			}else	//글 추가 실패시
 			{
-				response.sendRedirect("insertError.html");
+				response.sendRedirect("errorPage.jsp");
 			}
 		}
 		

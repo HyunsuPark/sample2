@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import board.model.dao.BoardDao;
+import board.model.vo.Board;
+
 /**
  * Servlet implementation class UpdateViewServlet
  */
@@ -38,19 +41,19 @@ public class UpdateViewServlet extends HttpServlet {
 		// 수정하기 페이지 뷰 출력용 서블릿
 		response.setContentType("text/html;charset=utf-8");
 		
-//		int no = Integer.parseInt(request.getParameter("no"));
-//		
-//		NoticeDao ndao = new NoticeDao();
-//		Notice notice = ndao.selectRow(no);
-//		
-//		if(notice != null)
-//		{
-//			RequestDispatcher rd = request.getRequestDispatcher("updateView.jsp");
-//			request.setAttribute("notice", notice);
-//			rd.forward(request, response);
-//		}else{
-//			response.sendRedirect("datailError.html");
-//		}
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		
+		BoardDao ndao = new BoardDao();
+		Board row = ndao.selectRow(idx);
+		
+		if(row != null)
+		{
+			RequestDispatcher rd = request.getRequestDispatcher("updateView.jsp");
+			request.setAttribute("row", row);
+			rd.forward(request, response);
+		}else{
+			response.sendRedirect("errorPage.jsp");
+		}
 	}
 
 }

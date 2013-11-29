@@ -49,17 +49,21 @@ public class DetailServlet extends HttpServlet {
 		
 		//dao 객체 생성하고, 메소드 실행하고, 반환값 받음
 		BoardDao ndao = new BoardDao();
+		ndao.updateReadNum(idx); //조회수 증가
 		Board row = ndao.selectRow(idx);
+		
+		String uploadFolder = "fileUpload";
+		String filePath = uploadFolder+"/"+row.getFilename();
 		
 		if(row != null)
 		{
 			RequestDispatcher rd = request.getRequestDispatcher("detailView.jsp");
 			request.setAttribute("row", row);
+			request.setAttribute("filePath", filePath);
 			rd.forward(request, response);
 		}else{
-			response.sendRedirect("detailError.html");
+			response.sendRedirect("errorPage.jsp");
 		}
-			
 	}
 
 }

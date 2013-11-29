@@ -58,7 +58,7 @@ public class ListServlet extends HttpServlet {
 		}
 		else
 		{
-			response.sendRedirect("listError.html");
+			response.sendRedirect("errorPage.jsp");
 		}
 	}
 

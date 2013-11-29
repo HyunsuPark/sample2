@@ -227,6 +227,34 @@ public class BoardDao {
 		return result;
 	}
 	
+	public int updateReadNum(int idx)
+	{
+		int result = 0;
+		String query = "update board set READNUM = (select READNUM from board where idx = ?)+1 where idx = ?";
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, idx);
+			pstmt.setInt(2, idx);
+			result = pstmt.executeUpdate();
+			
+			if(result > 0)
+				commit(conn);
+			else
+				rollback(conn);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(conn);
+		}
+		
+		return result;
+	}
+	
 	public int[] getEtc(int idx){
 		int[] etc = new int[3];
 		
@@ -324,37 +352,36 @@ public class BoardDao {
 	}
 	
 	//글 수정용
-//	public int updateRow(Notice notice)
-//	{
-//		int result = 0;
-//		String query = "update notice set " + 
-//				"noticetitle = ?, noticecontent = ?, " + 
-//				"noticedate = sysdate " 
-//				+ "where noticeno = ?";
-//		PreparedStatement pstmt = null;
-//		Connection conn = getConnection();
-//		
-//		try {
-//			pstmt = conn.prepareStatement(query);
-//			
-//			pstmt.setString(1, notice.getNoticeTitle());
-//			pstmt.setString(2, notice.getNoticeContent());
-//			pstmt.setInt(3, notice.getNoticeNo());
-//			
-//			result = pstmt.executeUpdate();
-//			
-//			if(result > 0)
-//				commit(conn);
-//			else
-//				rollback(conn);
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}finally{
-//			close(pstmt);
-//			close(conn);
-//		}
-//		
-//		return result;
-//	}
+	public int updateRow(Board board)
+	{
+		int result = 0;
+		String query = "update board set " + 
+				"subject = ?, content = ? " + 
+				 "where idx = ?";
+		PreparedStatement pstmt = null;
+		Connection conn = getConnection();
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, board.getSubject());
+			pstmt.setString(2, board.getContent());
+			pstmt.setInt(3, board.getIdx());
+			
+			result = pstmt.executeUpdate();
+			
+			if(result > 0)
+				commit(conn);
+			else
+				rollback(conn);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(conn);
+		}
+		
+		return result;
+	}
 }

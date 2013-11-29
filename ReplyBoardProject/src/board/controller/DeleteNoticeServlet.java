@@ -38,9 +38,8 @@ public class DeleteNoticeServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 글 삭제용 서블릿
 		response.setContentType("text/html;charset=utf-8");
-		
+		 
 		int idx = Integer.parseInt(request.getParameter("idx"));
-		
 		BoardDao ndao = new BoardDao();
 		int result = ndao.deleteRow(idx);
 		
@@ -48,7 +47,7 @@ public class DeleteNoticeServlet extends HttpServlet {
 		{
 			response.sendRedirect("list");
 		}else{
-			response.sendRedirect("deleteError.html");
+			response.sendRedirect("errorPage.jsp");
 		}
 	}
 

@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import board.model.dao.BoardDao;
+import board.model.vo.Board;
+
 /**
  * Servlet implementation class UpdateNoticeServlet
  */
@@ -38,26 +41,26 @@ public class UpdateNoticeServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
 //		
-//		int no = Integer.parseInt(request.getParameter("no"));
-//		String title = request.getParameter("title");
-//		String writer = request.getParameter("writer");
-//		String content = request.getParameter("content");
-//		
-//		Notice updateNotice = new Notice();
-//		updateNotice.setNoticeNo(no);
-//		updateNotice.setNoticeWriter(writer);
-//		updateNotice.setNoticeTitle(title);
-//		updateNotice.setNoticeContent(content);
-//		
-//		NoticeDao ndao = new NoticeDao();
-//		int result = ndao.updateRow(updateNotice);
-//		
-//		if(result > 0)
-//		{
-			response.sendRedirect("list");
-//		}else{
-//			response.sendRedirect("updateError.html");
-//		}
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		String subject = request.getParameter("subject");
+		String writer = request.getParameter("writer");
+		String content = request.getParameter("content");
+		
+		Board board = new Board();
+		board.setIdx(idx);
+		board.setSubject(subject);
+		board.setWriter(writer);
+		board.setContent(content);
+		
+		BoardDao ndao = new BoardDao();
+		int result = ndao.updateRow(board);
+		
+		if(result > 0)
+		{
+			response.sendRedirect("detail?idx="+idx);
+		}else{
+			response.sendRedirect("errorPage.jsp");
+		}
 	}
 
 }
