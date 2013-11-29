@@ -12,7 +12,7 @@ public class JdbcTemplate {
 		String driver = "oracle.jdbc.driver.OracleDriver";
 		String url = "jdbc:oracle:thin:@127.0.0.1:1521:xe";
 		String user = "student";
-		String pwd = "asdqwe123";
+		String pwd = "tiger";
 		
 		try {
 			Class.forName(driver);

@@ -56,7 +56,7 @@
 	<span class="button medium"><a href="${urlDel}">삭제하기</a></span>
 	<p/>
 	</div>
-	<span class="button medium"><a href="list">목록으로</a><br/></span>
+	<span class="button medium"><a href="list">목록으로</a></span>
 	<span class="button medium"><a href="index.html">첫페이지로</a></span>
 	
 </body>

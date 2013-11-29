@@ -36,7 +36,7 @@
 	</table>
 	<p/>
 	<div align="center">
-		<span class="button medium"><a href="insertNotice.html">글쓰기</a><br/></span>
+		<span class="button medium"><a href="insertNotice.html">글쓰기</a></span>
 		<span class="button medium"><a href="index.html">첫페이지로</a></span>
 	</div>
 </body>

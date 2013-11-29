@@ -357,7 +357,7 @@ public class BoardDao {
 	{
 		int result = 0;
 		String query = "update board set " + 
-				"subject = ?, content = ? " + 
+				"subject = ?, content = ?, writedate = sysdate " + 
 				 "where idx = ?";
 		PreparedStatement pstmt = null;
 		Connection conn = getConnection();
