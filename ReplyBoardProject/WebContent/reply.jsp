@@ -33,11 +33,10 @@
 			<td width="400"><textarea name="content" rows="5"></textarea></td>
 		</tr>
 	</table>
-	</form>
-	<br><br>
 	<div align="center">
 		<span class="button medium"><input type="submit" value="등록"></span> &nbsp;&nbsp;&nbsp; <span class="button medium"><input type="button" value="취소" onclick="window.location='list'"></span>
 	</div>
-	
+	</form>
+	<br><br>
 </body>
 </html>

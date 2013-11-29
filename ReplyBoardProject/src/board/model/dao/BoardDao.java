@@ -272,6 +272,7 @@ public class BoardDao {
 			if(rs.next()) {
 				etc[0] = rs.getInt(1);
 				etc[1] = rs.getInt(2);
+				etc[2] = rs.getInt(3);
 			} 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -286,7 +287,7 @@ public class BoardDao {
 	public int insertReply(Board board,int idx,int lev)
 	{ 
 		int result = 0;
-		int[] etc = new int[2];
+		int[] etc = new int[3];
 		
 		etc = getEtc(idx); 
 				
