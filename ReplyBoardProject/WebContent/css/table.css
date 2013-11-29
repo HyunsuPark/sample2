@@ -1,0 +1,32 @@
+@CHARSET "utf-8";
+
+body {
+	font-family: 'Trebuchet MS';
+}
+
+table {
+	border-collapse: collapse;
+	text-align: center;
+	font-family: 'Trebuchet MS';
+}
+
+td,th {
+	font-size: 10pt;
+	border: 1px solid #98bf21;
+	height: 30px;
+}
+
+th {
+	background-color: #A7C942;
+	color: #ffffff;
+	font-family: Georgia;
+}
+
+tr.alt td {
+	color: #000000;
+	background-color: #EAF2D3;
+}
+
+input,textarea {
+	width: 95%;
+}
