@@ -2,6 +2,8 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import com.sample.load.JarClassLoader;
+
 public class Test {
 	public static void main(String[] args) throws IOException,
 			ClassNotFoundException, InstantiationException,
