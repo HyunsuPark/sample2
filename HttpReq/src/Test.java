@@ -12,12 +12,10 @@ public class Test {
 		String className = "com.sample.HelloSample";
 		String methodName = "load";
 
-		Class cls = classLoader.getClass();
-
-		Class lodCls = cls.forName(className);
-		Object obj = lodCls.newInstance();
-
-		Method[] meth = lodCls.getDeclaredMethods();
+		Class cls = classLoader.findClass(className);
+		Object obj = cls.newInstance();
+		
+		Method[] meth = cls.getDeclaredMethods();
 		for (Method m : meth) {
 			String mName = m.getName();
 			 

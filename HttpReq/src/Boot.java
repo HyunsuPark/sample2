@@ -16,32 +16,25 @@ import java.util.StringTokenizer;
 public class Boot {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		 
 		try {
+			loadClass();
 			boot();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -49,8 +42,6 @@ public class Boot {
 	public static final byte CR = '\r';
 	public static final byte LF = '\n';
 	private static ServerSocket serverSocket;
-	// 클래스을 로딩하는 객체
-	private static ClassLoader cl = new ClassLoader();
  
 	private static void boot() throws IOException, ClassNotFoundException,
 			InstantiationException, IllegalAccessException,
@@ -208,6 +199,12 @@ public class Boot {
 					paramMap.get(paramName));
 		}
 		System.out.println("End of HTTP Message.");
+	}
+	
+	private static void loadClass(){
+		// 클래스을 로딩하는 객체
+		ClassLoader cl = new ClassLoader();
+		cl.init();
 	}
 	
 }
