@@ -2,7 +2,6 @@ package com.sample.load;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.URLClassLoader;
 
 
 public class ClassLoader {
@@ -20,7 +19,6 @@ public class ClassLoader {
 
 		String className = "com.sample.HelloSample";
 		String methodName = "load";
-
 		
 		try {
 			cls = classLoader.findClass(className);
