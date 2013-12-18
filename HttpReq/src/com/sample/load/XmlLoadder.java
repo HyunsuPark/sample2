@@ -14,6 +14,13 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class XmlLoadder {
+
+	private String libFileSrc = "";
+	
+	public String getLibFileSrc(){
+		return this.libFileSrc;
+	}
+	
 	public void load() throws ParserConfigurationException, SAXException, IOException {
 		File xmlFile = new File("config/web.xml");
 
@@ -23,31 +30,26 @@ public class XmlLoadder {
 
 		doc.getDocumentElement().normalize();
 
-		NodeList itemNodeList = doc.getChildNodes();
+		//초기 페이지 정보 읽기
+		NodeList wlecomelist = doc.getElementsByTagName("lib-file-list");
+		
+		for (int i = 0; i < wlecomelist.getLength(); i++) {
+			
+			Node welcomeNode = wlecomelist.item(i);
+			 
+			if (welcomeNode.getNodeType() == Node.ELEMENT_NODE) {
+				Element welcomeElmnt = (Element) welcomeNode;
 
-		for (int s = 0; s < itemNodeList.getLength(); s++) {
-
-			Node itemNode = itemNodeList.item(s);
-
-			if (itemNode.getNodeType() == Node.ELEMENT_NODE) {
-				System.out.println("node.getNodeName() : " + itemNode.getNodeName());
+				NodeList libList= welcomeElmnt.getElementsByTagName("lib-file");
+				Element libElmnt = (Element) libList.item(0);
+				Node libNode = libElmnt.getFirstChild();
 				
-				NodeList childNodeList = itemNode.getChildNodes(); 
-				
-				for (int i = 0; i < childNodeList.getLength(); i++) {
-					Node itemChildNode = childNodeList.item(i);
-					Element itemElement = (Element) itemChildNode;
-					
-					NodeList titleNodeList = itemElement
-							.getElementsByTagName("welcome-file-list");
-					Element titleElement = (Element) titleNodeList.item(0);
-					NodeList childTitleNodeList = titleElement.getChildNodes();
-					
-					System.out.printf("[welcome-file : %s]\n",
-							((Node) childTitleNodeList.item(0)).getNodeValue());
-				}
+				libFileSrc = libNode.getNodeValue();
+				System.out.println("libFileSrc    : " + libFileSrc);
 			}
-
+			
 		}
+		 
+		System.out.println("Xml config Loadding Success");
 	}
 }

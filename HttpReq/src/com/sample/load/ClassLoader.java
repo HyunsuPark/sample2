@@ -7,13 +7,13 @@ import java.net.URLClassLoader;
 
 public class ClassLoader {
 
-	public void init() {
+	public void init(String src) {
 		JarClassLoader classLoader = null;
 		Class cls = null;
 		Object obj = null;
 		
 		try {
-			classLoader = new JarClassLoader("lib/hello.jar");
+			classLoader = new JarClassLoader(src);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -55,6 +55,8 @@ public class ClassLoader {
 				}
 			}
 		}
+		
+		System.out.println("Class Loading Success");
 	}
 	
 }

@@ -23,8 +23,7 @@ import com.sample.load.XmlLoadder;
 public class Boot {
 	public static void main(String[] args) {
 		try {
-			loadClass();
-			loadXml();
+			loading();
 			boot();
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -49,6 +48,17 @@ public class Boot {
 	public static final byte LF = '\n';
 	private static ServerSocket serverSocket;
  
+	/**
+	 * 
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws NoSuchMethodException
+	 * @throws SecurityException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 */
 	private static void boot() throws IOException, ClassNotFoundException,
 			InstantiationException, IllegalAccessException,
 			NoSuchMethodException, SecurityException, IllegalArgumentException,
@@ -57,6 +67,7 @@ public class Boot {
 		int cnt = 0;
 		
 		while (true) {
+			System.out.println("Waiting for connection............");
 			Socket socket = serverSocket.accept();
 			InputStream in = socket.getInputStream();
 			int oneInt = -1;
@@ -210,20 +221,36 @@ public class Boot {
 			cnt ++;
 			System.out.println("================End of HTTP Message."+"("+cnt+")==================");
 			
-			in.close();
-			socket.close();
+//			in.close();
+//			socket.close();
 		}
 		
 		
 	}
 	
-	private static void loadClass(){
-		// 클래스을 로딩하는 객체
-		ClassLoader cl = new ClassLoader();
-		cl.init();
+	/**
+	 * 로딩하기위한 메소드
+	 */
+	private static void loading(){
+		String libSrc = loadXml();
+		loadClass(libSrc);
 	}
 	
-	private static void loadXml(){
+	/**
+	 * lib경로를 받아 class파일을 로딩
+	 * @param src
+	 */
+	private static void loadClass(String src){
+		// 클래스을 로딩하는 객체
+		ClassLoader cl = new ClassLoader();
+		cl.init(src);
+	}
+	
+	/**
+	 * xml에 정의해놓은 설정파일을 읽음
+	 * @return
+	 */
+	private static String loadXml(){
 		XmlLoadder xml = new XmlLoadder();
 		try {
 			xml.load();
@@ -234,6 +261,8 @@ public class Boot {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		return xml.getLibFileSrc();
 	}
 	
 }
