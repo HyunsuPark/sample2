@@ -43,8 +43,8 @@ public class Sample extends HttpServlet {
 		map.put("content", "test1222");
 		
 		SampleDao dao = new SampleDao();
-		System.out.println(dao.insertData(map));
-		System.out.println(dao.getBoardCnt());
+		dao.insertData(map);
+//		System.out.println(dao.getBoardCnt());
 		
 		ArrayList<HashMap<String, String>> list = dao.getBoard();
 		System.out.println(list);
