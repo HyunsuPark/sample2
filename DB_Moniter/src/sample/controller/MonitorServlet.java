@@ -42,7 +42,7 @@ public class MonitorServlet extends HttpServlet {
 		Monitor m = new Monitor();
 		
 		while (true) {
-			m.run();
+			m.start();
 			try {
 				m.sleep(Integer.parseInt(time) * 1000);
 			} catch (InterruptedException e) {
