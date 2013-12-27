@@ -6,9 +6,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.Enumeration;
 
 public  class  ChatServer  {
     BufferedWriter  writer=null;
@@ -18,7 +21,7 @@ public  class  ChatServer  {
     public  void  serverStart() throws UnknownHostException{
     		InetAddress Address = InetAddress.getLocalHost();
     	
-            System.out.println(Address.getHostAddress()+"로 접속하세요.");
+            System.out.println(getLocalIpAddress()+"로 접속하세요.");
             try  {
                     server  =  new  ServerSocket(57891);
                     socket  =  server.accept();
@@ -59,6 +62,25 @@ public  class  ChatServer  {
           
     }
 
+    public String getLocalIpAddress() {
+        try {
+            for (Enumeration<NetworkInterface> en = NetworkInterface
+                    .getNetworkInterfaces(); en.hasMoreElements();) {
+                NetworkInterface intf = en.nextElement();
+                for (Enumeration<InetAddress> enumIpAddr = intf
+                        .getInetAddresses(); enumIpAddr.hasMoreElements();) {
+                    InetAddress inetAddress = enumIpAddr.nextElement();
+                    if (!inetAddress.isLoopbackAddress()) {
+                        return inetAddress.getHostAddress().toString();
+                    }
+                }
+            }
+        } catch (SocketException ex) {
+            
+        }
+        return "";
+    }
+    
     public  static  void  main(String[]  args) throws UnknownHostException  {
             ChatServer  cs  =  new  ChatServer();
             cs.serverStart();
