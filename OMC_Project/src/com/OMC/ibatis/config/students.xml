@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+
+<!DOCTYPE sqlMap
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="students">
+	<resultMap id="student1" class="com.OMC.dtos.student.StudentDto">
+		<result property="student_cd" column="STUDENT_CD" />
+		<result property="kor_nm" column="KOR_NM" />
+		<result property="ssn" column="SSN" />		
+		<result property="school_sts" column="SCHOOL_STS" />
+		<result property="student_period" column="STUDENT_PERIOD" />
+		<result property="class_div" column="CLASS_DIV" />
+		<result property="curi_year" column="CURI_YEAR" />
+		<result property="olg_dept_nm" column="OLG_DEPT_NM" />
+		<result property="olg_major_nm" column="OLG_MAJOR_NM" />
+		<result property="student_num" column="STUDENT_NUM" />
+		<result property="school_chk" column="SCHOOL_CHK" />
+		<result property="phone" column="PHONE" />
+		<result property="m_phone" column="M_PHONE" />
+		<result property="e_mail" column="E_MAIL" />
+		<result property="zip" column="ZIP" />
+		<result property="addr" column="ADDR" />
+		<result property="real_addr1" column="REAL_ADDR1" />
+		<result property="real_addr2" column="REAL_ADDR2" />
+		<result property="bank" column="BANK" />
+		<result property="ref_bank_cd" column="REF_BANK_CD" />
+		<result property="ref_acct_num" column="REF_ACCT_NUM" />
+		<result property="ref_depo_nm" column="REF_DEPO_NM" />
+	</resultMap>
+	
+	<resultMap id="student2" class="com.OMC.dtos.student.StudentDto">
+		<result property="nation" column="NATION" />
+		<result property="school_nm" column="SCHOOL_NM" />
+		<result property="school_dt" column="SCHOOL_DT" />
+		<result property="eng_nm" column="ENG_NM" />
+		<result property="entr_nm" column="ENTR_NM" />
+		<result property="entr_phone" column="ENTR_PHONE" />
+	</resultMap>
+	
+	<resultMap id="student3" class="com.OMC.dtos.student.StudentDto">
+		<result property="protec_rel" column="PROTEC_REL" />
+		<result property="protec_nm" column="PROTEC_NM" />
+		<result property="protec_job" column="PROTEC_JOB" />
+		<result property="protec_phone" column="PROTEC_PHONE" />
+		<result property="protec_zip" column="PROTEC_ZIP" />
+		<result property="protec_addr" column="PROTEC_ADDR" />
+	</resultMap>
+	
+	<resultMap id="student4" class="com.OMC.dtos.student.StudentDto">
+		<result property="year" column="YEAR" />
+		<result property="smt" column="SMT" />
+		<result property="curi_nm" column="CURI_NM" />
+		<result property="curi_num" column="CURI_NUM" />
+		<result property="curi_class" column="CURI_CLASS" />
+		<result property="cont_desc" column="CONT_DESC" />
+		<result property="class_div" column="CLASS_DIV" />
+		<result property="cdt_num" column="CDT_NUM" />
+		<result property="room_time" column="ROOM_TIME" />
+		<result property="pro_nm" column="PRO_NM" />
+		<result property="recourse_div" column="RECOURSE_DIV" />
+	</resultMap>
+	
+	<resultMap id="bankNM" class="com.OMC.dtos.student.StudentDto">
+		<result property="bankn" column="BANKN" />
+		<result property="ref_bank_cd" column="REF_BANK_CD" />
+	</resultMap>
+	
+	<select id="getStudent" resultMap="student1" parameterClass="java.lang.String" 
+	 resultClass="com.OMC.dtos.student.StudentDto">
+	 <![CDATA[
+		SELECT STUDENT_CD
+       , KOR_NM
+       , REPLACE(SSN1 || '-' || SSN2, SUBSTR(SSN1 || '-' || SSN2, 9), '******') AS SSN
+       , CASE SCHOOL_STS
+          WHEN '01' THEN '재학'
+          WHEN '02' THEN '휴학'
+          WHEN '03' THEN '재적'
+          WHEN '04' THEN '졸업'
+          END AS SCHOOL_STS
+       , STUDENT_PERIOD
+       , DECODE(CLASS_DIV, 1, '주간', '야간') AS CLASS_DIV
+         , CURI_YEAR
+         , OLG_DEPT_NM
+        , OLG_MAJOR_NM
+        , STUDENT_YEAR || '-' || STUDENT_CLASS || '-' || STUDENT_NUM AS STUDENT_NUM
+        , DECODE(SCHOOL_STS, '졸업', 'Y', 'N') AS SCHOOL_CHK
+          , PHONE
+          , M_PHONE
+          , E_MAIL
+          , REAL_ZIP1 || '-' || REAL_ZIP2 AS ZIP
+          , REAL_ADDR1 || '' || REAL_ADDR2 AS ADDR
+          , REAL_ADDR1
+          , NVL(REAL_ADDR2, '&nbsp;') AS REAL_ADDR2
+          , DEG_NUM
+          , REF_ACCT_NUM
+          , REF_BANK_CD
+          , CONT_DESC AS BANK
+          , REF_DEPO_NM
+	   FROM SRGT_STUDENT_MASTER SSM LEFT JOIN(SELECT LARGE_DIV,SMALL_DIV,CONT_DESC,ALIAS
+	                                        FROM COMT_COM_CD
+	                                        WHERE LARGE_DIV='COM19'
+	                                                   ) CCC
+	            ON SSM.REF_BANK_CD = CCC.SMALL_DIV 
+	   WHERE STUDENT_CD = #student_cd#
+		]]>
+	</select> 
+	
+	<select id="getStudentTab1" resultMap="student2" parameterClass="java.lang.String" 
+	 resultClass="com.OMC.dtos.student.StudentDto">
+	 <![CDATA[
+		 	SELECT DECODE(NATION, 'KR', '대한민국', ' ') AS NATION
+		   	    , SCHOOL_NM
+		        , TO_CHAR(SCHOOL_DT, 'YYYY-MM-DD') AS SCHOOL_DT
+		        , ENG_NM
+		        , ENTR_NM
+		        , ENTR_PHONE
+			FROM SRGT_STUDENT_MASTER 
+			WHERE STUDENT_CD = #student_cd#
+		]]>
+	</select> 
+	
+	<select id="getStudentTab2" resultMap="student3" parameterClass="java.lang.String" resultClass="com.OMC.dtos.student.StudentDto">
+	 <![CDATA[
+		 SELECT NVL(DECODE(PROTEC_REL, '01', '부', '02', '모', '03', '배우자', '04', '자녀', '05', '형제'), '&nbsp;') AS PROTEC_REL
+	      , NVL(PROTEC_NM, '&nbsp;') as PROTEC_NM
+	      , NVL(PROTEC_JOB, '&nbsp;') as PROTEC_JOB
+	      , NVL(PROTEC_PHONE, '&nbsp;') as PROTEC_PHONE
+	      , PROTEC_ZIP1 || '-' || PROTEC_ZIP2 AS PROTEC_ZIP
+	      , NVL(PORTEC_ADDR1 || ' ' || PROTEC_ADDR2, '&nbsp;') AS PROTEC_ADDR
+		FROM SRGT_STUDENT_MASTER
+		WHERE STUDENT_CD = #student_cd#
+	 ]]>
+	</select>
+	
+	<select id="getStudentTab4" resultMap="student4" parameterClass="java.lang.String" resultClass="com.OMC.dtos.student.StudentDto">
+	<![CDATA[
+		SELECT sla.year as year
+		      , DECODE(sla.smt, 10, '1학기', 11, '여름학기', 20, '2학기', 21, '겨울학기') as smt
+		      , sla.curi_num as curi_num
+		      , scm.curi_nm as curi_nm
+		      , sla.curi_class as curi_class
+		      , CCC.CONT_DESC as cont_desc
+		      , DECODE(sla.class_div, '1', '주간', '야간') as class_div
+		      , sla.cdt_num as cdt_num
+		      , ar.times || '(' || SUBSTR(ar.BLD_NM, 1, 2) || ' ' || ar.room_nm || ')' as room_time
+		      , ar.KOR_NM as pro_nm
+		      , NVL(DECODE(sla.recourse_div, '01', '재수강', '02', '대체수강', '03', '타수강'), '&nbsp;') as recourse_div
+		  FROM slct_lecture_apply sla , scrt_curi_master scm ,
+	        (SELECT STT.times, ABC.BLD_NM, ARC.ROOM_NM, STT.YEAR, STT.SMT, STT.DEPT_CD, STT.COM_YEAR, STT.CURI_NUM,
+	                STT.CURI_CLASS, STT.EMP_ID, AEM.KOR_NM
+	          FROM
+	           (
+	              SELECT YEAR, SMT, DEPT_CD, COM_YEAR, BLD_CD, ROOM_CD, EMP_ID, curi_num, curi_class
+	                    ,DECODE(WEEK_DAY, 1, '월', 2, '화', 3, '수', 4, '목', 5, '금', 6, '토', 7, '일')|| ' ' || SUBSTR(MAX(SYS_CONNECT_BY_PATH(START_TIME,',')),2) as times
+	              FROM
+	              ( 
+	                SELECT DISTINCT YEAR, SMT, DEPT_CD, COM_YEAR, BLD_CD, ROOM_CD,
+	                        EMP_ID, curi_num, curi_class, week_day, start_time,
+	                        row_number () over (partition BY YEAR,SMT ,DEPT_CD,COM_YEAR,BLD_CD,ROOM_CD,EMP_ID,curi_num,curi_class,week_day order by start_time) rn
+	                FROM scrt_time_table
+	              )
+	              START WITH rn       = 1
+	              CONNECT BY prior rn = rn-1
+	              AND prior curi_num    = curi_num
+	              AND prior curi_class  = curi_class
+	              AND prior week_day    =week_day
+	              GROUP BY YEAR, SMT, DEPT_CD, COM_YEAR, BLD_CD, ROOM_CD, EMP_ID, curi_num, curi_class, week_day
+	          
+	          ) STT, AEQT_BLD_CD ABC, AEQT_ROOM_CD ARC, APST_EMP_MASTER AEM
+	          WHERE STT.BLD_CD  = ABC.BLD_CD
+	            AND STT.BLD_CD  = ARC.BLD_CD
+	            AND STT.ROOM_CD = ARC.ROOM_CD
+	            AND STT.EMP_ID  = AEM.EMP_ID
+	      ) ar,
+	      ( SELECT SGC.YEAR, SGC.SMT, SGC.CULT_GROUP, SGD.DEPT_CD, 
+	              SGC.STUDENT_YEAR, SGC.CURI_NUM, SGC.SET_CD
+	        FROM SCRT_GROUP_CURI SGC, SCRT_GROUP_DEPT SGD
+	        WHERE SGC.YEAR = SGD.YEAR
+	            AND SGC.SMT = SGD.SMT
+	            AND SGC.CULT_GROUP = SGD.CULT_GROUP
+	            AND SGC.STUDENT_YEAR = SGD.STUDENT_YEAR
+	      ) SG, COMT_COM_CD CCC
+		  WHERE sla.year=sg.year(+)
+		  AND sla.smt=sg.smt(+)
+		  AND sla.dept_cd=sg.dept_cd(+)
+		  AND sla.com_year=sg.student_year(+)
+		  AND sla.curi_num=sg.curi_num(+)
+		  AND sla.curi_num=scm.curi_num
+		  AND sla.year=ar.year
+		  AND sla.smt =ar.smt
+		  AND sla.dept_cd=ar.dept_cd
+		  AND sla.com_year=ar.com_year
+		  AND sla.curi_num=ar.curi_num
+		  AND sla.curi_class=ar.curi_class
+		  AND sla.COMDIV_CD = CCC.SMALL_DIV
+		  AND CCC.LARGE_DIV = 'SCR07'
+		  AND sla.student_cd = #student_cd#
+		  order by year, smt
+	]]>
+	</select>
+	
+	<select id="getBankList" resultMap="bankNM" resultClass="com.OMC.dtos.student.StudentDto">
+		SELECT distinct cont_desc as bankn,
+		       ref_bank_cd
+		FROM COMT_COM_CD ccc, SRGT_STUDENT_MASTER ssm
+		WHERE ccc.small_div = ssm.REF_BANK_CD
+		and large_div='COM19'
+		order by ref_bank_cd
+	</select>
+	
+	<update id="updateStudent" parameterClass="com.OMC.dtos.student.StudentDto">
+		UPDATE SRGT_STUDENT_MASTER SET
+		PHONE = #phone#,
+		M_PHONE = #m_phone#,
+		E_MAIL = #e_mail#,
+		REAL_ADDR1 = #real_addr1#,
+		REAL_ADDR2 = #real_addr2#,
+		REF_BANK_CD = #ref_bank_cd#,
+		ENG_NM = #eng_nm#,
+		REF_DEPO_NM = #ref_depo_nm#,
+		REF_ACCT_NUM = #ref_acct_num#		
+		WHERE STUDENT_CD = #student_cd#
+	</update>
+</sqlMap>
+

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="EUC-KR" ?>
+
+<!DOCTYPE sqlMap
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="stclasses">
+	<resultMap id="getstu" class="com.OMC.dtos.lectureapply.CustUserDtos">
+		<result property="student_cd" column="STUDENT_CD" />
+		<result property="student_nm" column="STUDENT_NM" /><!-- 학생 원래 KOR_NM -->
+		<result property="student_year" column="STUDENT_YEAR" />
+		<result property="dept_cd" column="DEPT_CD"/>
+	</resultMap>
+
+	<select id="getCustUser" resultMap="getstu" parameterClass="com.OMC.dtos.lectureapply.CustUserDtos"
+		resultClass="com.OMC.dtos.lectureapply.CustUserDtos">
+		SELECT STUDENT_CD,KOR_NM AS STUDENT_NM,STUDENT_YEAR,DEPT_CD
+		FROM
+		SRGT_STUDENT_MASTER
+		WHERE STUDENT_CD=#student_cd#
+	</select>
+
+
+	<resultMap class="com.OMC.dtos.lectureapply.CustUserDtos" id="getall">
+		<result property="year" column="YEAR" />
+		<result property="comdiv_cd" column="COMDIV_CD" />
+		<result property="curi_num" column="CURI_NUM" />
+		<result property="curi_nm" column="CURI_NM" />
+		<result property="curi_class" column="CURI_CLASS" />
+		<result property="cdt_num" column="CDT_NUM" />
+		<result property="propessor_nm" column="PROPESSOR_NM" />
+		<result property="class_div" column="CLASS_DIV" />
+		<result property="smt" column="SMT"/>
+		<result property="lesson_tp" column="LESSON_TP"/>
+		<result property="dept_cd" column="DEPT_CD"/>
+		<result property="wp_time" column="WP_TIME"/>
+		<result property="com_year" column="COM_YEAR"/>
+<!-- 		<result property="com_class" column="COM_CLASS"/> -->
+		<result property="cult_group" column="CULTGROUP"/>
+		<result property="start_time" column="START_TIME"/>
+		<result property="cont_desc" column="CONT_DESC"/>
+	</resultMap>
+
+
+
+	<select id="getAllList" resultMap="getall"
+		resultClass="com.OMC.dtos.lectureapply.CustUserDtos" parameterClass="com.OMC.dtos.lectureapply.CustUserDtos">
+		SELECT DISTINCT YEAR,
+		COMDIV_CD,
+		CURI_NUM,
+		CURI_NM,
+		CURI_CLASS,
+		CDT_NUM,
+		PROPESSOR_NM,
+		CLASS_DIV,
+		SMT,
+		LESSON_TP,
+		DEPT_CD,
+		WP_TIME,
+		COM_YEAR,
+  		COM_DEPT_CD,
+		CULTGROUP,
+		START_TIME,
+		CONT_DESC
+		FROM LECT_INFO LI
+	    LEFT JOIN 
+	    (
+	    SELECT SMALL_DIV, CONT_DESC CULTGROUP 
+	    FROM COMT_COM_CD
+	    WHERE LARGE_DIV = 'SCR11'
+	    )CCC
+	    ON LI.CULT_GROUP = CCC.SMALL_DIV
+		WHERE COM_DEPT_CD=#dept_cd# AND COM_YEAR=#student_year#
+
+</select>
+
+<resultMap class="com.OMC.dtos.lectureapply.CustUserDtos" id="checklist">
+<result property="lec_check" column="LEC_CHECK"/>
+</resultMap>
+
+<select id="getCheck"  resultMap="checklist" resultClass="com.OMC.dtos.lectureapply.CustUserDtos"
+parameterClass="com.OMC.dtos.lectureapply.CustUserDtos">
+<![CDATA[
+	SELECT MAX(YEAR||SMT||CURI_NUM||CURI_CLASS) AS LEC_CHECK
+     FROM  SGDT_GRADE_MASTER
+                    WHERE STUDENT_CD =#student_cd#
+	           AND     (CURI_NUM = #curi_num#
+                                Or  CURI_NUM  IN  (SELECT DISTINCT  CURI_NUM
+                                                  FROM SCRT_REPL_CURI  
+                                                  START WITH OLD_CURI_NUM = #curi_num1#
+                                                  CONNECT BY PRIOR   CURI_NUM=OLD_CURI_NUM))
+
+	]]>
+</select>
+
+<!--여기 추가해주세영  -->
+<resultMap class="com.OMC.dtos.lectureapply.CustUserDtos" id="timecheck">
+<result property="time_check" column="TIME_CHECK"/>
+</resultMap>
+<select id="getTimeCheck" resultMap="timecheck" resultClass="com.OMC.dtos.lectureapply.CustUserDtos">
+
+SELECT COUNT(LEC_TIME.WEEK_DAY) AS TIME_CHECK
+FROM
+(
+SELECT STT.WEEK_DAY,STT.START_TIME
+FROM TEST_LECTURE_APPLY TLA JOIN SCRT_TIME_TABLE STT 
+ON TLA.YEAR=STT.YEAR 
+AND TLA.SMT=STT.SMT
+AND TLA.COM_YEAR=STT.COM_YEAR 
+AND TLA.CURI_NUM=STT.CURI_NUM
+AND TLA.CURI_CLASS=STT.CURI_CLASS
+WHERE TLA.STUDENT_CD=#student_cd# AND TLA.YEAR='2011' AND TLA.SMT='10') LEC_TIME 
+JOIN(SELECT STT.WEEK_DAY,STT.START_TIME
+FROM SCRT_OPEN_LEC SOL JOIN SCRT_TIME_TABLE STT
+ON SOL.YEAR=STT.YEAR 
+AND SOL.SMT=STT.SMT
+AND SOL.COM_YEAR=STT.COM_YEAR 
+AND SOL.CURI_NUM=STT.CURI_NUM
+AND SOL.CURI_CLASS=STT.CURI_CLASS
+AND SOL.DEPT_CD=STT.DEPT_CD
+WHERE SOL.YEAR='2011' AND SOL.SMT='10' AND SOL.CURI_NUM=#curi_num# AND SOL.CURI_CLASS=#curi_class#) OPEN_TIME
+ON LEC_TIME.WEEK_DAY=OPEN_TIME.WEEK_DAY AND LEC_TIME.START_TIME=OPEN_TIME.START_TIME
+</select>
+
+<resultMap class="com.OMC.dtos.lectureapply.CustUserDtos" id="overcheck">
+<result property="over_check" column="OVER_CHECK"/>
+</resultMap>
+
+<select id="getOverlapCheck"  resultMap="overcheck" resultClass="com.OMC.dtos.lectureapply.CustUserDtos">
+<![CDATA[
+SELECT  count(1) AS OVER_CHECK
+     FROM TEST_LECTURE_APPLY
+                    WHERE STUDENT_CD =#student_cd#
+                    AND YEAR='2011'
+	           AND     (CURI_NUM =  #curi_num#
+                               OR  CURI_NUM  IN  (SELECT DISTINCT  CURI_NUM
+                                                  FROM SCRT_REPL_CURI  
+                                                  START WITH OLD_CURI_NUM = #curi_num1#
+                                                  CONNECT BY PRIOR   CURI_NUM=OLD_CURI_NUM))
+]]>
+</select>
+<resultMap class="com.OMC.dtos.lectureapply.CustUserDtos" id="showleck">
+	
+		<result property="comdiv_cd" column="COMDIV_CD" />
+		<result property="curi_num" column="CURI_NUM" />
+		<result property="curi_nm" column="CURI_NM" />
+		<result property="curi_class" column="CURI_CLASS" />
+		<result property="cdt_num" column="CDT_NUM" />
+		<result property="propessor_nm" column="PROPESSOR_NM" />
+		<result property="class_div" column="CLASS_DIV" />
+		<result property="lesson_tp" column="LESSON_TP"/>
+		<result property="dept_cd" column="DEPT_CD"/>
+		<result property="wp_time" column="WP_TIME"/>
+		<result property="cult_group" column="CULT_GROUP"/>
+		<result property="start_time" column="START_TIME"/>
+		<result property="cont_desc" column="CONT_DESC"/>
+		<result property="week_day" column="WEEK_DAY"/>
+		<result property="bld_nm" column="BLD_NM"/>
+		<result property="room_nm" column="ROOM_NM"/>
+</resultMap>
+<select resultMap="showleck" id="getShowLec" parameterClass="String" resultClass="com.OMC.dtos.lectureapply.CustUserDtos">
+SELECT DISTINCT TLA.STUDENT_CD AS STUDENT_CD,
+TLA.CURI_NUM AS CURI_NUM,
+TLA.CURI_CLASS AS CURI_CLASS,
+LI.CURI_NM AS CURI_NM,
+decode(li.week_day,'1','월','2','화','3','수','4','목','5','금','6','토','7','일')AS WEEK_DAY,
+LI.START_TIME AS START_TIME,
+li.propessor_nm AS PROPESSOR_NM,
+li.class_div AS CLASS_DIV,
+li.dept_cd AS DEPT_CD,
+li.cult_group AS CULT_GROUP,
+li.wp_time AS WP_TIME,
+li.lesson_tp AS LESSON_TP,
+li.cdt_num AS CDT_NUM,
+li.comdiv_cd AS COMDIV_CD,
+li.room_nm AS ROOM_NM,
+li.bld_nm AS BLD_NM,
+li.cont_desc AS CONT_DESC
+
+FROM test_lecture_apply TLA  JOIN LECT_INFO LI
+ON TLA.YEAR=LI.YEAR 
+AND TLA.SMT=LI.SMT 
+AND TLA.DEPT_CD=LI.COM_DEPT_CD
+AND TLA.COM_YEAR=LI.COM_YEAR 
+AND TLA.CURI_NUM=LI.CURI_NUM
+AND TLA.CURI_CLASS=LI.CURI_CLASS
+WHERE STUDENT_CD=#student_cd#
+
+</select>
+<resultMap class="com.OMC.dtos.lectureapply.CustUserDtos" id="deptinfo">
+<result property="dept_nm" column="DEPT_NM" />
+</resultMap>
+
+<select id="getDeptInfo" resultMap="deptinfo" parameterClass="String" resultClass="com.OMC.dtos.lectureapply.CustUserDtos">
+SELECT DEPT_NM
+FROM SRGT_DEPT_CD
+WHERE DEPT_CD=#dept_cd#
+</select>
+
+
+<resultMap class="com.OMC.dtos.lectureapply.CustUserDtos" id="lecinfo">
+
+	<result property="comdiv_cd" column="COMDIV_CD" />
+	<result property="curi_num" column="CURI_NUM" />
+	<result property="cdt_num" column="CDT_NUM" />
+	<result property="class_div" column="CLASS_DIV" />
+	<result property="curi_nm" column="CURI_NM" />
+	
+</resultMap>
+
+<select id="getLecInfo" resultMap="lecinfo" parameterClass="com.OMC.dtos.lectureapply.CustUserDtos" resultClass="com.OMC.dtos.lectureapply.CustUserDtos">
+SELECT DISTINCT CURI_NUM,CURI_CLASS,CDT_NUM,CLASS_DIV,COMDIV_CD,CURI_NM
+FROM LECT_INFO
+WHERE YEAR='2011' AND SMT='10' AND CURI_NUM=#curi_num# AND CURI_CLASS=#curi_class#
+
+</select>
+
+<insert id="insertLecture" parameterClass="com.OMC.dtos.lectureapply.CustUserDtos">
+INSERT INTO TEST_LECTURE_APPLY (
+								YEAR,
+								SMT,
+								STUDENT_CD,
+								DEPT_CD,
+								COM_YEAR,
+								CURI_NUM,
+								CURI_CLASS,
+								CDT_NUM,
+								CLASS_DIV,
+								COMDIV_CD)
+						VALUES('2011',
+								'10',
+								#student_cd#,
+								#dept_cd#,
+								#com_year#,
+								#curi_num#,
+								#curi_class#,
+								#cdt_num#,
+								#class_div#,
+								#comdiv_cd#
+								)
+</insert>
+
+<delete id="muldelLec" parameterClass="java.lang.String">
+	DELETE FROM TEST_LECTURE_APPLY
+	WHERE CURI_NUM=#curiNum#
+</delete>
+</sqlMap>
+
+

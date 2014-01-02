@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+
+<!DOCTYPE sqlMap
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="LectureApply">
+	<resultMap id="LactureConfirmListDto" class="com.OMC.dtos.lectureapply.LectureConfirmDto" >
+		<result property="curi_num" column="CURI_NUM"/>
+		<result property="curi_nm" column="CURI_NM"/>
+		<result property="curi_class" column="CURI_CLASS"/>
+		<result property="cont_desc" column="CONT_DESC"/>
+		<result property="class_div" column="CLASS_DIV"/>
+		<result property="cdt_num" column="CDT_NUM"/>
+		<result property="time_sheet" column="TIME_SHEET"/>
+		<result property="kor_nm" column="KOR_NM"/>
+		<result property="recourse_div" column="RECOURSE_DIV"/>
+		<result property="pass_fail" column="PASS_FAIL"/>
+	</resultMap>
+	
+	<resultMap id="StudentInfoDto" class="com.OMC.dtos.lectureapply.LectureConfirmDto" >
+		<result property="student_cd" column="STUDENT_CD"/>
+		<result property="kor_nm" column="KOR_NM"/>
+		<result property="student_year" column="STUDENT_YEAR"/>
+		<result property="student_class" column="STUDENT_CLASS"/>
+		<result property="student_num" column="STUDENT_NUM"/>
+		<result property="dept_nm" column="DEPT_NM"/>
+		<result property="ent_year" column="ENT_YEAR"/>
+	</resultMap>
+	
+	<resultMap id="GradeStandardDto" class="com.OMC.dtos.lectureapply.LectureConfirmDto" >
+		<result property="student_period" column="STUDENT_PERIOD"/>
+		<result property="comdiv_cd1" column="COMDIV_CD1"/>
+		<result property="comdiv_cd2" column="COMDIV_CD2"/>
+		<result property="comdiv_cd3" column="COMDIV_CD3"/>
+	</resultMap>
+		
+	<select id="getStudentInfo" resultMap="StudentInfoDto" resultClass="com.OMC.dtos.lectureapply.LectureConfirmDto">
+		SELECT STUDENT_CD,
+		KOR_NM,
+		STUDENT_YEAR,
+		STUDENT_CLASS,
+		STUDENT_NUM,
+		SDC.DEPT_NM,
+		ENT_YEAR
+		FROM SRGT_STUDENT_MASTER SSM,SRGT_DEPT_CD SDC
+		WHERE SSM.DEPT_CD = SDC.DEPT_CD(+)
+		AND STUDENT_CD = #student_cd#
+	</select>
+		
+	<select id="getLactureConfirmList" resultMap="LactureConfirmListDto" resultClass="com.OMC.dtos.lectureapply.LectureConfirmDto">
+		SELECT SLA.CURI_NUM,
+		SCM.CURI_NM,
+		SLA.CURI_CLASS,
+		CONT_DESC,
+		DECODE(SLA.CLASS_DIV,1,'주간',2,'야간') AS CLASS_DIV,
+		SLA.CDT_NUM,
+		WTC.TIME_SHEET,
+		AEM.KOR_NM,
+		NVL(DECODE(SLA.RECOURSE_DIV,'01','재수강','02','대체수강','03','타수강'),'nbsp;') AS RECOURSE_DIV,
+		NVL(SLA.PASS_FAIL,'nbsp;') AS PASS_FAIL
+		FROM SLCT_LECTURE_APPLY SLA,COMT_COM_CD CCC,SCRT_CURI_MASTER SCM,APST_EMP_MASTER AEM,
+		(
+		SELECT YEAR,STUDENT_CD,SMT,EMP_ID,CURI_NUM,WEEK_DAY||SUBSTR(COL2,1,INSTR(COL2,',',-1)-1)||'('||ROOM_NM||')' AS TIME_SHEET
+		FROM
+		(
+		SELECT SLA.YEAR,SLA.STUDENT_CD,SLA.SMT,STT.EMP_ID,SLA.CURI_NUM,DECODE(STT.WEEK_DAY,'1','월','2','화','3','수','4','목','5','금') as WEEK_DAY,ARC.ROOM_NM,
+		XMLAGG(XMLELEMENT("NM",START_TIME,',') ORDER BY ROWNUM).EXTRACT('//text()').GETSTRINGVAL() AS COL2
+		FROM SLCT_LECTURE_APPLY SLA,AEQT_ROOM_CD ARC,SCRT_TIME_TABLE STT
+		WHERE SLA.YEAR = STT.YEAR
+		AND SLA.SMT = STT.SMT
+		AND SLA.DEPT_CD = STT.DEPT_CD
+		AND SLA.COM_YEAR = STT.COM_YEAR
+		AND SLA.CURI_NUM = STT.CURI_NUM
+		AND SLA.CURI_CLASS = STT.CURI_CLASS
+		AND STT.BLD_CD = ARC.BLD_CD
+		AND STT.ROOM_CD = ARC.ROOM_CD
+		AND SLA.STUDENT_CD = #student_cd1#
+		AND SLA.YEAR = #year1#
+		AND SLA.SMT = #smt1#
+		GROUP BY SLA.YEAR,SLA.STUDENT_CD,SLA.SMT,STT.EMP_ID,SLA.CURI_NUM,WEEK_DAY,ARC.ROOM_NM
+		)) WTC
+		WHERE CCC.LARGE_DIV = 'SCR07'
+		AND CCC.SMALL_DIV = SLA.COMDIV_CD
+		AND SCM.CURI_NUM = SLA.CURI_NUM
+		AND SLA.CURI_NUM = WTC.CURI_NUM
+		AND WTC.EMP_ID = AEM.EMP_ID
+		AND SLA.STUDENT_CD = #student_cd2#
+		AND SLA.YEAR = #year2#
+		AND SLA.SMT = #smt2#
+
+	</select>
+
+	<select id="getGradeStandard" resultMap="GradeStandardDto" 
+		resultClass="com.OMC.dtos.lectureapply.LectureConfirmDto">
+		SELECT STUDENT_PERIOD,
+		NVL(SUM(CASE WHEN COMDIV_CD='11' THEN TOTAL END),0) AS COMDIV_CD1,
+		NVL(SUM(CASE WHEN COMDIV_CD='21' THEN TOTAL END),0) AS COMDIV_CD2,
+		NVL(SUM(CASE WHEN COMDIV_CD='61' THEN TOTAL END),0) AS COMDIV_CD3
+		FROM
+		(
+		SELECT STUDENT_PERIOD, COMDIV_CD,SUM(TOTAL) AS TOTAL
+		FROM(
+		SELECT STUDENT_PERIOD ,CASE 
+		WHEN COMDIV_CD IN('11','12','13','14','15','16','70','71','72','73') THEN '11'
+		WHEN COMDIV_CD BETWEEN '20' AND '22' THEN '21'
+		WHEN COMDIV_CD = '61' THEN '61'
+		END COMDIV_CD
+		,SLA.CDT_NUM, SUM(CDT_NUM) AS TOTAL
+		FROM SRGT_STUDENT_MASTER SSM,SLCT_LECTURE_APPLY SLA
+		WHERE SSM.STUDENT_CD = SLA.STUDENT_CD
+		AND SSM.STUDENT_CD = '200730238'
+		AND GIVEUP_YN IS NULL
+		GROUP BY STUDENT_PERIOD, CASE 
+		WHEN COMDIV_CD IN('11','12','13','14','15','16','70','71','72','73') THEN '11'
+		WHEN COMDIV_CD BETWEEN '20' AND '22' THEN '21'
+		WHEN COMDIV_CD = '61' THEN '61'
+		END, SLA.CDT_NUM
+		) GROUP BY STUDENT_PERIOD, COMDIV_CD
+		) GROUP BY STUDENT_PERIOD
+		</select>
+		
+	<resultMap id="stusearch" class="com.OMC.dtos.lectureapply.StuSearchDto">
+		<result property="slaCuriNm" column="CURI_NM" />
+		<result property="aemKorNm" column="KOR_NM" />
+		<result property="abcBldNm" column="BLD_NM" />
+		<result property="arcRoomNm" column="ROOM_NM" />
+		<result property="sttWeekDay" column="WEEK_DAY" />
+		<result property="sttStartTime" column="START_TIME" />
+	</resultMap>
+	
+	<select id="getStuSearchList" resultMap="stusearch" 
+	resultClass="com.OMC.dtos.lectureapply.StuSearchDto" parameterClass="com.OMC.dtos.lectureapply.StuSearchConDto">
+select scm.curi_nm, aem.kor_nm, abc.bld_nm, arc.room_nm, stt.week_day, stt.start_time
+from test_lecture_apply sla, scrt_time_table stt, scrt_curi_master scm, aeqt_bld_cd abc, aeqt_room_cd arc, apst_emp_master aem
+where sla.year = stt.year and
+      sla.smt = stt.smt and
+      sla.dept_cd = stt.dept_cd and
+      sla.com_year = stt.com_year and
+      sla.curi_num = stt.curi_num and
+      sla.curi_class = stt.curi_class and
+      sla.curi_num = scm.curi_num and
+      stt.emp_id = aem.emp_id and
+      stt.bld_cd = abc.bld_cd and
+      stt.room_cd = arc.room_cd and
+      sla.student_cd = #slaStuId# and
+      sla.year = #slaYear# and
+      sla.smt = #slaSmt#
+      order by stt.start_time+0, stt.week_day+0			
+	</select>
+		
+</sqlMap>
+

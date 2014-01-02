@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+    "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+    "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="main" template="./layout/baselayout.jsp">
+		<put-attribute name="top" value="/layout/top_menu.jsp" />
+		<put-attribute name="left" value="/layout/left_login.jsp" />
+		<put-attribute name="right" value="/layout/right_notice.jsp" />
+	</definition>
+	
+	<definition name="login" extends="main">
+		
+	</definition>
+	<definition name="addnotice" extends="main">
+		<put-attribute name="right" value="/notice/addNotice.jsp" />
+	</definition>
+	<definition name="updatenotice" extends="main">
+		<put-attribute name="right" value="/notice/updateNotice.jsp" />
+	</definition>
+	<definition name="haksa" extends="main">
+		<put-attribute name="left" value="/layout/left_haksa.jsp" />
+		<put-attribute name="right" value="/layout/right_notice.jsp" />
+	</definition>
+
+	<definition name="class" extends="main">
+		<put-attribute name="left" value="/layout/left_class.jsp" />
+		<put-attribute name="right" value="/layout/right_notice.jsp" />
+	</definition>
+
+	<definition name="thisgrade" extends="main">
+		<put-attribute name="left" value="/layout/left_haksa.jsp" />
+		<put-attribute name="right" value="/grade/grade1.jsp" />
+	</definition>
+
+	<definition name="allgrade" extends="main">
+		<put-attribute name="left" value="/layout/left_haksa.jsp" />
+		<put-attribute name="right" value="/grade/grade2.jsp" />
+	</definition>
+
+	<definition name="stsearch" extends="main">
+		<put-attribute name="left" value="/layout/left_haksa.jsp" />
+		<put-attribute name="right" value="/student/studentInfoSearch.jsp" />
+	</definition>
+
+	<definition name="stupdate" extends="main">
+		<put-attribute name="left" value="/layout/left_haksa.jsp" />
+		<put-attribute name="right" value="/student/studentInfoUpdate.jsp" />
+	</definition>
+
+	<definition name="stapply" extends="main">
+		<put-attribute name="left" value="/layout/left_haksa.jsp" />
+		<put-attribute name="right" value="/student/studentApply.jsp" />
+	</definition>
+	
+	<definition name="lecsearch" extends="main">
+		<put-attribute name="left" value="/layout/left_haksa.jsp" />
+		<put-attribute name="right" value="/search/lectureplan.jsp" />
+	</definition>
+	
+	<definition name="leccommit" extends="main">
+		<put-attribute name="left" value="/layout/left_haksa.jsp" />
+		<put-attribute name="right" value="/search/lectureevaluation.jsp" />
+	</definition>
+	
+	<definition name="classapply" extends="main">
+		<put-attribute name="left" value="/layout/left_class.jsp" />
+		<put-attribute name="right" value="/lecture_apply/class1.jsp" />
+	</definition>
+	
+	<definition name="classapplysearch" extends="main">
+		<put-attribute name="left" value="/layout/left_class.jsp" />
+		<put-attribute name="right" value="/lecture_apply/class2.jsp"/>
+	</definition>
+	
+	<definition name="studentschedule" extends="main">
+		<put-attribute name="left" value="/layout/left_class.jsp" />
+		<put-attribute name="right" value="/lecture_apply/studentschedule.jsp"/>
+	</definition>
+	
+	<definition name="timetable1" extends="main">
+		<put-attribute name="left" value="/layout/left_haksa.jsp" />
+		<put-attribute name="right" value="/search/timetable1.jsp" />
+	</definition>
+	
+	<definition name="timetable2" extends="main">
+		<put-attribute name="left" value="/layout/left_haksa.jsp" />
+		<put-attribute name="right" value="/search/timetable2.jsp" />
+	</definition>
+	
+	<definition name="timetable3" extends="main">
+		<put-attribute name="left" value="/layout/left_haksa.jsp" />
+		<put-attribute name="right" value="/search/timetable3.jsp" />
+	</definition>
+
+</tiles-definitions>

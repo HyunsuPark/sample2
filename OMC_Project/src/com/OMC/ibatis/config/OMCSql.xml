@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="OMCSql">
+	<resultMap id="loginUserDto" class="com.OMC.dtos.LoginUserDto">
+		<result property="student_cd" column="STUDENT_CD" />
+		<result property="passwd" column="PASSWD" />
+		<result property="kor_nm" column="KOR_NM" />
+	</resultMap>
+	
+	<resultMap id="noticeDto" class="com.OMC.dtos.NoticeDto" >
+		<result property="seq" column="SEQ"/>
+		<result property="userid" column="USERID"/>
+		<result property="title" column="TITLE"/>
+		<result property="content" column="CONTENT"/>
+		<result property="regi" column="REGI"/>
+		
+	</resultMap>
+	<resultMap id="noticeDtos" class="com.OMC.dtos.NoticeDto" extends="noticeDto">
+		<result property="num" column="NUM"/>
+	</resultMap>
+	
+	<resultMap id="totalNoticeDto" class="com.OMC.dtos.NoticeDto" >
+		<result property="total" column="TOTAL"/>
+	</resultMap>
+	
+	<select id="getUserLogin" resultMap="loginUserDto" 
+	parameterClass="com.OMC.dtos.LoginUserDto" 
+	resultClass="com.OMC.dtos.LoginUserDto">
+		    		SELECT STUDENT_CD, PASSWD, KOR_NM
+		    		FROM SRGT_STUDENT_MASTER
+					WHERE STUDENT_CD = #student_cd# AND PASSWD = #passwd#					
+	</select>
+	
+	<select id="getNoticeList" resultMap="noticeDtos" 
+	resultClass="com.OMC.dtos.NoticeDto">
+		SELECT SEQ,USERID,TITLE,CONTENT,REGI,NUM
+		FROM(
+			SELECT SEQ,USERID,TITLE,CONTENT,REGI, ROW_NUMBER() OVER(ORDER BY SEQ DESC) AS NUM
+			FROM OMC_NOTICE
+		)
+		WHERE NUM BETWEEN #startNum# AND #endNum#
+		ORDER BY SEQ DESC
+	</select>
+	
+	<select id="getNotice" resultMap="noticeDto"
+	resultClass="com.OMC.dtos.NoticeDto"
+	parameterClass="int"
+	 >
+		 		 SELECT SEQ,USERID,TITLE,CONTENT,REGI
+		 		 FROM OMC_NOTICE 
+		 		 WHERE  SEQ = #seq#
+	</select>
+	
+	<select id="totalNotice" resultMap="totalNoticeDto">
+		SELECT COUNT(*) AS TOTAL
+		FROM OMC_NOTICE
+	</select> 
+	
+	
+	
+	<insert id="addNotice" parameterClass="com.OMC.dtos.NoticeDto">
+					INSERT INTO OMC_NOTICE (SEQ,USERID,TITLE,CONTENT,REGI)
+				    VALUES( 
+				    					OMC_NOTICE_SEQ.nextval
+										,#userid#              		
+										,#title#			
+										,#content#
+										,sysdate 
+						  ) 		
+	</insert>	
+	<update id="setNotice" parameterClass="com.OMC.dtos.NoticeDto">
+	              UPDATE OMC_NOTICE SET 
+		              TITLE=#title#	 ,
+		              CONTENT=#content#,
+		              REGI = sysdate
+	              WHERE SEQ=#seq#
+  	</update>	
+  	
+	<delete id="delNotice" parameterClass="int">
+	  DELETE FROM OMC_NOTICE WHERE SEQ=#seq#
+	</delete>
+</sqlMap>
+

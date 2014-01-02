@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMap
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+
+<sqlMap namespace="search">
+	
+	
+	<resultMap id="search1" class="com.OMC.dtos.search.Search1Dto">
+		<result property="scmCuriNm" column="CURI_NM" />
+		<result property="arcRoomNm" column="ROOM_NM" />
+		<result property="abcBldNm" column="BLD_NM" />
+		<result property="aemKorNm" column="KOR_NM" />
+		<result property="sttWeekDay" column="WEEK_DAY" />
+		<result property="sttStartTime" column="START_TIME" />
+		<result property="sttComYear" column="COM_YEAR" />
+		<result property="sttComClass" column="COM_CLASS" />
+	</resultMap>
+	
+	<select id="getSearch1List" resultMap="search1" 
+	resultClass="com.OMC.dtos.search.Search1Dto" parameterClass="com.OMC.dtos.search.Search1ConDto">
+	SELECT SCM.CURI_NM, ARC.ROOM_NM, ABC.BLD_NM, AEM.KOR_NM, STT.WEEK_DAY, STT.START_TIME, STT.COM_YEAR, STT.COM_CLASS
+		FROM(
+			SELECT stt.year, stt.smt, stt.dept_cd, stt.com_year, stt.curi_num, stt.curi_class, stt.week_day, stt.start_time, sld.com_dept_cd, sld.com_class, stt.emp_id, stt.room_cd, stt.bld_cd
+			FROM scrt_time_table stt, scrt_lec_dept sld
+			WHERE stt.year = sld.year and
+			stt.smt = sld.smt and
+			stt.dept_cd = sld.dept_cd and
+			stt.com_year = sld.com_year and
+			stt.curi_class = sld.curi_class and
+			stt.curi_num = sld.curi_num
+			) stt, scrt_curi_master scm, aeqt_room_cd arc, apst_emp_master aem, aeqt_bld_cd abc
+	WHERE stt.curi_num = scm.curi_num and
+		  stt.room_cd = arc.room_cd and
+		  stt.emp_id = aem.emp_id and
+		  stt.bld_cd = abc.bld_cd and
+		  stt.year = #sttYear# and
+		  stt.smt = #sttSmt# and
+		  stt.dept_cd = #sttDeptCd# and
+		  stt.com_year = #sttComYear# and
+		  stt.com_class = #sttComClass#
+	order by start_time+0, stt.week_day+0				
+	</select>
+	
+	<resultMap id="search2" class="com.OMC.dtos.search.Search2Dto">
+		<result property="sdcDeptNm" column="DEPT_NM" />
+		<result property="scmCuriNm" column="CURI_NM" />
+		<result property="aemKorNm" column="KOR_NM" />
+		<result property="sttStartTime" column="START_TIME" />
+		<result property="sttWeekDay" column="WEEK_DAY" />
+	</resultMap>
+	
+	<select id="getSearch2List" resultMap="search2" 
+	resultClass="com.OMC.dtos.search.Search2Dto" parameterClass="com.OMC.dtos.search.Search2ConDto">
+	SELECT stt.week_day, stt.start_time, sdc.dept_nm, scm.curi_nm, aem.kor_nm
+	FROM scrt_time_table stt, srgt_dept_cd sdc, scrt_curi_master scm, apst_emp_master aem, aeqt_room_cd arc
+	WHERE stt.dept_cd = sdc.dept_cd and
+	stt.curi_num = scm.curi_num and
+	stt.emp_id = aem.emp_id and
+	stt.bld_cd = arc.bld_cd and
+	stt.room_cd = arc.room_cd and
+	stt.bld_cd = #sttBldCd# and
+	arc.room_cd = #arcRoomCd# and
+	stt.year = #sttYear# and
+	stt.smt = #sttSmt# and
+	sdc.use_tp = '01'
+	order by start_time+0, stt.week_day+0			
+	</select>
+
+
+
+	<resultMap id="selecet21" class="com.OMC.dtos.search.Select21Dto">
+		<result property="bldCd" column="BLD_CD" />
+		<result property="bldNm" column="BLD_NM" />
+	</resultMap>
+
+	<select id="getSelect21List" resultMap="selecet21" 
+	resultClass="com.OMC.dtos.search.Select21Dto">
+	select bld_cd, bld_nm
+	from aeqt_bld_cd		
+	</select>	
+	
+	<resultMap id="selecet22" class="com.OMC.dtos.search.Select22Dto">
+		<result property="roomCd" column="ROOM_CD" />
+		<result property="roomNm" column="ROOM_NM" />
+	</resultMap>
+
+	<select id="getSelect22List" resultMap="selecet22" 
+	resultClass="com.OMC.dtos.search.Select22Dto" parameterClass="String">
+	select room_cd, room_nm
+	from aeqt_room_cd
+	where bld_cd = #bldCd# and
+	room_div in('01','02','03')	
+	</select>
+	
+	<resultMap id="selecet11" class="com.OMC.dtos.search.Select11Dto">
+		<result property="deptCd" column="DEPT_CD" />
+		<result property="deptNm" column="DEPT_NM" />
+	</resultMap>
+
+	<select id="getSelect11List" resultMap="selecet11" 
+	resultClass="com.OMC.dtos.search.Select11Dto">
+	select DEPT_CD, DEPT_NM
+	from srgt_dept_cd
+	where use_tp = '01' and
+	dept_tp = '13'
+	</select>
+
+	<resultMap id="selecet12" class="com.OMC.dtos.search.Select11Dto">
+		<result property="deptCd" column="DEPT_CD" />
+		<result property="deptNm" column="DEPT_NM" />
+	</resultMap>	
+	
+	<select id="getSelect12List" resultMap="selecet12" 
+	resultClass="com.OMC.dtos.search.Select11Dto" parameterClass="String">
+	select dept_cd, dept_nm
+	from srgt_dept_cd
+	where use_tp = '01' and
+	dept_tp = '14' and
+	up_cd = #deptCd#
+	</select>
+			
+	
+	
+	<resultMap id="search3" class="com.OMC.dtos.search.Search3Dto">
+		<result property="abcBldNm" column="BLD_NM" />
+		<result property="arcRoomNm" column="ROOM_NM" />
+		<result property="scmCuriNm" column="CURI_NM" />
+		<result property="sttWeekDay" column="WEEK_DAY" />
+		<result property="sttStartTime" column="START_TIME" />
+	</resultMap>
+	
+	<select id="getSearch3List" resultMap="search3" 
+	resultClass="com.OMC.dtos.search.Search3Dto" parameterClass="com.OMC.dtos.search.Search3ConDto">
+	select abc.bld_nm, arc.room_nm, scm.curi_nm, stt.week_day, stt.start_time
+	from scrt_time_table stt, apst_emp_master aem, aeqt_room_cd arc, scrt_curi_master scm, aeqt_bld_cd abc
+	where stt.emp_id = aem.emp_id and
+	stt.room_cd = arc.room_cd and
+	stt.curi_num = scm.curi_num and
+	stt.bld_cd = abc.bld_cd and
+	aem.emp_id = #aemEmpId# and
+	stt.year = #sttYear# and
+	stt.smt = #sttSmt#
+	order by start_time+0, stt.week_day+0
+	</select>
+
+
+	
+	<resultMap id="prosearch1" class="com.OMC.dtos.search.ProSearch1Dto">
+		<result property="aemEmpId" column="EMP_ID" />
+		<result property="aemKorNm" column="KOR_NM" />
+		<result property="aemSsn" column="SNN" />
+		<result property="coffCont" column="COFF" />
+		<result property="cgraCont" column="CGRA" />
+		<result property="coccCont" column="COCC" />
+		<result property="sdcAttest" column="ATTEST" />
+	</resultMap>
+	
+	<select id="getProSearch1List" resultMap="prosearch1" 
+	resultClass="com.OMC.dtos.search.ProSearch1Dto" parameterClass="String">
+	select aem.emp_id, aem.kor_nm, aem.ssn1||'-'||aem.ssn2 snn, coff.cont_desc coff, cgra.cont_desc cgra, cocc.cont_desc cocc, sdc.attest
+	from (
+	    select emp_id, kor_nm, ssn1, ssn2, office_div , grade_cd, occupation_cd, decode(dept_cd4,null,decode(dept_cd3,null,decode(dept_cd2,null,decode(dept_cd1,null,null,dept_cd1),dept_cd2),dept_cd3),dept_cd4) dept_cd
+	    from apst_emp_master
+	) aem, (
+	    select distinct comt_dept_cd, attest
+	    from srgt_dept_cd
+	    where use_tp = '01' and
+	    dept_tp = '13'
+	) sdc, (
+	    select small_div, cont_desc
+	    from comt_com_cd
+	    where large_div = 'APS04'
+	) coff, (
+	    select small_div, cont_desc
+	    from comt_com_cd
+	    where large_div = 'APS03'
+	) cgra, (
+	    select small_div, cont_desc
+	    from comt_com_cd
+	    where large_div = 'APS02'
+	) cocc
+	where aem.dept_cd = sdc.comt_dept_cd and
+	coff.small_div = aem.office_div and
+	cgra.small_div(+) = aem.grade_cd and
+	cocc.small_div = aem.occupation_cd and
+	aem.kor_nm like '%'||#korNm#||'%'
+	</select>
+
+
+
+
+	<resultMap id="prosearch2" class="com.OMC.dtos.search.ProSearch1Dto">
+		<result property="aemEmpId" column="EMP_ID" />
+		<result property="aemKorNm" column="KOR_NM" />
+		<result property="aemSsn" column="SNN" />
+		<result property="coffCont" column="COFF" />
+		<result property="cgraCont" column="CGRA" />
+		<result property="coccCont" column="COCC" />
+		<result property="sdcAttest" column="ATTEST" />
+	</resultMap>
+	
+	<select id="getProSearch2List" resultMap="prosearch2" 
+	resultClass="com.OMC.dtos.search.ProSearch1Dto" parameterClass="String">
+	select aem.emp_id, aem.kor_nm, aem.ssn1||'-'||aem.ssn2 snn, coff.cont_desc coff, cgra.cont_desc cgra, cocc.cont_desc cocc, sdc.attest
+	from (
+	    select emp_id, kor_nm, ssn1, ssn2, office_div , grade_cd, occupation_cd, decode(dept_cd4,null,decode(dept_cd3,null,decode(dept_cd2,null,decode(dept_cd1,null,null,dept_cd1),dept_cd2),dept_cd3),dept_cd4) dept_cd
+	    from apst_emp_master
+	) aem, (
+	    select distinct comt_dept_cd, attest
+	    from srgt_dept_cd
+	    where use_tp = '01' and
+	    dept_tp = '13'
+	) sdc, (
+	    select small_div, cont_desc
+	    from comt_com_cd
+	    where large_div = 'APS04'
+	) coff, (
+	    select small_div, cont_desc
+	    from comt_com_cd
+	    where large_div = 'APS03'
+	) cgra, (
+	    select small_div, cont_desc
+	    from comt_com_cd
+	    where large_div = 'APS02'
+	) cocc
+	where aem.dept_cd = sdc.comt_dept_cd and
+	coff.small_div = aem.office_div and
+	cgra.small_div(+) = aem.grade_cd and
+	cocc.small_div = aem.occupation_cd and
+	sdc.comt_dept_cd = #comtDept#
+	</select>
+
+
+	<resultMap id="prosearch3" class="com.OMC.dtos.search.ProSearch1Dto">
+		<result property="aemEmpId" column="EMP_ID" />
+		<result property="aemKorNm" column="KOR_NM" />
+		<result property="aemSsn" column="SNN" />
+		<result property="coffCont" column="COFF" />
+		<result property="cgraCont" column="CGRA" />
+		<result property="coccCont" column="COCC" />
+		<result property="sdcAttest" column="ATTEST" />
+	</resultMap>
+	
+	<select id="getProSearch3List" resultMap="prosearch3" 
+	resultClass="com.OMC.dtos.search.ProSearch1Dto" parameterClass="com.OMC.dtos.search.ProSearch3ConDto">
+	select aem.emp_id, aem.kor_nm, aem.ssn1||'-'||aem.ssn2 snn, coff.cont_desc coff, cgra.cont_desc cgra, cocc.cont_desc cocc, sdc.attest
+	from (
+	    select emp_id, kor_nm, ssn1, ssn2, office_div , grade_cd, occupation_cd, decode(dept_cd4,null,decode(dept_cd3,null,decode(dept_cd2,null,decode(dept_cd1,null,null,dept_cd1),dept_cd2),dept_cd3),dept_cd4) dept_cd
+	    from apst_emp_master
+	) aem, (
+	    select distinct comt_dept_cd, attest
+	    from srgt_dept_cd
+	    where use_tp = '01' and
+	    dept_tp = '13'
+	) sdc, (
+	    select small_div, cont_desc
+	    from comt_com_cd
+	    where large_div = 'APS04'
+	) coff, (
+	    select small_div, cont_desc
+	    from comt_com_cd
+	    where large_div = 'APS03'
+	) cgra, (
+	    select small_div, cont_desc
+	    from comt_com_cd
+	    where large_div = 'APS02'
+	) cocc
+	where aem.dept_cd = sdc.comt_dept_cd and
+	coff.small_div = aem.office_div and
+	cgra.small_div(+) = aem.grade_cd and
+	cocc.small_div = aem.occupation_cd and
+	sdc.comt_dept_cd = #sdcComtDept# and
+	aem.kor_nm like '%'||#aemKorNm#||'%'
+	</select>
+	
+	<resultMap id="proselect1" class="com.OMC.dtos.search.ProSelect1Dto">
+		<result property="comDeptCd" column="COMT_DEPT_CD" />
+		<result property="attest" column="ATTEST" />
+	</resultMap>	
+	
+	<select id="getProSelect1List" resultMap="proselect1" 
+	resultClass="com.OMC.dtos.search.ProSelect1Dto">
+    select distinct comt_dept_cd, attest
+    from srgt_dept_cd
+    where use_tp = '01' and
+    dept_tp = '13' and
+    attest is not null
+	</select>
+
+	<resultMap id="lectureSearchDto" class="com.OMC.dtos.search.LectureSearchDto">
+		<result property="curi_num" column="CURI_NUM" />
+		<result property="curi_nm" column="CURI_NM" />
+		<result property="curi_nm_eng" column="CURI_NM_ENG" />
+		<result property="dept_nm" column="DEPT_NM" />
+		<result property="cre_dt" column="CRE_DT" />
+		<result property="close_dt" column="CLOSE_DT" />
+	</resultMap>
+	
+	<select id="getLectureSearch" resultMap="lectureSearchDto" parameterClass="String" 
+	resultClass="com.OMC.dtos.search.LectureSearchDto">
+		  select DISTINCT scm.curi_num, scm.curi_nm, scm.curi_nm_eng,dept_nm
+  		, TO_CHAR(scm.CRE_DT,'YYYY-MM-DD') as CRE_DT
+		, NVL(TO_CHAR(scm.CLOSE_DT,'YYYY-MM-DD'),'NULL') as CLOSE_DT
+		from scrt_time_table stt, apst_emp_master aem, aeqt_room_cd arc, scrt_curi_master scm, aeqt_bld_cd abc, srgt_dept_cd sdc
+		where stt.emp_id = aem.emp_id and
+		stt.room_cd = arc.room_cd and
+		stt.curi_num = scm.curi_num and
+		stt.bld_cd = abc.bld_cd and
+ 		 sdc.DEPT_CD(+) = scm.HOST_DEPT_CD and
+		aem.office_div = '1' and
+		stt.year = '2011' and
+		stt.smt = '10' and
+  		curi_num = #curi_num#
+		ORDER BY scm.curi_nm DESC
+	</select>
+	
+	<select id="getLectureSearch1" resultMap="lectureSearchDto" parameterClass="String" 
+	resultClass="com.OMC.dtos.search.LectureSearchDto">
+		  select DISTINCT scm.curi_num, scm.curi_nm, scm.curi_nm_eng,dept_nm
+  		, TO_CHAR(scm.CRE_DT,'YYYY-MM-DD') as CRE_DT
+		, NVL(TO_CHAR(scm.CLOSE_DT,'YYYY-MM-DD'),'NULL') as CLOSE_DT
+		from scrt_time_table stt, apst_emp_master aem, aeqt_room_cd arc, scrt_curi_master scm, aeqt_bld_cd abc, srgt_dept_cd sdc
+		where stt.emp_id = aem.emp_id and
+		stt.room_cd = arc.room_cd and
+		stt.curi_num = scm.curi_num and
+		stt.bld_cd = abc.bld_cd and
+ 		 sdc.DEPT_CD(+) = scm.HOST_DEPT_CD and
+		aem.office_div = '1' and
+		stt.year = '2011' and
+		stt.smt = '10' 
+  		AND upper(CURI_NM) LIKE upper('%'||#curi_nm#||'%')
+		ORDER BY scm.curi_nm DESC
+	</select>
+	
+	<select id="getLectureSearch2" resultMap="lectureSearchDto" 
+	resultClass="com.OMC.dtos.search.LectureSearchDto">
+		select DISTINCT scm.curi_num, scm.curi_nm, scm.curi_nm_eng,dept_nm
+  		, TO_CHAR(scm.CRE_DT,'YYYY-MM-DD') as CRE_DT
+		, NVL(TO_CHAR(scm.CLOSE_DT,'YYYY-MM-DD'),'NULL') as CLOSE_DT
+		from scrt_time_table stt, apst_emp_master aem, aeqt_room_cd arc, scrt_curi_master scm, aeqt_bld_cd abc, srgt_dept_cd sdc
+		where stt.emp_id = aem.emp_id and
+		stt.room_cd = arc.room_cd and
+		stt.curi_num = scm.curi_num and
+		stt.bld_cd = abc.bld_cd and
+ 		 sdc.DEPT_CD(+) = scm.HOST_DEPT_CD and
+		aem.office_div = '1' and
+		stt.year = '2011' and
+		stt.smt = '10' and
+  		upper(CURI_NM) LIKE upper('%'||#curi_nm#||'%') and
+  		scm.curi_num = #curi_num# 
+		ORDER BY scm.curi_nm DESC
+	</select>
+	
+	<select id="getLectureSearch3" resultMap="lectureSearchDto" 
+	resultClass="com.OMC.dtos.search.LectureSearchDto">
+		select DISTINCT scm.curi_num, scm.curi_nm, scm.curi_nm_eng,dept_nm
+  		, TO_CHAR(scm.CRE_DT,'YYYY-MM-DD') as CRE_DT
+		, NVL(TO_CHAR(scm.CLOSE_DT,'YYYY-MM-DD'),'NULL') as CLOSE_DT
+		from scrt_time_table stt, apst_emp_master aem, aeqt_room_cd arc, scrt_curi_master scm, aeqt_bld_cd abc, srgt_dept_cd sdc
+		where stt.emp_id = aem.emp_id and
+		stt.room_cd = arc.room_cd and
+		stt.curi_num = scm.curi_num and
+		stt.bld_cd = abc.bld_cd and
+ 		 sdc.DEPT_CD(+) = scm.HOST_DEPT_CD and
+		aem.office_div = '1' and
+		stt.year = '2011' and
+		stt.smt = '10' 
+  		ORDER BY scm.curi_nm DESC
+	</select>
+	
+	<resultMap id="kyosuSelectDto" class="com.OMC.dtos.search.KyosuSelectDto">
+		<result property="dept_cd" column="DEPT_CD" />
+		<result property="dept_nm" column="DEPT_NM" />
+	</resultMap>
+	
+	<select id="getKyosuSelect" resultMap="kyosuSelectDto" 
+	resultClass="com.OMC.dtos.search.KyosuSelectDto">
+		SELECT DISTINCT comt_dept_cd as dept_cd, attest as dept_nm
+    	from srgt_dept_cd
+    	where use_tp = '01' and
+    	dept_tp = '13' and
+    	attest is not null
+    	ORDER BY dept_nm
+	</select>
+	
+	<resultMap id="kyosuSearchDto" class="com.OMC.dtos.search.KyosuSearchDto">
+		<result property="emp_id" column="EMP_ID" />
+		<result property="kor_nm" column="KOR_NM" />
+		<result property="ssn" column="SSN" />
+		<result property="jacont" column="JACONT" />
+		<result property="jikcont" column="JIKCONT" />
+		<result property="jocont" column="JOCONT" />
+		<result property="dept_nm" column="DEPT_NM" />
+	</resultMap>
+	
+	<select id="getKyosuSearch" resultMap="kyosuSearchDto" parameterClass="String"
+	resultClass="com.OMC.dtos.search.KyosuSearchDto">
+	 select REPLACE(aem.EMP_ID,SUBSTR(aem.EMP_ID,0),'*******') as EMP_ID, aem.KOR_NM, REPLACE(aem.SSN1,SUBSTR(SSN1,0),'******') ||'-'|| REPLACE(aem.SSN2,SUBSTR(SSN2,0),'*******') as SSN, coff.CONT_DESC as JACONT, cgra.CONT_DESC as JIKCONT, cocc.CONT_DESC as JOCONT, sdc.attest as DEPT_NM
+	from (
+	    select EMP_ID, KOR_NM, SSN1, SSN2, OFFICE_DIV , GRADE_CD, OCCUPATION_CD, decode(DEPT_CD4,null,decode(DEPT_CD3,null,decode(DEPT_CD2,null,decode(DEPT_CD1,null,null,DEPT_CD1),DEPT_CD2),DEPT_CD3),DEPT_CD4) DEPT_CD
+	    from apst_emp_master
+	) aem, (
+	    select distinct COMT_DEPT_CD, attest
+	    from srgt_dept_cd
+	    where USE_TP = 01 and
+	    DEPT_TP = 13
+	) sdc, (
+	    select SMALL_DIV, CONT_DESC
+	    from comt_com_cd
+	    where LARGE_DIV = 'APS04'
+	) coff, (
+	    select SMALL_DIV, CONT_DESC
+	    from comt_com_cd
+	    where LARGE_DIV = 'APS03'
+	) cgra, (
+	    select SMALL_DIV, CONT_DESC
+	    from comt_com_cd
+	    where LARGE_DIV = 'APS02'
+	) cocc
+	where aem.DEPT_CD = sdc.COMT_DEPT_CD(+) and
+	coff.SMALL_DIV = aem.OFFICE_DIV and
+	cgra.SMALL_DIV(+) = aem.GRADE_CD and
+	cocc.SMALL_DIV = aem.OCCUPATION_CD
+	AND aem.KOR_NM LIKE '%'||#kor_nm#||'%'
+	</select>
+	
+	<select id="getKyosuSearch1" resultMap="kyosuSearchDto" 
+	resultClass="com.OMC.dtos.search.KyosuSearchDto">
+ select  REPLACE(aem.EMP_ID,SUBSTR(aem.EMP_ID,0),'*******') as EMP_ID, aem.KOR_NM, REPLACE(aem.SSN1,SUBSTR(SSN1,0),'******') ||'-'|| REPLACE(aem.SSN2,SUBSTR(SSN2,0),'*******') as SSN, coff.CONT_DESC as JACONT, cgra.CONT_DESC as JIKCONT, cocc.CONT_DESC as JOCONT, sdc.attest as DEPT_NM
+	from (
+	    select EMP_ID, KOR_NM, SSN1, SSN2, OFFICE_DIV , GRADE_CD, OCCUPATION_CD, decode(DEPT_CD4,null,decode(DEPT_CD3,null,decode(DEPT_CD2,null,decode(DEPT_CD1,null,null,DEPT_CD1),DEPT_CD2),DEPT_CD3),DEPT_CD4) DEPT_CD
+	    from apst_emp_master
+	) aem, (
+	    select distinct COMT_DEPT_CD, attest
+	    from srgt_dept_cd
+	    where USE_TP = 01 and
+	    DEPT_TP = 13
+	) sdc, (
+	    select SMALL_DIV, CONT_DESC
+	    from comt_com_cd
+	    where LARGE_DIV = 'APS04'
+	) coff, (
+	    select SMALL_DIV, CONT_DESC
+	    from comt_com_cd
+	    where LARGE_DIV = 'APS03'
+	) cgra, (
+	    select SMALL_DIV, CONT_DESC
+	    from comt_com_cd
+	    where LARGE_DIV = 'APS02'
+	) cocc
+	where aem.DEPT_CD = sdc.COMT_DEPT_CD(+) and
+	coff.SMALL_DIV = aem.OFFICE_DIV and
+	cgra.SMALL_DIV(+) = aem.GRADE_CD and
+	cocc.SMALL_DIV = aem.OCCUPATION_CD
+	</select>
+	
+	
+	<select id="getKyosuSearch2" resultMap="kyosuSearchDto" 
+	resultClass="com.OMC.dtos.search.KyosuSearchDto">
+	select REPLACE(aem.EMP_ID,SUBSTR(aem.EMP_ID,0),'*******') as EMP_ID, aem.KOR_NM, REPLACE(aem.SSN1,SUBSTR(SSN1,0),'******') ||'-'|| REPLACE(aem.SSN2,SUBSTR(SSN2,0),'*******') as SSN, coff.CONT_DESC as JACONT, cgra.CONT_DESC as JIKCONT, cocc.CONT_DESC as JOCONT, sdc.attest as DEPT_NM
+	from (
+    select emp_id, kor_nm, ssn1, ssn2, office_div , grade_cd, occupation_cd, decode(dept_cd4,null,decode(dept_cd3,null,decode(dept_cd2,null,decode(dept_cd1,null,null,dept_cd1),dept_cd2),dept_cd3),dept_cd4) dept_cd
+    from apst_emp_master
+	) aem, (
+    select distinct comt_dept_cd, attest
+    from srgt_dept_cd
+    where use_tp = '01' and
+    dept_tp = '13' and
+    attest is not null
+	) sdc, (
+    select small_div, cont_desc
+    from comt_com_cd
+    where large_div = 'APS04'
+	) coff, (
+    select small_div, cont_desc
+    from comt_com_cd
+    where large_div = 'APS03'
+	) cgra, (
+    select small_div, cont_desc
+    from comt_com_cd
+    where large_div = 'APS02'
+	) cocc
+	where aem.dept_cd = sdc.comt_dept_cd(+) and
+	coff.small_div = aem.office_div and
+	cgra.small_div(+) = aem.grade_cd and
+	cocc.small_div = aem.occupation_cd and
+	sdc.comt_dept_cd = #subject#
+	</select>
+	
+	<select id="getKyosuSearch3" resultMap="kyosuSearchDto" 
+	resultClass="com.OMC.dtos.search.KyosuSearchDto">
+	select REPLACE(aem.EMP_ID,SUBSTR(aem.EMP_ID,0),'*******') as EMP_ID, aem.KOR_NM, REPLACE(aem.SSN1,SUBSTR(SSN1,0),'******') ||'-'|| REPLACE(aem.SSN2,SUBSTR(SSN2,0),'*******') as SSN, coff.CONT_DESC as JACONT, cgra.CONT_DESC as JIKCONT, cocc.CONT_DESC as JOCONT, sdc.attest as DEPT_NM
+	from (
+    select emp_id, kor_nm, ssn1, ssn2, office_div , grade_cd, occupation_cd, decode(dept_cd4,null,decode(dept_cd3,null,decode(dept_cd2,null,decode(dept_cd1,null,null,dept_cd1),dept_cd2),dept_cd3),dept_cd4) dept_cd
+    from apst_emp_master
+	) aem, (
+    select distinct comt_dept_cd, attest
+    from srgt_dept_cd
+    where use_tp = '01' and
+    dept_tp = '13' and
+    attest is not null
+	) sdc, (
+    select small_div, cont_desc
+    from comt_com_cd
+    where large_div = 'APS04'
+	) coff, (
+    select small_div, cont_desc
+    from comt_com_cd
+    where large_div = 'APS03'
+	) cgra, (
+    select small_div, cont_desc
+    from comt_com_cd
+    where large_div = 'APS02'
+	) cocc
+	where aem.dept_cd = sdc.comt_dept_cd(+) and
+	coff.small_div = aem.office_div and
+	cgra.small_div(+) = aem.grade_cd and
+	cocc.small_div = aem.occupation_cd and
+	sdc.comt_dept_cd = #subject# and
+	aem.KOR_NM like '%'||#KOR_NM#||'%'
+	</select>
+	
+	<resultMap id="lecturePlanDto" class="com.OMC.dtos.search.LecturePlanDto">
+		<result property="curi_num1" column="CURI_NUM" />
+		<result property="curi_nm1" column="CURI_NM" />
+		<result property="kor_nm1" column="KOR_NM" />
+	</resultMap>
+	
+	<select id="getLecturePlan" resultMap="lecturePlanDto" 
+	resultClass="com.OMC.dtos.search.LecturePlanDto">
+	select DISTINCT scm.curi_num, scm.curi_nm, kor_nm
+	from scrt_time_table stt, apst_emp_master aem, aeqt_room_cd arc, scrt_curi_master scm, aeqt_bld_cd abc
+	where stt.emp_id = aem.emp_id 
+	AND stt.room_cd = arc.room_cd 
+	AND stt.curi_num = scm.curi_num 
+	AND stt.bld_cd = abc.bld_cd
+	AND aem.office_div = '1' 
+	AND stt.year = '2011'
+	AND scm.curi_num = #curi_num1#
+	AND scm.curi_nm = #curi_nm1# 
+	AND kor_nm = #kor_nm1#
+	AND stt.smt = #semester#
+	ORDER BY scm.curi_nm
+	</select>
+	
+	<select id="getLecturePlan1" resultMap="lecturePlanDto" 
+	resultClass="com.OMC.dtos.search.LecturePlanDto">
+	select DISTINCT scm.curi_num, scm.curi_nm, kor_nm
+	from scrt_time_table stt, apst_emp_master aem, aeqt_room_cd arc, scrt_curi_master scm, aeqt_bld_cd abc
+	where stt.emp_id = aem.emp_id and
+	stt.room_cd = arc.room_cd and
+	stt.curi_num = scm.curi_num and
+	stt.bld_cd = abc.bld_cd and
+	aem.office_div = '1' and
+	stt.year = '2011' and
+	stt.smt = '10'
+	ORDER BY scm.curi_nm DESC
+	</select>
+	
+	<select id="getLecturePlan2" resultMap="lecturePlanDto" 
+	resultClass="com.OMC.dtos.search.LecturePlanDto">
+	select DISTINCT scm.curi_num, scm.curi_nm, kor_nm
+	from scrt_time_table stt, apst_emp_master aem, aeqt_room_cd arc, scrt_curi_master scm, aeqt_bld_cd abc
+	where stt.emp_id = aem.emp_id 
+	AND stt.room_cd = arc.room_cd 
+	AND stt.curi_num = scm.curi_num 
+	AND stt.bld_cd = abc.bld_cd
+	AND aem.office_div = '1' 
+	AND stt.year = '2011'
+	AND scm.curi_num = #curi_num1#
+	AND scm.curi_nm = #curi_nm1#
+	AND stt.smt = #semester#
+	ORDER BY scm.curi_nm
+	</select>
+	
+	<select id="getLecturePlan3" resultMap="lecturePlanDto" 
+	resultClass="com.OMC.dtos.search.LecturePlanDto">
+ 	select DISTINCT scm.curi_num, scm.curi_nm, kor_nm
+	from scrt_time_table stt, apst_emp_master aem, aeqt_room_cd arc, scrt_curi_master scm, aeqt_bld_cd abc
+	where stt.emp_id = aem.emp_id 
+	AND stt.room_cd = arc.room_cd 
+	AND stt.curi_num = scm.curi_num 
+	AND stt.bld_cd = abc.bld_cd
+	AND aem.office_div = '1' 
+	AND stt.year = '2011'
+	AND kor_nm = #kor_nm1# 
+	AND stt.smt = #semester#
+	ORDER BY scm.curi_nm
+	</select>
+	
+	<select id="getLecturePlan4" resultMap="lecturePlanDto" 
+	resultClass="com.OMC.dtos.search.LecturePlanDto">
+	select DISTINCT scm.curi_num, scm.curi_nm, kor_nm
+	from scrt_time_table stt, apst_emp_master aem, aeqt_room_cd arc, scrt_curi_master scm, aeqt_bld_cd abc
+	where stt.emp_id = aem.emp_id 
+	AND stt.room_cd = arc.room_cd 
+	AND stt.curi_num = scm.curi_num 
+	AND stt.bld_cd = abc.bld_cd
+	AND aem.office_div = '1' 
+	AND stt.year = '2011'
+	AND upper(scm.curi_nm) LIKE upper('%'||#curi_nm1#||'%') 
+	AND stt.smt = #semester#
+	ORDER BY scm.curi_nm
+	</select>
+	
+</sqlMap>
+

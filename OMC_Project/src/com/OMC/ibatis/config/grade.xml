@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="EUC-KR" ?>
+
+<!DOCTYPE sqlMap
+PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="grade">
+	<resultMap id="thisGrade" class="com.OMC.dtos.grade.GradeDto">
+		<result property="year" column="YEAR" />
+		<result property="smt" column="SMT" />
+		<result property="student_cd" column="STUDENT_CD" />
+		<result property="st_kor_nm" column="ST_KOR_NM" />
+		<result property="curi_num" column="CURI_NUM" />
+		<result property="curi_nm" column="CURI_NM" />
+		<result property="curi_class" column="CURI_CLASS" />
+		<result property="cdt_num" column="CDT_NUM" />
+		<result property="time" column="TIME" />
+		<result property="emp_kor_nm" column="EMP_KOR_NM" />
+		<result property="grade" column="GRADE" />
+		<result property="grade_avg" column="GRADE_AVG" />
+		<result property="pass_fail" column="PASS_FAIL" />
+		<result property="recourse_div" column="RECOURSE_DIV" />
+		<result property="sudelete_mark" column="SUDELETE_MARK" />
+	</resultMap>
+
+	<select id="getGradeThis" resultMap="thisGrade" 
+	resultClass="com.OMC.dtos.grade.GradeDto" 
+	parameterClass="com.OMC.dtos.grade.GradeDto">
+		SELECT
+		DISTINCT
+		SGM.year as YEAR,
+		SGM.SMT AS SMT,
+		SGM.STUDENT_CD AS STUDENT_CD,
+		ST.KOR_NM AS ST_KOR_NM,
+		SGM.CURI_NUM AS
+		CURI_NUM,
+		SGM.CURI_NM AS CURI_NM,
+		SGM.CURI_CLASS AS CURI_CLASS,
+		SGM.CDT_NUM AS CDT_NUM,
+		SOL.WTIME_NUM+SOL.PTIME_NUM AS TIME,
+		AEM.KOR_NM
+		AS
+		EMP_KOR_NM,
+		SGM.GRADE AS GRADE,
+		NVL(SGM.GRADE_AVG,0) AS
+		GRADE_AVG,
+		SGM.PASS_FAIL AS PASS_FAIL,
+		SGM.RECOURSE_DIV AS RECOURSE_DIV,
+		DECODE(SGM.SUDELETE_MARK,'01','재수강','02','재입학','03','학기취소','04','성적포기') AS SUDELETE_MARK
+		FROM
+		SGDT_GRADE_MASTER SGM,
+		SCRT_OPEN_LEC SOL,
+		APST_EMP_MASTER AEM,
+		SCRT_TIME_TABLE STT,
+		SRGT_STUDENT_MASTER ST,
+		SCRT_OPEN_LEC LEC
+		WHERE
+		SGM.YEAR=SOL.YEAR
+		AND
+		ST.STUDENT_CD=SGM.STUDENT_CD
+		AND SGM.SMT =SOL.SMT
+		AND LEC.COM_CLASS=SOL.COM_CLASS
+		AND SGM.CURI_NUM
+		=SOL.CURI_NUM
+		AND
+		SGM.CURI_CLASS =SOL.CURI_CLASS
+		AND SOL.YEAR = STT.YEAR
+		AND SOL.SMT
+		=STT.SMT
+		AND SOL.DEPT_CD=STT.DEPT_CD
+		AND
+		SOL.COM_YEAR=STT.COM_YEAR
+		AND
+		SOL.CURI_NUM=STT.CURI_NUM
+		AND
+		SOL.CURI_CLASS=STT.CURI_CLASS
+		AND
+		STT.EMP_ID = AEM.EMP_ID
+		AND
+		SGM.STUDENT_CD = #student_cd#
+		AND SGM.YEAR =
+		#year#
+		AND SGM.SMT = #smt#
+	</select>
+	
+		<resultMap id="allGrade" class="com.OMC.dtos.grade.GradeDto">
+		<result property="year" column="YEAR" />
+		<result property="smt" column="SMT" />
+		<result property="student_cd" column="STUDENT_CD" />
+		<result property="st_kor_nm" column="ST_KOR_NM" />
+		<result property="curi_num" column="CURI_NUM" />
+		<result property="curi_nm" column="CURI_NM" />
+		<result property="curi_class" column="CURI_CLASS" />
+		<result property="student_year" column="STUDENT_YEAR" />
+		<result property="student_class" column="STUDENT_CLASS" />
+		<result property="comdiv_cd" column="COMDIV_CD"/>
+		<result property="cdt_num" column="CDT_NUM" />
+		<result property="grade" column="GRADE" />
+		<result property="grade_avg" column="GRADE_AVG" />
+		<result property="recourse_year" column="RECOURSE_YEAR" />
+		<result property="recourse_smt" column="RECOURSE_SMT" />
+		<result property="sudelete_mark" column="SUDELETE_MARK" />
+		<result property="student_period" column="STUDENT_PERIOD" />
+	</resultMap>
+
+	<select id="getGradeAll" resultMap="allGrade" resultClass="com.OMC.dtos.grade.GradeDto">
+		SELECT 
+      SGM.YEAR AS YEAR,
+      DECODE(SGM.SMT,'10','1학기','20','2학기','11','여름학기','21','겨울학기','기타학기') AS SMT,
+       SGM.CURI_NUM AS CURI_NUM, 
+       SGM.STUDENT_CD AS STUDENT_CD,
+       SSM.KOR_NM AS ST_KOR_NM,    
+      SCM.CURI_NM AS CURI_NM, 
+      SGM.CURI_CLASS AS CURI_CLASS,
+      SGM.STUDENT_YEAR AS STUDENT_YEAR,
+      SGM.STUDENT_CLASS AS STUDENT_CLASS,
+      DECODE(SGM.COMDIV_CD,'11','교양필수','12','교양선택','21','전공필수','22','전공선택','30','전공교양','60','p/f전공선택','61','p/f','기타') AS COMDIV_CD,
+      SGM.CDT_NUM AS CDT_NUM,
+      SGM.GRADE AS GRADE, 
+      NVL(SGM.GRADE_AVG,0) AS GRADE_AVG,
+      SGM.RECOURSE_YEAR AS RECOURSE_YEAR,
+      SGM.RECOURSE_SMT AS RECOURSE_SMT,
+      DECODE(SGM.SUDELETE_MARK,'01','재수강','02','재입학','03','학기취소','04','성적포기') AS SUDELETE_MARK,
+      SSM.STUDENT_PERIOD AS STUDENT_PERIOD
+FROM SGDT_GRADE_MASTER SGM JOIN SRGT_STUDENT_MASTER SSM
+ON SGM.STUDENT_CD = SSM.STUDENT_CD
+JOIN SCRT_CURI_MASTER SCM
+ON SGM.CURI_NUM = SCM.CURI_NUM
+WHERE SGM.STUDENT_CD =#student_cd#
+ORDER BY YEAR,SMT
+	</select>
+	
+	<resultMap id="sumAllGrade" class="com.OMC.dtos.grade.GradeSumDto">
+		<result property="sum_year" column="YEAR" />
+		<result property="sum_smt" column="SMT" />
+		<result property="sum_student_cd" column="STUDENT_CD" />
+		<result property="sum_student_year" column="STUDENT_YEAR" />
+		<result property="sum_student_class" column="STUDENT_CLASS" />
+		<result property="sum_student_num" column="STUDENT_NUM" />
+		<result property="sum_cdt_num" column="CDT_NUM" />
+		<result property="sum_time" column="TIME" />
+		<result property="sum_grade" column="GRADE" />
+		<result property="sum_grade_avg" column="GRADE_AVG" />
+	</resultMap>
+
+	<select id="getSumAllGrade" resultMap="sumAllGrade"
+		resultClass="com.OMC.dtos.grade.GradeSumDto" parameterClass="com.OMC.dtos.grade.GradeSumDto">
+	SELECT
+	YEAR,
+	SMT,
+	STUDENT_CD,
+	STUDENT_YEAR,
+	STUDENT_CLASS,
+	STUDENT_NUM,
+	CDT_NUM,
+	WTIME_NUM+PTIME_NUM AS TIME,
+	GRADE,
+	NVL(GRADE_AVG,0) AS GRADE_AVG
+	FROM
+	SLCT_LECTURE_APPLY
+	WHERE
+	STUDENT_CD=#sum_student_cd#
+	ORDER BY YEAR,SMT
+	</select>
+	
+	<resultMap id="sumThisGrade" class="com.OMC.dtos.grade.GradeSumDto">
+		<result property="sum_year" column="YEAR" />
+		<result property="sum_smt" column="SMT" />
+		<result property="sum_student_cd" column="STUDENT_CD" />
+		<result property="sum_cdt_num" column="CDT_NUM" />
+		<result property="sum_student_year" column="STUDENT_YEAR" />
+		<result property="sum_student_class" column="STUDENT_CLASS" />
+		<result property="sum_student_num" column="STUDENT_NUM" />
+		<result property="sum_time" column="TIME" />
+		<result property="sum_grade" column="GRADE" />
+		<result property="sum_grade_avg" column="GRADE_AVG" />
+	</resultMap>
+
+	<select id="getSumThisGrade" resultMap="sumThisGrade"
+		resultClass="com.OMC.dtos.grade.GradeSumDto">
+		SELECT
+		YEAR,
+		SMT,
+		STUDENT_CD,
+		STUDENT_YEAR,
+		STUDENT_CLASS,
+		STUDENT_NUM,
+		CDT_NUM,
+		WTIME_NUM+PTIME_NUM AS TIME,
+		GRADE,
+		NVL(SGM.GRADE_AVG,0) AS GRADE_AVG
+		FROM
+		SLCT_LECTURE_APPLY
+		WHERE
+		STUDENT_CD=#sum_student_cd#
+		AND YEAR=#sum_year#
+		AND SMT=#sum_smt#
+	</select>
+
+
+</sqlMap>
