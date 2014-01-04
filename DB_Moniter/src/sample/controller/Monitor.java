@@ -1,43 +1,45 @@
 package sample.controller;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import sample.dao.SampleDao;
 
 public class Monitor extends Thread {
 
-	int preCnt = 0;
-	int curCnt = 0;
-	SampleDao dao = null;
-	boolean chk = false;
-	String time = "";
-
-	public Monitor(String time) {
-		dao = new SampleDao();
-		preCnt = Integer.parseInt(dao.getBoardCnt());
-		this.time = time;
+	private int iPreCnt = 0;
+	private int iCurCnt = 0;
+	private SampleDao oDao = null;
+	private boolean bChk = false;
+	private String strTime = "";
+	private static Logger logger = Logger.getLogger("sample.controller.Monitor");
+	
+	public Monitor(String pTime) {
+		oDao = new SampleDao();
+		iPreCnt = Integer.parseInt(oDao.getBoardCnt());
+		this.strTime = pTime;
 	}
 
-	public boolean checkData(int p_curCnt) {
-		System.out.println("checkData!!");
-		System.out.println("전 : "+preCnt);
-		System.out.println("후 : "+curCnt);
-		if (preCnt != p_curCnt) { // 데이터가 변화된경우.
-			System.out.println("변화!!");
-			chk = true;
+	public boolean checkData(int pCurCnt) {
+		logger.log(Level.INFO, "checkData!!" + "전 = "+iPreCnt + "행 / " + "후 = "+iCurCnt + "행");
+		if (iPreCnt != pCurCnt) { // 데이터가 변화된경우.
+			logger.log(Level.INFO, "데이터 변화가 있습니다!!");
+			bChk = true;
 		} else {
-			chk = false;
+			bChk = false;
 		}
 		// 현재cnt를 이전 cnt로
-		preCnt = p_curCnt;
+		iPreCnt = pCurCnt;
 
-		return chk;
+		return bChk;
 	}
 
 	public void run() {
 		while (true) {
-			curCnt = Integer.parseInt(dao.getBoardCnt());
-			checkData(curCnt);
+			iCurCnt = Integer.parseInt(oDao.getBoardCnt());
+			checkData(iCurCnt);
 			try {
-				sleep(Integer.parseInt(this.time)* 1000);
+				sleep(Integer.parseInt(this.strTime)* 1000);
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			} catch (InterruptedException e) {

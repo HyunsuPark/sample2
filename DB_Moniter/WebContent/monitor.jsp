@@ -23,6 +23,7 @@ function start() {
 }
 
 function stop() {
+	alert("점검중입니다");
 // 	$.ajax({
 // 	    url : "moni?div=stop",
 // 	    dataType : "html",

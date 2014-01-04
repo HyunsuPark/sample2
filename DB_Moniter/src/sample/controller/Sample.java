@@ -3,6 +3,8 @@ package sample.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,6 +22,8 @@ import sample.dao.SampleDao;
 public class Sample extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
+	private static Logger logger = Logger.getLogger("sample.controller.Sample");
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -38,16 +42,15 @@ public class Sample extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("title", "test");
-		map.put("content", "test1222");
+		HashMap<String, String> oMap = new HashMap<String, String>();
+		oMap.put("title", "test");
+		oMap.put("content", "test1222");
 		
-		SampleDao dao = new SampleDao();
-		dao.insertData(map);
-//		System.out.println(dao.getBoardCnt());
+		SampleDao oDao = new SampleDao();
+		oDao.insertData(oMap);
 		
-		ArrayList<HashMap<String, String>> list = dao.getBoard();
-		System.out.println(list);
+		ArrayList<HashMap<String, String>> list = oDao.getBoard();
+		logger.log(Level.INFO,"데이터 추가!");
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("list.jsp");
 		request.setAttribute("list", list);

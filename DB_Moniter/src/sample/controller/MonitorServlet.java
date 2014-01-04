@@ -35,8 +35,8 @@ public class MonitorServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String time = request.getParameter("time");
-		Monitor m = new Monitor(time);
+		String strTime = request.getParameter("time");
+		Monitor m = new Monitor(strTime);
 		m.start();
 	}
 

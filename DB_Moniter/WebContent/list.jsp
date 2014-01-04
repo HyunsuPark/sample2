@@ -14,7 +14,7 @@
 <table align="center" width="700" border="1" cellspacing="0" cellpadding="5">
 	<c:forEach var="result" items="${list}" varStatus="status">
 		<tr>
-			<td><c:out value="${result.idx}" /></td>
+			<td><c:out value="${status.count}" /></td>
 			<td><c:out value="${result.title}" /></td>
 			<td><c:out value="${result.content}" /></td>
 		</tr>
