@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -12,6 +14,7 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width">
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/jquery-ui.css">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 <style>
 body {
@@ -165,7 +168,7 @@ a:hover.slidesjs-stop {
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="css/main.css">
 
-<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>	
 </head>
 <body>
 	<!--[if lt IE 7]>
@@ -188,12 +191,12 @@ a:hover.slidesjs-stop {
 				</ul>
 				<form class="navbar-form navbar-right">
 					<div class="form-group">
-						<input type="text" placeholder="Email" class="form-control">
+						<input type="email" placeholder="Email" class="form-control">
 					</div>
 					<div class="form-group">
 						<input type="password" placeholder="Password" class="form-control">
 					</div>
-					<button type="button" class="btn btn-primary">Login</button>
+					<button id="loginBtn" type="button" class="btn btn-primary" onclick="start()" rel="popover" data-content="로그인에 실패하였습니다">Login</button>
 						<!-- Button trigger modal -->
 					<button class="btn btn-success btn" data-toggle="modal" data-target="#myModal">Sign in</button>
 				</form>
@@ -363,6 +366,8 @@ a:hover.slidesjs-stop {
 	<!-- SlidesJS Required: Link to jquery.slides.js -->
 	<script src="js/jquery.slides.min.js"></script>
 	<!-- End SlidesJS Required -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
+	<script src="js/jquery.blockUI.js"></script>
 	
 	<!-- SlidesJS Required: Initialize SlidesJS with a jQuery doc ready -->
 	<script>
@@ -431,5 +436,33 @@ a:hover.slidesjs-stop {
 	</div>
 	<!-- /.modal -->
 	<!-- Sign in 영역 끝-->
+
+	<script type="text/javascript">
+		function start() {
+			$.blockUI({ message: '<h1><img src="img/ajax-loader.gif" /> Just a moment...</h1>' }); 
+			$.ajax({
+				url : "test",
+				dataType : "json",
+				type : "post", // post 또는 get
+				data : {
+					id : "test",
+					
+				}, // 호출할 url 에 있는 페이지로 넘길 파라메터
+				success : function(result) {
+					$("#progressbar").attr("style","display: ");
+					var options = { to: { width: 200, height: 60 } };
+					
+					$(".row").effect( "explode", options, 1000, null );
+					$("#about").effect( "explode", options, 1000, null );
+					$("#faq").effect( "explode", options, 1000, null );
+					$("#slides").effect( "explode", options, 1000, callback );
+					function callback() {
+						//5초뒤에 다음페이지로 이동
+						setTimeout(function() {location.href="list.jsp";}, 3000);
+				    };
+				}
+			});
+		}
+	</script>
 </body>
 </html>
