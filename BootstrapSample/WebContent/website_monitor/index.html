@@ -179,24 +179,12 @@ a:hover.slidesjs-stop {
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Project name</a>
+				<a class="navbar-brand" href="#"><i class="fa fa-clock-o fa-1x"> Site Analysis</i></a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#about">About</a></li>
-					<li><a href="#contact">Contact</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li class="divider"></li>
-							<li class="dropdown-header">Nav header</li>
-							<li><a href="#">Separated link</a></li>
-							<li><a href="#">One more separated link</a></li>
-						</ul></li>
+					<li><a class="scroll" href="#about">About</a></li>
+					<li><a class="scroll" href="#faq">F.A.Q</a></li>
 				</ul>
 				<form class="navbar-form navbar-right">
 					<div class="form-group">
@@ -205,7 +193,9 @@ a:hover.slidesjs-stop {
 					<div class="form-group">
 						<input type="password" placeholder="Password" class="form-control">
 					</div>
-					<button type="submit" class="btn btn-success">Sign in</button>
+					<button type="button" class="btn btn-primary">Login</button>
+						<!-- Button trigger modal -->
+					<button class="btn btn-success btn" data-toggle="modal" data-target="#myModal">Sign in</button>
 				</form>
 			</div>
 			<!--/.navbar-collapse -->
@@ -224,33 +214,49 @@ a:hover.slidesjs-stop {
 			<img src="img/example-slide-4.jpg"
 				alt="Photo by: Stuart SeegerLink: http://www.flickr.com/photos/stuseeger/97577796/">
 		</div>
+		
+		<br>
+		<h1 id="about">About</h1>
 		<!-- Example row of columns -->
 		<div class="row">
 			<div class="col-lg-4">
 				<h4 align="center"><i class="fa fa-bolt fa-5x"></i></h4>
-				<p>Monitor HTTP(s), Ping, Port and check Keywords.</p>
+				<p align="center">Monitor HTTP(s), Ping, Port and</p>
+				<p align="center">check Keywords.</p>
 			</div>
 			<div class="col-lg-4">
 				<h4 align="center"><i class="fa fa-envelope fa-5x"></i></h4>
-				<p>Donec id elit non mi porta gravida at eget metus. Fusce
-					dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-					ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-					magna mollis euismod. Donec sed odio dui.</p>
-				<p>
-					<a class="btn btn-default" href="#">View details &raquo;</a>
-				</p>
+				<p align="center">Get alerted via e-mail, SMS,</p> 
+				<p align="center">Twitter or mobile push.</p>
 			</div>
 			<div class="col-lg-4">
-				<h2>Heading</h2>
-				<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
-					egestas eget quam. Vestibulum id ligula porta felis euismod semper.
-					Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
-					nibh, ut fermentum massa justo sit amet risus.</p>
-				<p>
-					<a class="btn btn-default" href="#">View details &raquo;</a>
-				</p>
+				<h4 align="center"><i class="fa fa-signal fa-5x"></i></h4>
+				<p align="center">View uptime, downtime and</p> 
+				<p align="center">response times.</p>
 			</div>
 		</div>
+		
+		<br>
+		<h1 id="faq">F.A.Q</h1>
+		<!-- Example row of columns -->
+		<div class="row">
+			<div class="col-lg-4">
+				<h4 align="center"><i class="fa fa-bolt fa-5x"></i></h4>
+				<p align="center">Monitor HTTP(s), Ping, Port and</p>
+				<p align="center">check Keywords.</p>
+			</div>
+			<div class="col-lg-4">
+				<h4 align="center"><i class="fa fa-envelope fa-5x"></i></h4>
+				<p align="center">Get alerted via e-mail, SMS,</p> 
+				<p align="center">Twitter or mobile push.</p>
+			</div>
+			<div class="col-lg-4">
+				<h4 align="center"><i class="fa fa-signal fa-5x"></i></h4>
+				<p align="center">View uptime, downtime and</p> 
+				<p align="center">response times.</p>
+			</div>
+		</div>
+		
 
 		<hr>
 		
@@ -268,7 +274,7 @@ a:hover.slidesjs-stop {
 	</script>
 
 	<script src="js/vendor/bootstrap.min.js"></script>
-
+	<script src="js/scroll.js"></script>
 	<script src="js/main.js"></script>
 
 	<script>
@@ -283,7 +289,7 @@ a:hover.slidesjs-stop {
 	<!-- SlidesJS Required: Link to jquery.slides.js -->
 	<script src="js/jquery.slides.min.js"></script>
 	<!-- End SlidesJS Required -->
-
+	
 	<!-- SlidesJS Required: Initialize SlidesJS with a jQuery doc ready -->
 	<script>
 		$(function() {
@@ -300,5 +306,56 @@ a:hover.slidesjs-stop {
 		});
 	</script>
 	<!-- End SlidesJS Required -->
+
+	<!-- Sign in 영역-->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Sign in</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+							<div class="col-sm-10">
+								<input type="email" class="form-control" id="inputEmail3"
+									placeholder="Email">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" id="inputPassword3"
+									placeholder="Password">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword3" class="col-sm-2 control-label">Confirm Password</label>
+							<div class="col-sm-10">
+								<input type="password" class="form-control" id="inputPassword3"
+									placeholder="Confirm Password">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-info">Sign in</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<!-- Sign in 영역 끝-->
 </body>
 </html>
