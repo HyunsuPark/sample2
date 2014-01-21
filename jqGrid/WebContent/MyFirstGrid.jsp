@@ -46,11 +46,12 @@
 			// 소셜픽의 API 를 바꿀 순 없어, jqGrid 에서 json을 
 			// customizing하여 사용하기 위해 jsonReader를 사용했다.
 			jsonReader : {
-							repeatitems : false,
-							id : "localizedRuleName",
-							root : function (obj) { return obj.formattedResults.ruleResults.AvoidLandingPageRedirects; },
-							page : function (obj) { return 1; },
-							total : function (obj) { return 1; }
+				repeatitems : false,
+				id : "rank",
+				root : function (obj) { return obj.socialpick.item; },
+				page : function (obj) { return 1; },
+				total : function (obj) { return 1; },
+				records : function (obj) {return obj.socialpick.item.length; }
 			}
 
 		// navGrid() 메서드는 검색 및 기타기능을 사용하기위해 사용된다.
