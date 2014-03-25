@@ -15,4 +15,5 @@
 	<![endif]-->
 	<script src="<c:url value="/resources/js/jquery.carouFredSel-5.5.0-packed.js" />" type="text/javascript"></script>
 	<script src="<c:url value="/resources/js/functions.js" />" type="text/javascript"></script>
+	<script src="<c:url value="/resources/js/main.js" />" type="text/javascript"></script>
 </head>

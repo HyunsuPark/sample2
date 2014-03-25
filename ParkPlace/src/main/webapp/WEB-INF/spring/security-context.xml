@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<http pattern="/css/**" security="none"></http>
+	<http pattern="/font/**" security="none"></http>
+	<http pattern="/fonts/**" security="none"></http>
+	<http pattern="/img/**" security="none"></http>
+	<http pattern="/js/**" security="none"></http>
+
+	<http use-expressions="true" access-denied-page="/index.do"
+		create-session="ifRequired">
+		<intercept-url pattern="/login.do" access="permitAll" />
+		<intercept-url pattern="/join.do" access="permitAll" />
+		<intercept-url pattern="/index.do" access="hasRole('ROLE_USER')" />
+		<form-login login-page="/login.do"
+			authentication-success-handler-ref="loginSuccessHandler"
+			authentication-failure-handler-ref="loginFailureHandler" />
+		<logout invalidate-session="true" logout-success-url="/login.do" />
+	</http>
+
+	<authentication-manager>
+		<authentication-provider ref="CustomAuthenticationProvider" />
+	</authentication-manager>
+
+	<beans:bean id="loginSuccessHandler"
+		class="co.kr.parkprice.handler.LoginSuccessHandler"></beans:bean>
+	<beans:bean id="loginFailureHandler"
+		class="co.kr.parkprice.handler.LoginFailureHandler"></beans:bean>
+	<beans:bean id="CustomAuthenticationProvider"
+		class="co.kr.parkprice.handler.CustomAuthenticationProvider" ></beans:bean>
+</beans:beans>

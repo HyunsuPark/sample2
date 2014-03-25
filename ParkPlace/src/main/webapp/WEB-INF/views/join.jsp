@@ -8,7 +8,7 @@
 		<div class="container">
 			<!-- header -->
 			<header id="header">
-				<h1><a href="#" style="text-decoration: none;"> ParkingPrice</a></h1>
+				<h1><a href="#" style="text-decoration: none;">한국주차장협회 회원가입</a></h1>
 				<!-- search -->
 				<div class="search">
 					<form action="" method="post">
@@ -27,42 +27,25 @@
 			<!-- end of navigation -->
 			<!-- main -->
 			<div class="main">
-				<form action="" method="post">
+				<form action="addUser.do" method="post" enctype="application/x-www-form-urlencoded">
 					<dl>
 						<dt>
-							<label>Subject</label>
+							<label>아이디</label>
 						</dt>
 						<dd>
-							<input type="text" name="subject" style="width: 260px;" required="required">
+							<input type="text" name="id" style="width: 260px;" required="required">
 						</dd>
 					</dl>
 					<dl>
 						<dt>
-							<label>Phone</label>
+							<label>비밀번호</label>
 						</dt>
 						<dd>
-							<input type="text" name="phone" style="width: 260px;" required="required">
+							<input type="password" name="pass" style="width: 260px;" required="required">
 						</dd>
 					</dl>
-					<dl>
-						<dt>
-							<label>Email</label>
-						</dt>
-						<dd>
-							<input type="email" name="email" style="width: 260px;" required="required">
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<label>Question and Comment</label>
-						</dt>
-						<dd>
-							<textarea rows="10" cols="100" name="question"></textarea>
-						</dd>
-					</dl>
-					
-					<input type="submit" value="Send" style="width: 70px">
-				</form> 
+					<input type="submit" id="addUser" value="회원가입" style="width: 70px">
+				</form>	
 			</div>
 			<!-- end of main -->
 			<div class="cl">&nbsp;</div>
