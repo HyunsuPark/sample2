@@ -15,4 +15,6 @@
 	
 	<!-- 4. sqlMap 파일 참조 -->
 	<sqlMap resource="resources/server/config/xmls/sqlmaps/Contact.xml" />
+	<sqlMap resource="resources/server/config/xmls/sqlmaps/User.xml" />
+	<sqlMap resource="resources/server/config/xmls/sqlmaps/Role.xml" />
 </sqlMapConfig>
