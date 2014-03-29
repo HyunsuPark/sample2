@@ -11,20 +11,33 @@ public class UserService extends AbstractCommonService{
 	public String addUser(User param){
 		User user = new User();
 		user.setId(param.getId());
+		user.setEmail(param.getEmail());
 		
 		ShaPasswordEncoder passwordEncoder = new ShaPasswordEncoder();
 		String encodePwd = passwordEncoder.encodePassword(param.getPassword(),
 				null);
 		user.setPassword(encodePwd);
 		
-		User resultUser = (User)this.getSqlMapClientTemplate().queryForObject("user.getUser", user);
+		User userChk = new User();
+		userChk.setId(param.getId());
+		
+		User resultUser = (User)this.getSqlMapClientTemplate().queryForObject("user.getUser", userChk);
 		
 		if(resultUser == null){
 			this.getSqlMapClientTemplate().insert("user.insertUser", user);
+			addRole(user);
 			return "ok";
 		}else{
 			return "이미 존재하는 사용자입니다.";
 		}
+	}
+	
+	public void addRole(User param){
+		Role role = new Role();
+		role.setId(param.getId());
+		role.setRole("ROLE_USER");
+		
+		this.getSqlMapClientTemplate().insert("role.insertRole", role);
 	}
 	
 	public User getUser(User user){

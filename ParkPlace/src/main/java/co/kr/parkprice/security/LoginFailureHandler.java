@@ -1,4 +1,4 @@
-package co.kr.parkprice.handler;
+package co.kr.parkprice.security;
 
 import java.io.IOException;
 
@@ -16,7 +16,7 @@ public class LoginFailureHandler implements AuthenticationFailureHandler {
 			HttpServletResponse response, AuthenticationException auth)
 			throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		response.sendRedirect(request.getContextPath() + "/login.do");
+		response.sendRedirect(request.getContextPath() + "/index.do");
 	}
 
 }
