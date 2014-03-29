@@ -1,121 +1,175 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
-	<title>주차장등록</title>
-	<link rel="shortcut icon" type="image/x-icon" href="${pageContext.request.contextPath}/resources/css/images/favicon.ico" />
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css" media="all" />
-	<link href='http://fonts.googleapis.com/css?family=Raleway:400,900,800,700,600,500,300,200,100' rel='stylesheet' type='text/css'>
-	
-	<script src="${pageContext.request.contextPath}/resources/js/jquery-1.8.0.min.js" type="text/javascript"></script>
-	<!--[if lt IE 9]>
-		<script src="${pageContext.request.contextPath}/js/modernizr.custom.js"></script>
-	<![endif]-->
-	<script src="${pageContext.request.contextPath}/resources/js/jquery.carouFredSel-5.5.0-packed.js" type="text/javascript"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/functions.js" type="text/javascript"></script>
-</head>
+<%@ include file="/WEB-INF/views/common/head.jsp" %>
+<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%> 
 <body>
-<!-- wrapper -->
-<div id="wrapper">
-	<!-- shell -->
-	<div class="shell">
-		<!-- container -->
-		<div class="container">
-			<!-- header -->
-			<header id="header">
-				<h1><a href="#" style="text-decoration: none;"> ParkingPrice</a></h1>
-				<!-- search -->
-				<div class="search">
-					<form action="" method="post">
-						<input type="text" class="field" value="keywords here ..." title="keywords here ..." />
-						<input type="submit" class="search-btn" value="" />
-						<div class="cl">&nbsp;</div>
-					</form>
-				</div>
-				<!-- end of search -->
-				<div class="cl">&nbsp;</div>
-			</header>
-			<!-- end of header -->
-			<!-- navigaation -->
-			<nav id="navigation">
-				<a href="#" class="nav-btn">HOME<span></span></a>
-				<ul>
-					<li><a href="index.do">home</a></li>
-					<li><a href="#">사업소개</a></li>
-					<li><a href="registration.do">주차장등록</a></li>
-					<li class="active"><a href="contact.do">제휴문의</a></li>
-				</ul>
-				<div class="cl">&nbsp;</div>
-			</nav>
-			<!-- end of navigation -->
-			<!-- main -->
-			<div class="main">
-				<form action="" method="post">
-					<dl>
-						<dt>
-							<label>Subject</label>
-						</dt>
-						<dd>
-							<input type="text" name="subject" style="width: 260px;" required="required">
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<label>Phone</label>
-						</dt>
-						<dd>
-							<input type="text" name="phone" style="width: 260px;" required="required">
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<label>Email</label>
-						</dt>
-						<dd>
-							<input type="email" name="email" style="width: 260px;" required="required">
-						</dd>
-					</dl>
-					<dl>
-						<dt>
-							<label>Question and Comment</label>
-						</dt>
-						<dd>
-							<textarea rows="10" cols="100" name="question"></textarea>
-						</dd>
-					</dl>
-					
-					<input type="submit" value="Send" style="width: 70px">
-				</form> 
-			</div>
-			<!-- end of main -->
+<%@ include file="/WEB-INF/views/common/nav.jsp" %>
+	
+	<div class="container" >
+		<header id="header">
+			<h1>주차장 등록</h1>
 			<div class="cl">&nbsp;</div>
-			
-			<!-- footer -->
-			<div id="footer">
-				<div class="footer-nav">
-					<ul>
-						<li><a href="#">Home</a></li>
-						<li><a href="#">About</a></li>
-						<li><a href="#">Services</a></li>
-						<li><a href="#">Projects</a></li>
-						<li><a href="#">Solutions</a></li>
-						<li><a href="#">Jobs</a></li>
-						<li><a href="#">Blog</a></li>
-						<li><a href="#">Contacts</a></li>
-					</ul>
-					<div class="cl">&nbsp;</div>
-				</div>
-				<p class="copy">&copy; Copyright 2012<span>|</span>Sitename. Design by <a href="http://chocotemplates.com" target="_blank">ChocoTemplates.com</a></p>
-				<div class="cl">&nbsp;</div>
-			</div>
-			<!-- end of footer -->
-		</div>
-		<!-- end of container -->
+		</header>
+		<form action="saveRegi.do" method="post" enctype="multipart/form-data">
+			<dl>
+				<dt>
+					<label>주차장명</label>
+				</dt>
+				<dd>
+					<input type="text" name="parking_name" class="form-control" style="width: 260px;" required="required" >
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label>대표/관리자</label>
+				</dt>
+				<dd>
+					<input type="text" name="owner" class="form-control" style="width: 260px;" required="required">
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label>전화번호</label>
+				</dt>
+				<dd>
+					<input type="text" name="phone" class="form-control" style="width: 260px;" required="required">
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label>주소</label>
+				</dt>
+				<dd>
+					<input type="text" name="addr" class="form-control" style="width: 260px;" required="required">
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label>관리자핸드폰</label>
+				</dt>
+				<dd>
+					<input type="text" name="owner_phone" class="form-control" style="width: 260px;" required="required">
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label>주차장형태</label>
+				</dt>
+				<dd>
+					<input type="radio" name="parking_type" value="건물부설주차장" checked="checked"> 건물부설 주차장
+					<input type="radio" name="parking_type" value="공영주차장"> 공영 주차장
+					<input type="radio" name="parking_type" value="노외/노상주차장"> 노외/노상 주차장
+					<input type="radio" name="parking_type" value="기타주차장"> 기타 주차장
+				</dd> 
+			</dl>
+			<dl>
+				<dt>
+					<label>총 주차대수</label>
+				</dt>
+				<dd>
+					<input type="text" name="all_cnt" class="form-control" style="width: 260px;" required="required">
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label>정기 주차대수</label>
+				</dt>
+				<dd>
+					<input type="text" name="avg_cnt" class="form-control" style="width: 260px;" required="required">
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label>10분당 요금</label>
+				</dt>
+				<dd>
+					<input type="text" name="pay1" class="form-control" style="width: 260px;" required="required">
+				</dd>
+			</dl> 
+			<dl>
+				<dt>
+					<label>일일 최대요금</label>
+				</dt>
+				<dd>
+					<input type="text" name="pay2" class="form-control" style="width: 260px;" required="required">
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label>월정 정기요금</label>
+				</dt>
+				<dd>
+					<input type="text" name="pay3" class="form-control" style="width: 260px;" required="required">
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label>여유 주차대수</label>
+				</dt>
+				<dd>
+					<input type="text" name="cnt1" class="form-control" style="width: 260px;" required="required">
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label>부족 주차대수</label>
+				</dt>
+				<dd>
+					<input type="text" name="cnt2" class="form-control" style="width: 260px;" required="required">
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label>P-Peck/Time(주차장 혼잡시간대)</label>
+				</dt>
+				<dd>
+					<input type="text" name="time1" class="form-control" style="width: 260px;" required="required" placeholder="ex)01:00 : 02:00 - 12:00 : 14:00">
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label>P-Lose/Time(주차공간 여유시간대)</label>
+				</dt>
+				<dd>
+					<input type="text" name="time2" class="form-control" style="width: 260px;" required="required" placeholder="ex)01:00 : 02:00 - 12:00 : 14:00">
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label>할인 방식</label>
+				</dt>
+				<dd>
+					<input type="radio" name="dc_type" value="시간대" checked="checked"> 시간대
+					<input type="radio" name="dc_type" value="방문객"> 방문객
+					<input type="radio" name="dc_type" value="구매고객"> 구매고객
+					<br>
+					기타 <input type="text" name="dc_type" class="form-control" style="width: 100px;">
+				</dd> 
+			</dl>
+			<dl>
+				<dt>
+					<label>할인 방식</label>
+				</dt>
+				<dd>
+					<input type="radio" name="system" value="발권기" checked="checked"> 발권기
+					<input type="radio" name="system" value="차번인식"> 차번인식
+					<input type="radio" name="system" value="무인정산기"> 무인정산기
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label>첨부파일</label>
+				</dt>
+				<dd>
+					<input type="file" name="files[0]">
+					<input type="file" name="files[1]">
+					<input type="file" name="files[2]">
+				</dd>
+			</dl>
+			<input type="submit" value="등록" class="btn btn-primary">
+		</form> 
 	</div>
-	<!-- end of shell -->
-</div>
+	 <!-- footer -->
+	 
+	<!-- end of footer -->
 <!-- end of wrapper -->
 </body>
 </html>

@@ -22,7 +22,7 @@
         <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap-theme.min.css" />">
         <link rel="stylesheet" href="<c:url value="/resources/css/main.css" />">
 
-        <script src="<c:url value="/resources/js/modernizr-2.6.2-respond-1.1.0.min.js" />"></script>
+        <script src="<c:url value="/resources/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js" />"></script>
         <script src="<c:url value="/resources/js/jquery-1.8.0.min.js" />"></script>
         <script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
         <script src="<c:url value="/resources/js/main.js" />"></script>

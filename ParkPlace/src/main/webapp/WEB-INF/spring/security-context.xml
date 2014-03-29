@@ -14,13 +14,13 @@
 
 	<http use-expressions="true" access-denied-page="/index.do"
 		create-session="ifRequired">
-		<intercept-url pattern="/login.do" access="permitAll" />
+		<intercept-url pattern="/index.do" access="permitAll" />
 		<intercept-url pattern="/join.do" access="permitAll" />
-		<intercept-url pattern="/index.do" access="hasRole('ROLE_USER')" />
-		<form-login login-page="/login.do"
+		<intercept-url pattern="/*.do" access="hasRole('ROLE_USER')" />
+		<form-login login-page="/index.do"
 			authentication-success-handler-ref="loginSuccessHandler"
 			authentication-failure-handler-ref="loginFailureHandler" />
-		<logout invalidate-session="true" logout-success-url="/login.do" />
+		<logout invalidate-session="true" logout-success-url="/index.do" />
 	</http>
 
 	<authentication-manager>
@@ -28,9 +28,9 @@
 	</authentication-manager>
 
 	<beans:bean id="loginSuccessHandler"
-		class="co.kr.parkprice.handler.LoginSuccessHandler"></beans:bean>
+		class="co.kr.parkprice.security.LoginSuccessHandler"></beans:bean>
 	<beans:bean id="loginFailureHandler"
-		class="co.kr.parkprice.handler.LoginFailureHandler"></beans:bean>
+		class="co.kr.parkprice.security.LoginFailureHandler"></beans:bean>
 	<beans:bean id="CustomAuthenticationProvider"
-		class="co.kr.parkprice.handler.CustomAuthenticationProvider" ></beans:bean>
+		class="co.kr.parkprice.security.CustomAuthenticationProvider" ></beans:bean>
 </beans:beans>
