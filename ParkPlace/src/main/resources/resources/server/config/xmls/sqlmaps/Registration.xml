@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="registration">
+	<typeAlias alias="registration" type="co.kr.parkprice.model.Registration" />
+
+	<select id="getRegistration" resultClass="registration">
+		SELECT seq
+			  ,id
+			,parking_name
+			,owner
+			,phone
+			,addr
+			,owner_phone
+			,parking_type
+			,all_cnt
+			,avg_cnt
+			,pay1
+			,pay2
+			,pay3
+			,cnt1
+			,cnt2
+			,time1
+			,time2
+			,dc_type
+			,system
+			,date(regdate) as regdate
+			,file1
+			,file2
+			,file3
+		  FROM registration
+		 WHERE 1 = 1
+		  <isNotEqual property="seq" compareValue="0">
+		   AND seq = #seq# 
+		  </isNotEqual>
+		  <isNotEmpty property="id">
+		   AND id = #id# 
+		  </isNotEmpty> 
+		  <isNotEmpty property="parking_name">
+		   AND parking_name = #parking_name# 
+		  </isNotEmpty> 
+		  <isNotEmpty property="owner">
+		   AND owner = #owner# 
+		  </isNotEmpty> 
+		  <isNotEmpty property="phone">
+		   AND phone = #phone# 
+		  </isNotEmpty> 
+		  order by regdate desc
+	</select>
+	
+	<insert id="insertRegi">
+		INSERT INTO registration(
+		 id
+		,parking_name
+		,owner
+		,phone
+		,addr
+		,owner_phone
+		,parking_type
+		,all_cnt
+		,avg_cnt
+		,pay1
+		,pay2
+		,pay3
+		,cnt1
+		,cnt2
+		,time1
+		,time2
+		,dc_type
+		,system
+		<isNotEmpty property="file1">
+		,file1
+		</isNotEmpty>
+		<isNotEmpty property="file2">
+		,file2
+		</isNotEmpty>
+		<isNotEmpty property="file3">
+		,file3
+		</isNotEmpty>
+		)
+		VALUES(
+		 #id#
+		,#parking_name#
+		,#owner#
+		,#phone#
+		,#addr#
+		,#owner_phone#
+		,#parking_type#
+		,#all_cnt#
+		,#avg_cnt#
+		,#pay1#
+		,#pay2#
+		,#pay3#
+		,#cnt1#
+		,#cnt2#
+		,#time1#
+		,#time2#
+		,#dc_type#
+		,#system#
+		<isNotNull property="file1">
+		,#file1#
+		</isNotNull>
+		<isNotNull property="file2">
+		,#file2#
+		</isNotNull>
+		<isNotNull property="file3">
+		,#file3#
+		</isNotNull>
+		)
+	</insert>
+	 
+</sqlMap>

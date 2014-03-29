@@ -8,12 +8,14 @@
 		SELECT id,password
 		  FROM users
 		 WHERE id = #id#
+		  <isNotEmpty property="password">
 		   AND password = #password# 
+		  </isNotEmpty>
 	</select>
 	
 	<insert id="insertUser">
-		INSERT INTO users(id,password)
-		VALUES(#id#,#password#)
+		INSERT INTO users(id,password,email)
+		VALUES(#id#,#password#,#email#)
 	</insert>
 	 
 </sqlMap>
