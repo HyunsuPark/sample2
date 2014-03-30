@@ -28,6 +28,7 @@
 			,file1
 			,file2
 			,file3
+			,regdate as order_regdate
 		  FROM registration
 		 WHERE 1 = 1
 		  <isNotEqual property="seq" compareValue="0">
@@ -45,7 +46,7 @@
 		  <isNotEmpty property="phone">
 		   AND phone = #phone# 
 		  </isNotEmpty> 
-		  order by regdate desc
+		  order by order_regdate desc
 	</select>
 	
 	<insert id="insertRegi">
