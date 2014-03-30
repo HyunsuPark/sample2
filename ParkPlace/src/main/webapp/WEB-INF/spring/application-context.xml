@@ -8,11 +8,4 @@
 			<value>10000000</value>
 		</property>
 	</bean>
-	
-	<!-- 운영서버 배포시 경로 변경 필요 -->
-	<bean id="uploadDirResource" class="org.springframework.core.io.FileSystemResource">
-		<constructor-arg>
-			<value>/temp/fileupload/</value>
-		</constructor-arg>
-	</bean>
 </beans>
