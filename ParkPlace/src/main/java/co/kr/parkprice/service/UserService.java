@@ -28,7 +28,7 @@ public class UserService extends AbstractCommonService{
 			addRole(user);
 			return "ok";
 		}else{
-			return "이미 존재하는 사용자입니다.";
+			return "";
 		}
 	}
 	

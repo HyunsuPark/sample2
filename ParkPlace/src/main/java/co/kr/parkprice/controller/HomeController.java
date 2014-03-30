@@ -1,6 +1,7 @@
 package co.kr.parkprice.controller;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -26,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.util.WebUtils;
 
 import co.kr.parkprice.model.Registration;
 import co.kr.parkprice.model.User;
@@ -99,9 +101,30 @@ public class HomeController {
 		return "login";
 	}
 
-	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/cmn/join.do", method = RequestMethod.GET)
 	public String join() {
 		return "join";
+	}
+	
+	@RequestMapping(value = "/cmn/fail.do", method = RequestMethod.GET)
+	public ModelAndView fail(HttpServletRequest request) {
+		ModelAndView model = new ModelAndView();
+		
+		model.addObject("result", request.getParameter("msg"));
+		model.setViewName("common/fail");
+		
+		return model;
+	}
+	
+	@RequestMapping(value = "/cmn/ok.do", method = RequestMethod.GET)
+	public ModelAndView ok(HttpServletRequest request) {
+		ModelAndView model = new ModelAndView();
+		
+		model.addObject("result", request.getParameter("msg"));
+		model.addObject("next_url", request.getParameter("next"));
+		model.setViewName("common/ok");
+		
+		return model;
 	}
 
 	@RequestMapping(value = "/regiView.do", method = RequestMethod.GET)
@@ -134,7 +157,7 @@ public class HomeController {
 		return model;
 	}
 
-	@RequestMapping(value = "/addUser.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/cmn/addUser.do", method = RequestMethod.POST)
 	public ModelAndView addUser(@RequestParam HashMap<String, String> params) {
 		ModelAndView model = new ModelAndView();
 
@@ -146,10 +169,9 @@ public class HomeController {
 		String result = userService.addUser(user);
 		//
 		if (result.equals("ok")) {
-			model.setView(new RedirectView("index.do"));
+			model.setView(new RedirectView("ok.do?msg=join_ok&next=index.do"));
 		} else {
-			model.addObject("result", result);
-			model.setViewName("common/fail");
+			model.setView(new RedirectView("fail.do?msg=duple_id"));
 		}
 
 		return model;
@@ -158,10 +180,14 @@ public class HomeController {
 	@RequestMapping(value = "/saveRegi.do", method = RequestMethod.POST)
 	public ModelAndView saveRegi(
 			@ModelAttribute("Registration") Registration regi,
-			HttpServletRequest request) {
+			HttpServletRequest request) throws IOException {
 
 		ModelAndView model = new ModelAndView();
-		fileUpload(regi,request);
+		try {
+			fileUpload(regi,request);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		regi.setId((String) request.getSession().getAttribute("username"));
 		homeService.saveRegi(regi);
 
@@ -170,7 +196,7 @@ public class HomeController {
 		return model;
 	}
 
-	public void fileUpload(Registration regi,HttpServletRequest request) {
+	public void fileUpload(Registration regi,HttpServletRequest request) throws IOException {
 		List<MultipartFile> files = regi.getFiles();
 
 		List<String> fileNames = new ArrayList<String>();
@@ -179,10 +205,15 @@ public class HomeController {
 				if(multipartFile.getSize()>0){
 //					String fileName = multipartFile.getOriginalFilename();
 					String uniqueFileName = UUID.randomUUID().toString().replace("-", "");
-				    String path = request.getSession().getServletContext().getRealPath("")+"\\WEB-INF\\upload\\"+uniqueFileName;
-				    
+					 
+				    String path = request.getSession().getServletContext().getRealPath("")
+				    		+File.separator+"WEB-INF"+File.separator+"upload"+File.separator+uniqueFileName;
+				    logger.info(path);
 				    File f = new File(path);
-				    
+//				    boolean bb = f.createNewFile();
+//				    logger.info(bb+""); 
+//				    
+//				    logger.info(f.canWrite()+"");
 				    try {
 						multipartFile.transferTo(f);
 					} catch (IllegalStateException e) {

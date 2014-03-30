@@ -1,15 +1,18 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%
 String msg = (String)request.getAttribute("result");
+String next_url = (String)request.getAttribute("next_url");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 	<script type="text/javascript">
 		var msg = "<%= msg %>";
-		if(msg=="duple_id"){
-			alert("이미 있는 아이디입니다.");	
+		var url = "<%= next_url %>";
+		
+		if(msg=="join_ok"){
+			alert("회원가입되었습니다");	
 		}
-		history.back();
+		location.href = "../"+url;
 	</script>
 </head>

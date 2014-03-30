@@ -15,7 +15,7 @@
 	<http use-expressions="true" access-denied-page="/index.do"
 		create-session="ifRequired">
 		<intercept-url pattern="/index.do" access="permitAll" />
-		<intercept-url pattern="/join.do" access="permitAll" />
+		<intercept-url pattern="/cmn/*" access="permitAll" />
 		<intercept-url pattern="/*.do" access="hasRole('ROLE_USER')" />
 		<form-login login-page="/index.do"
 			authentication-success-handler-ref="loginSuccessHandler"

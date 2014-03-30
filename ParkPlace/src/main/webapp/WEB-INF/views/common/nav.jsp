@@ -12,7 +12,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">한국주차장협회</a>
+          <a class="navbar-brand" href="/">한국주차장협회</a>
         </div>
         <div class="navbar-collapse collapse">
         	<c:choose>
