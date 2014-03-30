@@ -9,7 +9,7 @@
         <table class="table table-condensed">
         	<c:forEach var="result" items="${data}" varStatus="status">
         	<tr>
-        		<th width="300px">주차장명</th><td>${result.parking_name}</td>
+        		<th width="30%">주차장명</th><td>${result.parking_name}</td>
         	</tr>
         	<tr>	
         		<th>대표/관리자</th><td>${result.owner}</td>

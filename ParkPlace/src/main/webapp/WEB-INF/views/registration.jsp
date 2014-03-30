@@ -121,7 +121,7 @@
 					<label>P-Peck/Time(주차장 혼잡시간대)</label>
 				</dt>
 				<dd>
-					<input type="text" name="time1" class="form-control" style="width: 260px;" required="required" placeholder="ex)01:00 : 02:00 - 12:00 : 14:00">
+					<input type="text" name="time1" class="form-control" style="width: 260px;" required="required" placeholder="ex)12:00 - 14:00">
 				</dd>
 			</dl>
 			<dl>
@@ -129,7 +129,7 @@
 					<label>P-Lose/Time(주차공간 여유시간대)</label>
 				</dt>
 				<dd>
-					<input type="text" name="time2" class="form-control" style="width: 260px;" required="required" placeholder="ex)01:00 : 02:00 - 12:00 : 14:00">
+					<input type="text" name="time2" class="form-control" style="width: 260px;" required="required" placeholder="ex)12:00 - 14:00">
 				</dd>
 			</dl>
 			<dl>
