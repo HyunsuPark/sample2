@@ -75,7 +75,7 @@ function check() {
 							<input type="email" id="email" name="email" class="form-control" style="width: 200px;" required="required">
 						</dd>
 					</dl>
-					<input type="submit" onclick="check()" id="addUser" value="회원가입" class="btn btn-primary">
+					<input type="submit" onclick="return check()" id="addUser" value="회원가입" class="btn btn-primary">
 				</form>	
 			</div>
 			<!-- end of main -->
