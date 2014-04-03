@@ -9,61 +9,61 @@
         <table class="table table-condensed">
         	<c:forEach var="result" items="${data}" varStatus="status">
         	<tr>
-        		<th width="30%">주차장명</th><td>${result.parking_name}</td>
+        		<th width="30%">주차장명</th><td><c:out value="${result.parking_name}"></c:out></td>
         	</tr>
         	<tr>	
-        		<th>대표/관리자</th><td>${result.owner}</td>
+        		<th>대표/관리자</th><td><c:out value="${result.owner}"></c:out></td>
         	</tr>	
         	<tr>	
-        		<th>전화번호</th><td>${result.phone}</td>
+        		<th>전화번호</th><td><c:out value="${result.phone}"></c:out></td>
         	</tr>	
         	<tr>	
-        		<th>주소</th><td>${result.addr}</td>
+        		<th>주소</th><td><c:out value="${result.addr}"></c:out></td>
         	</tr>
         	<tr>	
-        		<th>관리자 핸드폰</th><td>${result.owner_phone}</td>
+        		<th>관리자 핸드폰</th><td><c:out value="${result.owner_phone}"></c:out></td>
         	</tr>
         	<tr>	
-        		<th>주차장 형태</th><td>${result.parking_type}</td>
+        		<th>주차장 형태</th><td><c:out value="${result.parking_type}"></c:out></td>
         	</tr>
         	<tr>	
-        		<th>총 주차대수</th><td>${result.all_cnt}</td>
+        		<th>총 주차대수</th><td><c:out value="${result.all_cnt}"></c:out></td>
         	</tr>
         	<tr>	
-        		<th>정기 주차대수</th><td>${result.avg_cnt}</td>
+        		<th>정기 주차대수</th><td><c:out value="${result.avg_cnt}"></c:out></td>
         	</tr>
         	<tr>	
-        		<th>10분당 요금</th><td>${result.pay1}</td>
+        		<th>10분당 요금</th><td><c:out value="${result.pay1}"></c:out></td>
         	</tr>
         	<tr>	
-        		<th>일일최대요금</th><td>${result.pay2}</td>
+        		<th>일일최대요금</th><td><c:out value="${result.pay2}"></c:out></td>
         	</tr>
         	<tr>	
-        		<th>월정 정기요금</th><td>${result.pay3}</td>
+        		<th>월정 정기요금</th><td><c:out value="${result.pay3}"></c:out></td>
         	</tr>
         	<tr>	
-        		<th>여유 주차대수</th><td>${result.cnt1}</td>
+        		<th>여유 주차대수</th><td><c:out value="${result.cnt1}"></c:out></td>
         	</tr>
         	<tr>	
-        		<th>부족 주차대수</th><td>${result.cnt2}</td>
+        		<th>부족 주차대수</th><td><c:out value="${result.cnt2}"></c:out></td>
         	</tr>
         	<tr>	
-        		<th>P-Peck/Time</th><td>${result.time1}</td>
+        		<th>P-Peck/Time</th><td><c:out value="${result.time1}"></c:out></td>
         	</tr>
         	<tr>	
-        		<th>P-Lose/Time</th><td>${result.time2}</td>
+        		<th>P-Lose/Time</th><td><c:out value="${result.time2}"></c:out></td>
         	</tr>
         	<tr>	
-        		<th>할인방식</th><td>${result.dc_type}</td>
+        		<th>할인방식</th><td><c:out value="${result.dc_type}"></c:out></td>
         	</tr>
         	<tr>	
-        		<th>주차관제시스템</th><td>${result.system}</td>
+        		<th>주차관제시스템</th><td><c:out value="${result.system}"></c:out></td>
         	</tr>
         	<tr>	
-        		<th>회원 아이디</th><td>${result.id}</td>
+        		<th>회원 아이디</th><td><c:out value="${result.id}"></c:out></td>
         	</tr>
         	<tr>	
-        		<th>등록일자</th><td>${result.regdate}</td>
+        		<th>등록일자</th><td><c:out value="${result.regdate}"></c:out></td>
         	</tr>
         	<tr>	
         		<th>첨부이미지</th>

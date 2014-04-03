@@ -37,7 +37,7 @@
 						<li><a href="regiView.do"><span class="glyphicon glyphicon-hand-right"></span>&nbsp;등록 주차장 목록</a></li> 
 					</ul>
 					<form class="navbar-form navbar-right" role="form" action="j_spring_security_logout">
-						<button type="button" class="btn btn-primary">${username}</button>
+						<button type="button" class="btn btn-primary" style="width: 120px;"><c:out value="${username}"></c:out></button>
 						<button type="submit" class="btn btn-danger" id="btnLogout">로그아웃</button>
 					</form>
 					

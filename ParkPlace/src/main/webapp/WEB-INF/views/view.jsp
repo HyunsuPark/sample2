@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file="/WEB-INF/views/common/head.jsp" %>
 <%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%> 
 <body>
@@ -15,9 +16,9 @@
         	<c:forEach var="result" items="${data}" varStatus="status">
         	<tr>
         		<td>${status.count}</td>
-        		<td><a href="detailView.do?seq=${result.seq}">${result.parking_name}</a></td>
-        		<td>${result.owner}</td>
-        		<td>${result.regdate}</td>
+        		<td><a href="detailView.do?seq=${result.seq}"><c:out value="${result.parking_name}"></c:out></a></td>
+        		<td><c:out value="${result.owner}"></c:out></td>
+        		<td><c:out value="${result.regdate}"></c:out></td>
         	</tr>
         	</c:forEach>
         </table>
