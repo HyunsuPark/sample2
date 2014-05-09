@@ -29,8 +29,14 @@
 				,p_count
 				,(select count(*) from pk_parking) as totalCnt
 		  FROM pk_parking
-	  ORDER BY p_idx desc 
-		 LIMIT #pageNo# , 20
+		 WHERE 1=1
+	  	  <isNotEmpty property="p_idx">
+		   AND p_idx = #p_idx# 
+		  </isNotEmpty> 
+	  ORDER BY p_idx DESC 
+		  <isEmpty property="p_idx">
+		 	LIMIT #pageNo# , 20 
+		  </isEmpty>
 	</select>
 	
 	<insert id="insertParking">
@@ -88,5 +94,50 @@
 	<delete id="deleteParking">
 		DELETE FROM pk_parking WHERE p_idx = #p_idx#
 	</delete>
+	
+	<update id="updateParking">
+		UPDATE pk_parking
+	       SET 
+	           <isNotEmpty property="p_type">
+	           p_type = #p_type#
+	           </isNotEmpty>
+	           <isNotEmpty property="p_name">
+	           p_name = #p_name#
+	           </isNotEmpty>
+	           <isNotEmpty property="p_latitude">
+	           p_latitude = #p_latitude#
+	           </isNotEmpty>
+	           <isNotEmpty property="p_longitude">
+	           p_longitude = #p_longitude#
+	           </isNotEmpty>
+	           <isNotEmpty property="p_address">
+	           p_address = #p_address#
+	           </isNotEmpty>
+	           <isNotEmpty property="p_time">
+	           p_time = #p_time#
+	           </isNotEmpty>
+	           <isNotEmpty property="p_pricetable">
+	           p_pricetable = #p_pricetable#
+	           </isNotEmpty>
+	           <isNotEmpty property="p_per1">
+	           p_per1 = #p_per1#
+	           </isNotEmpty>
+	           <isNotEmpty property="p_price1">
+	           p_price1 = #p_price1#
+	           </isNotEmpty>
+	           <isNotEmpty property="p_per2">
+	           p_per2 = #p_per2#
+	           </isNotEmpty>
+	           <isNotEmpty property="p_price2">
+	           p_price2 = #p_price2#
+	           </isNotEmpty>
+	           <isNotEmpty property="p_etc">
+	           p_etc = #p_etc#
+	           </isNotEmpty>
+	           <isNotEmpty property="p_state">
+	           p_state = #p_state#
+	           </isNotEmpty>
+	    WHERE p_idx = #p_idx#
+	</update>
 	 
 </sqlMap>

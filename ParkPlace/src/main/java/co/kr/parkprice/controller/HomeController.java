@@ -116,7 +116,7 @@ public class HomeController {
 		mem.setPageNo(paging.getPageCnt(pageNo));
 		
 		ArrayList<Member> list = homeService.getMember(mem);
-		model.setViewName("MemberList");
+		model.setViewName("memberList");
 		model.addObject("data", list);
 		
 		HashMap<String, Integer> pagingMap = paging.getPageObj(pageNo,list.get(0).getTotalCnt());
@@ -134,7 +134,7 @@ public class HomeController {
 		park.setPageNo(paging.getPageCnt(pageNo));
 		
 		ArrayList<Parking> list = homeService.getParking(park);
-		model.setViewName("ParkingList");
+		model.setViewName("parkingList");
 		model.addObject("data", list);
 		
 		HashMap<String, Integer> pagingMap = paging.getPageObj(pageNo,list.get(0).getTotalCnt());
@@ -152,12 +152,39 @@ public class HomeController {
 		
 		homeService.delParking(park);
 
-		 return "redirect:parkingList.do?pageNo=1";
+		return "redirect:parkingList.do?pageNo=1";
 	}
 	
+	@RequestMapping(value = "/parkRegi.do", method = RequestMethod.GET)
+	public String parkRegi() {
+		return "parkRegi";
+	}
 	
+	@RequestMapping(value = "/saveParkRegi.do", method = RequestMethod.POST)
+	public String savePark(
+			@ModelAttribute("Parking") Parking park,
+			HttpServletRequest request) throws IOException {
+
+		homeService.insParking(park);
+
+		return "redirect:parkingList.do?pageNo=1";
+	}
 	
-	
+	@RequestMapping(value = "/getParkRegi.do", method = RequestMethod.GET)
+	public ModelAndView getParkRegi(@RequestParam("p_idx") String p_idx ) throws IOException {
+		ModelAndView model = new ModelAndView();
+		
+		Parking parking = new Parking();
+		parking.setP_idx(p_idx);
+		
+		homeService.getParking(parking);
+
+		ArrayList<Parking> list = homeService.getParking(parking);
+		model.setViewName("parkModify");
+		model.addObject("parkData", list.get(0));
+		
+		return model;
+	}
 	
 	
 	

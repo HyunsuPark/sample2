@@ -22,7 +22,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		HttpSession session = request.getSession();
 		session.setAttribute("username", auth.getName());
 		
-		 response.sendRedirect(request.getContextPath() + "/registration.do");
+		 response.sendRedirect(request.getContextPath() + "/memberList.do?pageNo=1");
 	}
 
 }
