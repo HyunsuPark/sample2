@@ -12,7 +12,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">한국주차장협회</a>
+          <a class="navbar-brand" href="/">주차프라이스관리</a>
         </div>
         <div class="navbar-collapse collapse">
         	<c:choose>
@@ -33,8 +33,9 @@
 				</c:when>
 				<c:otherwise>
 					<ul class="nav navbar-nav">
+						<li><a href="memberList.do?pageNo=1"><span class="glyphicon glyphicon-hand-right"></span>&nbsp;회원 리스트</a></li>
+						<li><a href="parkingList.do?pageNo=1"><span class="glyphicon glyphicon-hand-right"></span>&nbsp;주차장 리스트</a></li>
 						<li><a href="registration.do"><span class="glyphicon glyphicon-hand-right"></span>&nbsp;주차장 등록</a></li>
-						<li><a href="regiView.do"><span class="glyphicon glyphicon-hand-right"></span>&nbsp;등록 주차장 목록</a></li> 
 					</ul>
 					<form class="navbar-form navbar-right" role="form" action="j_spring_security_logout">
 						<button type="button" class="btn btn-primary" style="width: 120px;"><c:out value="${username}"></c:out></button>
@@ -43,9 +44,6 @@
 					
 				</c:otherwise>
 			</c:choose>
-				
-	       	
-				
          
         </div><!--/.navbar-collapse -->
       </div>
