@@ -26,10 +26,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import co.kr.parkprice.model.Member;
+import co.kr.parkprice.model.Parking;
 import co.kr.parkprice.model.Registration;
 import co.kr.parkprice.model.User;
 import co.kr.parkprice.service.HomeService;
 import co.kr.parkprice.service.UserService;
+import co.kr.parkprice.util.PagingUtil;
 
 /**
  * Handles requests for the application home page.
@@ -102,6 +105,72 @@ public class HomeController {
 	public String join() {
 		return "join";
 	}
+	
+	//////////////////////////////////////////////////////////
+	@RequestMapping(value = "/memberList.do", method = RequestMethod.GET)
+	public ModelAndView memberList(@RequestParam("pageNo") int pageNo) {
+		ModelAndView model = new ModelAndView();
+		PagingUtil paging = new PagingUtil();
+		
+		Member mem = new Member();
+		mem.setPageNo(paging.getPageCnt(pageNo));
+		
+		ArrayList<Member> list = homeService.getMember(mem);
+		model.setViewName("MemberList");
+		model.addObject("data", list);
+		
+		HashMap<String, Integer> pagingMap = paging.getPageObj(pageNo,list.get(0).getTotalCnt());
+		model.addObject("pagingMap", pagingMap);
+
+		return model;
+	}
+	
+	@RequestMapping(value = "/parkingList.do", method = RequestMethod.GET)
+	public ModelAndView parkingList(@RequestParam("pageNo") int pageNo) {
+		ModelAndView model = new ModelAndView();
+		PagingUtil paging = new PagingUtil();
+		
+		Parking park = new Parking();
+		park.setPageNo(paging.getPageCnt(pageNo));
+		
+		ArrayList<Parking> list = homeService.getParking(park);
+		model.setViewName("ParkingList");
+		model.addObject("data", list);
+		
+		HashMap<String, Integer> pagingMap = paging.getPageObj(pageNo,list.get(0).getTotalCnt());
+		model.addObject("pagingMap", pagingMap);
+
+		return model;
+	}
+	
+	@RequestMapping(value = "/parkingDel.do", method = RequestMethod.GET)
+	public String parkingDel(@RequestParam("idx") String idx) {
+		ModelAndView model = new ModelAndView();
+		
+		Parking park = new Parking();
+		park.setP_idx(idx);
+		
+		homeService.delParking(park);
+
+		 return "redirect:parkingList.do?pageNo=1";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/////////////////////////////////////////////////////////
 	
 	@RequestMapping(value = "/cmn/fail.do", method = RequestMethod.GET)
 	public ModelAndView fail(HttpServletRequest request) {

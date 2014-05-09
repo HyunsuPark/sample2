@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Parking implements Serializable{
 	private static final long serialVersionUID = 1L;
-	private String m_idx;
+	private String p_idx;
 	private String p_type;
 	private String p_name;
 	private String p_latitude;
@@ -26,12 +26,9 @@ public class Parking implements Serializable{
 	private String p_image2;
 	private String p_image3;
 	private String p_count;
-	public String getM_idx() {
-		return m_idx;
-	}
-	public void setM_idx(String m_idx) {
-		this.m_idx = m_idx;
-	}
+	private int pageNo;
+	private int totalCnt;
+	
 	public String getP_type() {
 		return p_type;
 	}
@@ -157,6 +154,24 @@ public class Parking implements Serializable{
 	}
 	public void setP_count(String p_count) {
 		this.p_count = p_count;
+	}
+	public String getP_idx() {
+		return p_idx;
+	}
+	public void setP_idx(String p_idx) {
+		this.p_idx = p_idx;
+	}
+	public int getPageNo() {
+		return pageNo;
+	}
+	public void setPageNo(int pageNo) {
+		this.pageNo = pageNo;
+	}
+	public int getTotalCnt() {
+		return totalCnt;
+	}
+	public void setTotalCnt(int totalCnt) {
+		this.totalCnt = totalCnt;
 	}
 	
 	

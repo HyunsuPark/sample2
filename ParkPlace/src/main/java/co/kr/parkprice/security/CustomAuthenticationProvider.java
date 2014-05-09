@@ -60,7 +60,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 			role = service.getRole(role);
 
 			if (role.getRole().equals("")) {
-				resultRole = "ROLE_NONE";
+//				resultRole = "ROLE_NONE";
+				resultRole = "ADMIN";
 			} else {
 				resultRole = role.getRole();
 			}

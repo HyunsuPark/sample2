@@ -18,6 +18,8 @@ public class Member implements Serializable{
 	private String m_recommandee;
 	private String m_commentdate;
 	private String m_logindate;
+	private int pageNo;
+	private int totalCnt;
 	public String getM_idx() {
 		return m_idx;
 	}
@@ -102,4 +104,17 @@ public class Member implements Serializable{
 	public void setM_logindate(String m_logindate) {
 		this.m_logindate = m_logindate;
 	}
+	public int getPageNo() {
+		return pageNo;
+	}
+	public void setPageNo(int pageNo) {
+		this.pageNo = pageNo;
+	}
+	public int getTotalCnt() {
+		return totalCnt;
+	}
+	public void setTotalCnt(int totalCnt) {
+		this.totalCnt = totalCnt;
+	}
+	
 }
