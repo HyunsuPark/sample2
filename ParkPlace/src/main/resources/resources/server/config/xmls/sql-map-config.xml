@@ -19,4 +19,7 @@
 	<sqlMap resource="resources/server/config/xmls/sqlmaps/Role.xml" />
 	<sqlMap resource="resources/server/config/xmls/sqlmaps/Registration.xml" />
 	
+	<sqlMap resource="resources/server/config/xmls/sqlmaps/Member.xml" />
+	<sqlMap resource="resources/server/config/xmls/sqlmaps/Parking.xml" />
+	
 </sqlMapConfig>

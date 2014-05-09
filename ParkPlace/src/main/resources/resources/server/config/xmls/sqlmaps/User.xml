@@ -6,7 +6,7 @@
 
 	<select id="getUser" resultClass="user">
 		SELECT id,password
-		  FROM users
+		  FROM pk_users
 		 WHERE id = #id#
 		  <isNotEmpty property="password">
 		   AND password = #password# 
@@ -14,7 +14,7 @@
 	</select>
 	
 	<insert id="insertUser">
-		INSERT INTO users(id,password,email)
+		INSERT INTO pk_users(id,password,email)
 		VALUES(#id#,#password#,#email#)
 	</insert>
 	 

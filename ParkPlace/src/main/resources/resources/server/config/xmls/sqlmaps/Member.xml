@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="member">
+	<typeAlias alias="member" type="co.kr.parkprice.model.Member" />
+
+	<select id="getMember" resultClass="member">
+		SELECT   m_idx
+				,m_userid
+				,m_password
+				,m_registdate
+				,m_1daykey
+				,m_7daykey
+				,m_30daykey
+				,m_distance
+				,m_point
+				,m_code
+				,m_phone
+				,m_recommandee
+				,m_commentdate
+				,m_logindate
+				,(select count(*) from pk_member) as totalCnt
+		  FROM pk_member
+	  ORDER BY m_idx desc 
+		 LIMIT #pageNo# , 20
+	</select>
+
+	<insert id="insertMember">
+		INSERT INTO pk_member
+		(m_idx
+		,m_userid
+		,m_password
+		,m_registdate
+		,m_1daykey
+		,m_7daykey
+		,m_30daykey
+		,m_distance
+		,m_point
+		,m_code
+		,m_phone
+		,m_recommandee
+		,m_commentdate
+		,m_logindate
+		)
+		VALUES
+		(#m_idx#
+		,#m_userid#
+		,#m_password#
+		,#m_registdate#
+		,#m_1daykey#
+		,#m_7daykey#
+		,#m_30daykey#
+		,#m_7daykey#
+		,#m_30daykey#
+		,#m_distance#
+		,#m_point#
+		,#m_code#
+		,#m_phone#
+		,#m_recommandee#
+		,#m_commentdate#
+		,#m_logindate#
+		)
+	</insert>
+	 
+</sqlMap>

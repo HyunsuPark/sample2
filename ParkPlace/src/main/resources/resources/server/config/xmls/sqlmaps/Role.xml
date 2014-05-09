@@ -6,12 +6,12 @@
 
 	<select id="getRole" resultClass="role">
 		SELECT *
-		  FROM roles
+		  FROM pk_roles
 		 WHERE id = #id# 
 	</select>
 	
 	<insert id="insertRole">
-		INSERT INTO roles(id,role)
+		INSERT INTO pk_roles(id,role)
 		VALUES(#id#,#role#)
 	</insert>
 	 
