@@ -21,7 +21,7 @@
         		<th>삭제</th>
         	</tr>
         	<c:forEach var="result" items="${data}" varStatus="status">
-        	<tr>
+        	<tr style="cursor: pointer;" onclick="location.href='getParkRegi.do?p_idx=${result.p_idx}'">
         		<td>${result.p_idx}</td>
         		<td>${result.p_type}</td>
         		<td>${result.p_name}</td>
