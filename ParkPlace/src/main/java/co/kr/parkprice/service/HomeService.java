@@ -38,4 +38,8 @@ public class HomeService extends AbstractCommonService{
 	public void insParking(Parking parking){
 		Object obj = this.getSqlMapClientTemplate().insert("parking.insertParking",parking);
 	}
+	
+	public void udtParking(Parking parking){
+		Object obj = this.getSqlMapClientTemplate().update("parking.updateParking",parking);
+	}
 }
