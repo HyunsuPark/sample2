@@ -33,9 +33,14 @@
 	  	  <isNotEmpty property="p_idx">
 		   AND p_idx = #p_idx# 
 		  </isNotEmpty> 
+		  <isNotEmpty property="p_name">
+		   AND p_name like CONCAT('%', #p_name#,'%')
+		  </isNotEmpty>
 	  ORDER BY p_idx DESC 
 		  <isEmpty property="p_idx">
+		  	<isEmpty property="p_name">
 		 	LIMIT #pageNo# , 20 
+		 	</isEmpty>
 		  </isEmpty>
 	</select>
 	
@@ -98,45 +103,19 @@
 	<update id="updateParking">
 		UPDATE pk_parking
 	       SET 
-	           <isNotEmpty property="p_type">
-	           p_type = #p_type#
-	           </isNotEmpty>
-	           <isNotEmpty property="p_name">
-	           p_name = #p_name#
-	           </isNotEmpty>
-	           <isNotEmpty property="p_latitude">
-	           p_latitude = #p_latitude#
-	           </isNotEmpty>
-	           <isNotEmpty property="p_longitude">
-	           p_longitude = #p_longitude#
-	           </isNotEmpty>
-	           <isNotEmpty property="p_address">
-	           p_address = #p_address#
-	           </isNotEmpty>
-	           <isNotEmpty property="p_time">
-	           p_time = #p_time#
-	           </isNotEmpty>
-	           <isNotEmpty property="p_pricetable">
-	           p_pricetable = #p_pricetable#
-	           </isNotEmpty>
-	           <isNotEmpty property="p_per1">
-	           p_per1 = #p_per1#
-	           </isNotEmpty>
-	           <isNotEmpty property="p_price1">
-	           p_price1 = #p_price1#
-	           </isNotEmpty>
-	           <isNotEmpty property="p_per2">
-	           p_per2 = #p_per2#
-	           </isNotEmpty>
-	           <isNotEmpty property="p_price2">
-	           p_price2 = #p_price2#
-	           </isNotEmpty>
-	           <isNotEmpty property="p_etc">
-	           p_etc = #p_etc#
-	           </isNotEmpty>
-	           <isNotEmpty property="p_state">
+	           p_type = #p_type#,
+	           p_name = #p_name#,
+	           p_latitude = #p_latitude#,
+	           p_longitude = #p_longitude#,
+	           p_address = #p_address#,
+	           p_time = #p_time#,
+	           p_pricetable = #p_pricetable#,
+	           p_per1 = #p_per1#,
+	           p_price1 = #p_price1#,
+	           p_per2 = #p_per2#,
+	           p_price2 = #p_price2#,
+	           p_etc = #p_etc#,
 	           p_state = #p_state#
-	           </isNotEmpty>
 	    WHERE p_idx = #p_idx#
 	</update>
 	 

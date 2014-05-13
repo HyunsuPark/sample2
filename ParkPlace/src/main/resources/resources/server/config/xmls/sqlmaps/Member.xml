@@ -21,8 +21,19 @@
 				,m_logindate
 				,(select count(*) from pk_member) as totalCnt
 		  FROM pk_member
+		 WHERE 1=1
+		 <isNotEmpty property="m_idx">
+		   AND m_idx = #m_idx# 
+		 </isNotEmpty>
+		 <isNotEmpty property="m_userid">
+		   AND m_userid like CONCAT('%', #m_userid#,'%')
+		  </isNotEmpty>
 	  ORDER BY m_idx desc 
+	  	 <isEmpty property="m_idx">
+	  	 	<isEmpty property="m_userid">
 		 LIMIT #pageNo# , 20
+		 	</isEmpty>
+		 </isEmpty>
 	</select>
 
 	<insert id="insertMember">
@@ -61,5 +72,14 @@
 		,#m_logindate#
 		)
 	</insert>
+	 
+	 <update id="updateMember">
+	 	update pk_member 
+	 	   set m_1daykey=#m_1daykey#
+	 	     , m_7daykey=#m_7daykey#
+	 	     , m_30daykey=#m_30daykey#
+	 	     , m_point=#m_point# 
+	 	 where m_idx=#m_idx#
+	 </update>
 	 
 </sqlMap>
