@@ -28,7 +28,7 @@
 								name="j_password" required="required">
 						</div>
 						<button type="submit" class="btn btn-danger">로그인</button>
-						<button type="button" class="btn btn-primary" id="btnJoin">회원가입</button>
+<!-- 						<button type="button" class="btn btn-primary" id="btnJoin">회원가입</button> -->
 					</form>
 				</c:when>
 				<c:otherwise>

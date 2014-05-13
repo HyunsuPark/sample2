@@ -9,16 +9,16 @@
         <table class="table"> 
         	<tr>
         		<th>No</th>
-        		<th>유형</th>
-        		<th>이름</th>
-        		<th>주소</th>
-        		<th>운영시간</th>
-        		<th>요금표</th>
-        		<th>기본<br>분당&nbsp;원</th>
-        		<th>추가<br>분당&nbsp;원</th>
-        		<th>기타 상세정보</th>
-        		<th>주차가능여부</th>
-        		<th>삭제</th>
+        		<th width="5%">유형</th>
+        		<th width="15%">이름</th>
+        		<th width="20%">주소</th>
+        		<th width="4%">운영시간</th>
+        		<th width="12%">요금표</th>
+        		<th width="">기본<br>분당/원</th>
+        		<th width="">추가<br>분당/원</th>
+        		<th width="17%">기타 상세정보</th>
+        		<th width="11%">주차가능여부</th>
+        		<th width="">삭제</th>
         	</tr>
         	<c:forEach var="result" items="${data}" varStatus="status">
         	<tr style="cursor: pointer;" onclick="location.href='getParkRegi.do?p_idx=${result.p_idx}'">
@@ -28,10 +28,11 @@
         		<td>${result.p_address}</td>
         		<td>${result.p_time}</td>
         		<td>${result.p_pricetable}</td>
-        		<td>${result.p_price1}&nbsp;${result.p_per1}</td>
-        		<td>${result.p_price2}&nbsp;${result.p_per2}</td>
+        		<td>${result.p_price1}/${result.p_per1}</td>
+        		<td>${result.p_price2}/${result.p_per2}</td>
         		<td>${result.p_etc}</td>
         		<td>${result.p_state}</td>
+<%--         		<td><button onclick="if(confirm('정말삭제하시겠습니까?')) location.href='parkingDel.do?idx=${result.p_idx}'">삭제</button></td> --%>
         		<td><a class="btn btn-default" onclick="if(confirm('정말삭제하시겠습니까?')) location.href='parkingDel.do?idx=${result.p_idx}'">삭제</a></td>
         	</tr>
         	</c:forEach>
@@ -45,6 +46,10 @@
 		<a href="parkingList.do?pageNo=${pagingMap['next_pageno']}" >[다음]</a>
 		<a href="parkingList.do?pageNo=${pagingMap['total_page']}">[맨뒤로]</a>
 
+		<form action="searchParking.do">
+			<input type="text" name="p_name">
+			<input type="submit" value="찾기">
+		</form>
       </div>
 </body>
 </html> 

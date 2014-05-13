@@ -7,7 +7,8 @@
 			<h3>주차장 등록</h3>
 			<div class="cl">&nbsp;</div>
 		</header>
-		<form action="saveParkRegi.do" method="post">
+		<form action="modifyPark.do" method="post">
+			<input type="hidden" name="p_idx" value="${parkData['p_idx']}">	
 			<dl>
 				<dt>
 					<label>유형</label>
@@ -126,6 +127,11 @@
  <script type="text/javascript">
 	$("select[name=p_type]").val("${parkData['p_type']}");
 	$("select[name=p_state]").val("${parkData['p_state']}");
+	
+	if("${param.save}"=="ok"){
+			alert("저장되었습니다.");
+		}
+	
 </script>
 	<!-- end of footer -->
 <!-- end of wrapper -->

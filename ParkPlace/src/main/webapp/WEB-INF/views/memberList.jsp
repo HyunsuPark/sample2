@@ -20,7 +20,7 @@
         		<th>phone</th>
         	</tr>
         	<c:forEach var="result" items="${data}" varStatus="status">
-        	<tr>
+        	<tr style="cursor: pointer;" onclick="location.href='getMember.do?m_idx=${result.m_idx}'">
         		<td>${result.m_idx}</td>
         		<td>${result.m_userid}</td>
         		<td>${result.m_registdate}</td>
@@ -43,6 +43,10 @@
 		<a href="memberList.do?pageNo=${pagingMap['next_pageno']}" >[다음]</a>
 		<a href="memberList.do?pageNo=${pagingMap['total_page']}">[맨뒤로]</a>
 
+		<form action="searchMember.do">
+			<input type="text" name="m_userid">
+			<input type="submit" value="찾기">
+		</form>
       </div>
 </body>
 </html> 
