@@ -86,25 +86,25 @@ public class HomeController {
 		return "main";
 	}
 
-	@RequestMapping(value = "/contact.do", method = RequestMethod.GET)
-	public String contact(@RequestParam HashMap<String, String> params) {
-		return "contact";
-	}
-
-	@RequestMapping(value = "/registration.do", method = RequestMethod.GET)
-	public String registration() {
-		return "registration";
-	}
+//	@RequestMapping(value = "/contact.do", method = RequestMethod.GET)
+//	public String contact(@RequestParam HashMap<String, String> params) {
+//		return "contact";
+//	}
+//
+//	@RequestMapping(value = "/registration.do", method = RequestMethod.GET)
+//	public String registration() {
+//		return "registration";
+//	}
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.GET)
 	public String login() {
 		return "login";
 	}
 
-	@RequestMapping(value = "/cmn/join.do", method = RequestMethod.GET)
-	public String join() {
-		return "join";
-	}
+//	@RequestMapping(value = "/cmn/join.do", method = RequestMethod.GET)
+//	public String join() {
+//		return "join";
+//	}
 	
 	//////////////////////////////////////////////////////////
 	@RequestMapping(value = "/memberList.do", method = RequestMethod.GET)
@@ -125,6 +125,30 @@ public class HomeController {
 		return model;
 	}
 	
+	@RequestMapping(value = "/getMember.do", method = RequestMethod.GET)
+	public ModelAndView getParking(@RequestParam("m_idx") String m_idx) {
+		ModelAndView model = new ModelAndView();
+		
+		Member park = new Member();
+		park.setM_idx(m_idx);
+		
+		ArrayList<Member> list = homeService.getMember(park);
+		model.setViewName("memberModify");
+		model.addObject("data", list.get(0));
+		
+		return model;
+	}
+	
+	@RequestMapping(value = "/modifyMember.do", method = RequestMethod.POST)
+	public String modifyMember(
+			@ModelAttribute("Member") Member mem,@RequestParam("m_idx") String m_idx,
+			HttpServletRequest request) throws IOException {
+
+		homeService.udtMember(mem);
+
+		return "redirect:getMember.do?m_idx="+m_idx+"&save=ok";
+	}
+	
 	@RequestMapping(value = "/parkingList.do", method = RequestMethod.GET)
 	public ModelAndView parkingList(@RequestParam("pageNo") int pageNo) {
 		ModelAndView model = new ModelAndView();
@@ -141,18 +165,6 @@ public class HomeController {
 		model.addObject("pagingMap", pagingMap);
 
 		return model;
-	}
-	
-	@RequestMapping(value = "/parkingDel.do", method = RequestMethod.GET)
-	public String parkingDel(@RequestParam("idx") String idx) {
-		ModelAndView model = new ModelAndView();
-		
-		Parking park = new Parking();
-		park.setP_idx(idx);
-		
-		homeService.delParking(park);
-
-		return "redirect:parkingList.do?pageNo=1";
 	}
 	
 	@RequestMapping(value = "/parkRegi.do", method = RequestMethod.GET)
@@ -186,9 +198,46 @@ public class HomeController {
 		return model;
 	}
 	
+	@RequestMapping(value = "/modifyPark.do", method = RequestMethod.POST)
+	public String modifyPark(
+			@ModelAttribute("Parking") Parking park,@RequestParam("p_idx") String p_idx,
+			HttpServletRequest request) throws IOException {
+
+		homeService.udtParking(park);
+
+		return "redirect:getParkRegi.do?p_idx="+p_idx+"&save=ok";
+	}
 	
 	
+	@RequestMapping(value = "/searchParking.do", method = RequestMethod.GET)
+	public ModelAndView searchParking(@RequestParam("p_name") String p_name ) throws IOException {
+		
+		ModelAndView model = new ModelAndView();
+		
+		Parking parking = new Parking();
+		parking.setP_name(p_name);
+		
+		ArrayList<Parking> list = homeService.getParking(parking);
+		model.setViewName("parkingList");
+		model.addObject("data", list);
+		
+		return model;
+	}
 	
+	@RequestMapping(value = "/searchMember.do", method = RequestMethod.GET)
+	public ModelAndView searchMember(@RequestParam("m_userid") String m_userid ) throws IOException {
+		
+		ModelAndView model = new ModelAndView();
+		
+		Member member = new Member();
+		member.setM_userid(m_userid);
+		
+		ArrayList<Member> list = homeService.getMember(member);
+		model.setViewName("memberList");
+		model.addObject("data", list);
+		
+		return model;
+	}
 	
 	
 	
@@ -220,74 +269,74 @@ public class HomeController {
 		return model;
 	}
 
-	@RequestMapping(value = "/regiView.do", method = RequestMethod.GET)
-	public ModelAndView regiView(HttpServletRequest request) {
-		ModelAndView model = new ModelAndView();
-
-		Registration regi = new Registration();
-		regi.setId((String) request.getSession().getAttribute("username"));
-
-		ArrayList<Registration> list = homeService.getRegi(regi);
-		model.setViewName("view");
-		model.addObject("data", list);
-
-		return model;
-	}
-
-	@RequestMapping(value = "/detailView.do", method = RequestMethod.GET)
-	public ModelAndView detailView(@RequestParam("seq") int seq,
-			HttpServletRequest request) {
-		ModelAndView model = new ModelAndView();
-
-		Registration regi = new Registration();
-		regi.setId((String) request.getSession().getAttribute("username"));
-		regi.setSeq(seq);
-
-		ArrayList<Registration> list = homeService.getRegi(regi);
-		model.setViewName("view_detail");
-		model.addObject("data", list);
-
-		return model;
-	}
-
-	@RequestMapping(value = "/cmn/addUser.do", method = RequestMethod.POST)
-	public ModelAndView addUser(@RequestParam HashMap<String, String> params) {
-		ModelAndView model = new ModelAndView();
-
-		User user = new User();
-		user.setId(params.get("id"));
-		user.setPassword(params.get("pass"));
-		user.setEmail(params.get("email"));
-
-		String result = userService.addUser(user);
-		//
-		if (result.equals("ok")) {
-			model.setView(new RedirectView("ok.do?msg=join_ok&next=index.do"));
-		} else {
-			model.setView(new RedirectView("fail.do?msg=duple_id"));
-		}
-
-		return model;
-	}
-
-	@RequestMapping(value = "/saveRegi.do", method = RequestMethod.POST)
-	public ModelAndView saveRegi(
-			@ModelAttribute("Registration") Registration regi,
-			HttpServletRequest request) throws IOException {
-
-		ModelAndView model = new ModelAndView();
-		try {
-			fileUpload(regi,request);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		regi.setId((String) request.getSession().getAttribute("username"));
-		homeService.saveRegi(regi);
-
-		model.setView(new RedirectView("regiView.do"));
-
-		return model;
-	}
+//	@RequestMapping(value = "/regiView.do", method = RequestMethod.GET)
+//	public ModelAndView regiView(HttpServletRequest request) {
+//		ModelAndView model = new ModelAndView();
+//
+//		Registration regi = new Registration();
+//		regi.setId((String) request.getSession().getAttribute("username"));
+//
+//		ArrayList<Registration> list = homeService.getRegi(regi);
+//		model.setViewName("view");
+//		model.addObject("data", list);
+//
+//		return model;
+//	}
+//
+//	@RequestMapping(value = "/detailView.do", method = RequestMethod.GET)
+//	public ModelAndView detailView(@RequestParam("seq") int seq,
+//			HttpServletRequest request) {
+//		ModelAndView model = new ModelAndView();
+//
+//		Registration regi = new Registration();
+//		regi.setId((String) request.getSession().getAttribute("username"));
+//		regi.setSeq(seq);
+//
+//		ArrayList<Registration> list = homeService.getRegi(regi);
+//		model.setViewName("view_detail");
+//		model.addObject("data", list);
+//
+//		return model;
+//	}
+//
+//	@RequestMapping(value = "/cmn/addUser.do", method = RequestMethod.POST)
+//	public ModelAndView addUser(@RequestParam HashMap<String, String> params) {
+//		ModelAndView model = new ModelAndView();
+//
+//		User user = new User();
+//		user.setId(params.get("id"));
+//		user.setPassword(params.get("pass"));
+//		user.setEmail(params.get("email"));
+//
+//		String result = userService.addUser(user);
+//		//
+//		if (result.equals("ok")) {
+//			model.setView(new RedirectView("ok.do?msg=join_ok&next=index.do"));
+//		} else {
+//			model.setView(new RedirectView("fail.do?msg=duple_id"));
+//		}
+//
+//		return model;
+//	}
+//
+//	@RequestMapping(value = "/saveRegi.do", method = RequestMethod.POST)
+//	public ModelAndView saveRegi(
+//			@ModelAttribute("Registration") Registration regi,
+//			HttpServletRequest request) throws IOException {
+//
+//		ModelAndView model = new ModelAndView();
+//		try {
+//			fileUpload(regi,request);
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//		regi.setId((String) request.getSession().getAttribute("username"));
+//		homeService.saveRegi(regi);
+//
+//		model.setView(new RedirectView("regiView.do"));
+//
+//		return model;
+//	}
 
 	public void fileUpload(Registration regi,HttpServletRequest request) throws IOException {
 		List<MultipartFile> files = regi.getFiles();

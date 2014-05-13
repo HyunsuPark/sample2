@@ -27,6 +27,10 @@ public class HomeService extends AbstractCommonService{
 		return (ArrayList<Member>)this.getSqlMapClientTemplate().queryForList("member.getMember",member); 
 	}
 	
+	public void udtMember(Member member){
+		Object obj = this.getSqlMapClientTemplate().update("member.updateMember",member);
+	}
+	
 	public ArrayList<Parking> getParking(Parking parking){
 		return (ArrayList<Parking>)this.getSqlMapClientTemplate().queryForList("parking.getParking",parking); 
 	}
