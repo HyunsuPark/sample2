@@ -28,12 +28,12 @@
         		<td>${result.p_address}</td>
         		<td>${result.p_time}</td>
         		<td>${result.p_pricetable}</td>
-        		<td>${result.p_price1}/${result.p_per1}</td>
-        		<td>${result.p_price2}/${result.p_per2}</td>
+        		<td>${result.p_per1}/${result.p_price1}</td>
+        		<td>${result.p_per2}/${result.p_price2}</td>
         		<td>${result.p_etc}</td>
         		<td>${result.p_state}</td>
 <%--         		<td><button onclick="if(confirm('정말삭제하시겠습니까?')) location.href='parkingDel.do?idx=${result.p_idx}'">삭제</button></td> --%>
-        		<td><a class="btn btn-default" onclick="if(confirm('정말삭제하시겠습니까?')) location.href='parkingDel.do?idx=${result.p_idx}'">삭제</a></td>
+        		<td><a class="btn btn-default" href="parkingDel.do?idx=${result.p_idx}" onclick="event.cancelBubble=true;">삭제</a></td>
         	</tr>
         	</c:forEach>
         </table>
