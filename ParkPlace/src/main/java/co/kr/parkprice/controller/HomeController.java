@@ -208,6 +208,17 @@ public class HomeController {
 		return "redirect:getParkRegi.do?p_idx="+p_idx+"&save=ok";
 	}
 	
+	@RequestMapping(value = "/parkingDel.do", method = RequestMethod.GET)
+	public String parkingDel(@RequestParam("idx") String idx) {
+		ModelAndView model = new ModelAndView();
+		
+		Parking park = new Parking();
+		park.setP_idx(idx);
+		
+		homeService.delParking(park);
+
+		return "redirect:parkingList.do?pageNo=1";
+	}
 	
 	@RequestMapping(value = "/searchParking.do", method = RequestMethod.GET)
 	public ModelAndView searchParking(@RequestParam("p_name") String p_name ) throws IOException {
